@@ -1,0 +1,28 @@
+# node package download 
+**/node_modules
+
+.vscode
+
+# macos
+.DS_Store
+
+# production
+**/dist
+
+# ssr production
+**/dist-ssr
+**/.next
+
+# local env
+*.local
+
+
+# pnpm package npmrc
+pnpm-lock.yaml
+.pnpm-debug.log
+
+# config
+**/moyu.config.js
+
+# eslint
+.eslintcache

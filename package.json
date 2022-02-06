@@ -1,0 +1,22 @@
+{
+  "name": "moyu-free-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moyu-developer/moyu-free-code.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moyu-developer/moyu-free-code/issues"
+  },
+  "homepage": "https://github.com/moyu-developer/moyu-free-code#readme",
+  "devDependencies": {
+    "microbundle": "^0.14.2"
+  }
+}
