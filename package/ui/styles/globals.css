@@ -1,0 +1,7 @@
+@import '~@douyinfe/semi-ui/dist/css/semi.min.css';
+@import 'reset-css';
+
+#__next {
+  height: 100vh;
+  overflow: hidden;
+}

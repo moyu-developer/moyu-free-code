@@ -1,0 +1,27 @@
+{
+  "name": "@moyu-code/ui",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@douyinfe/semi-icons": "^2.3.1",
+    "@douyinfe/semi-ui": "^2.3.1",
+    "next": "12.0.10",
+    "react": "17.0.2",
+    "react-dnd": "^15.1.0",
+    "react-dnd-html5-backend": "^15.1.1",
+    "react-dom": "17.0.2",
+    "reset-css": "^5.0.1"
+  },
+  "devDependencies": {
+    "@douyinfe/semi-next": "^2.3.1",
+    "@types/node": "17.0.15",
+    "@types/react": "17.0.39",
+    "sass": "^1.49.7",
+    "typescript": "4.5.5"
+  }
+}
