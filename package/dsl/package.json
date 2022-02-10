@@ -1,0 +1,21 @@
+{
+  "name": "@moyu-code/dsl",
+  "type": "module",
+  "source": "src/index.ts",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  }
+}

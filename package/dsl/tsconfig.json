@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "build/dist",
+    "allowSyntheticDefaultImports": true, // 允许引入没有默认导出的模块
+    "module": "es2015",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "strict": false,
+    "target": "es5",
+    "noImplicitAny": false,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@@/*": ["./*"]
+    }
+  },
+  "include": [
+    "./**/*",
+    "type.d.ts"
+  ],
+  "exclude": ["node_modules", "dist",]
+}
