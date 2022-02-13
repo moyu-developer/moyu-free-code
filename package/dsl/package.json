@@ -1,5 +1,6 @@
 {
   "name": "@moyu-code/dsl",
+  "version": "1.0.0",
   "type": "module",
   "source": "src/index.ts",
   "types": "./dist/index.d.ts",

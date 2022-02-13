@@ -1,9 +1,3 @@
-import StylePanel from "./components/StylePanel";
-import FormPanel from "./components/FormPanel";
-
-const Configuration = {
-  StylePanel,
-  FormPanel
-}
-
-export default Configuration
+export { default as StylePanel } from "./components/StylePanel";
+export { default as FormPanel } from "./components/FormPanel";
+export { Form, Collapse } from '@douyinfe/semi-ui'
