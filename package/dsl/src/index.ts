@@ -19,23 +19,29 @@ export interface MicroNode {
   nodes?: MicroNode[]
 }
 
+export interface MicroView {
+   /** @name 页面名称  */
+  viewName: string;
+  props?: DSLNodeSchema['props']
+  children?: DSLNodeSchema[]
+}
+
 export interface DSLNodeSchema {
 
-  /** @name 组件名称，需要标识  */
-  name: string,
-  
-  /** @name 图标地址，如果不填默认会使用组件名称显示 */
-  icon?: string,
+  /** @name 组件名称，用于加载组件，如果是chunk则为custom  */
+  type: string;
 
-  /** @name 组件chunk地址，默认为lib组件，如果需要远程引入则使用chunk地址 */
-  chunkCDN?: string
-}
+  /** @name 组件名称，用于加载组件，如果是chunk则为custom  */
+  uid: string
 
-export interface DSLView {
-  title
-}
+  /** @name 组件属性，属性配置面板会进行操作  */
+  props?: {
+    style?: React.CSSProperties;
+    className?: string;
+    children?: React.ReactNode;
+    [K: string]: any
+  }
 
-
-export function sum (a: number, b: number) {
-  return a+b
+  /** @name 子组件，用于模块嵌套 */
+  children?: DSLNodeSchema[]
 }
