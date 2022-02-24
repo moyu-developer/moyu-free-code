@@ -5,3 +5,34 @@
   height: 100vh;
   overflow: hidden;
 }
+
+
+::-webkit-scrollbar {  /* 滚动条整体部分 */
+  width: 3px;
+  margin-right:2px
+}
+::-webkit-scrollbar-button { /* 滚动条两端的按钮 */
+  width:10px;
+  background-color: yellow;
+}
+::-webkit-scrollbar:horizontal {
+  height:10px;
+  margin-bottom:2px
+}
+::-webkit-scrollbar-track {  /* 外层轨道 */
+  border-radius: 0;
+}
+::-webkit-scrollbar-track-piece {  /*内层轨道，滚动条中间部分 */
+  background-color: rgba(var(--semi-grey-0), 1);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb {  /* 滑块 */
+  width:10px;border-radius: 0;
+  background: var(--semi-color-primary);
+}
+::-webkit-scrollbar-corner { /* 边角 */
+  width: 10px;
+}
+::-webkit-scrollbar-thumb:hover { /* 鼠标移入滑块 */
+  background: #909090;
+}

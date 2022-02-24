@@ -1,0 +1,12 @@
+.productList {
+  width: 230px;
+  height: calc(100vh - 80px);
+  padding: 12px;
+  overflow: auto;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
