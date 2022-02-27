@@ -5,7 +5,7 @@ export interface MobileRenderProps {
   materialComponents: Record<string, React.FC | React.ComponentClass>,
   remoteComponents?: string[],
   schema: RenderNodeType[],
-  render?: (node: React.ReactNode) => React.ReactNode
+  render?: (element: React.ReactNode, item?: RenderNodeType) => React.ReactNode
 }
  
 const MobileRender: React.FC<MobileRenderProps> = (props) => {
@@ -29,12 +29,18 @@ const MobileRender: React.FC<MobileRenderProps> = (props) => {
   const schemaComponentTree = React.useMemo(() => {
     if (props.schema && props.schema.length > 0) {
       return props.schema.map(node => {
-        const materialComponent = materialComponentsRef.current[node.component]
-        if (materialComponent) {
-          const { children, ...props } = node.props || {}
-          return React.createElement(materialComponent, props, children)
+        const MaterialComponent = materialComponentsRef.current[node.component]
+        if (MaterialComponent) {
+          const { children, ...componentProps } = node.props || {}
+          if (props.render) {
+            return props.render(<MaterialComponent {...componentProps}>
+              children
+            </MaterialComponent>, node)
+          }
+          return <MaterialComponent {...componentProps}>
+            children
+          </MaterialComponent>
         } else {
-          console.log(node.component, materialComponent.current, 'debug')
           return null
         }
       }) 
