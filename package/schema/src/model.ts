@@ -54,5 +54,11 @@ export interface MaterialComponentType {
   /**
    * @name 属性面板，用于配置props内容
    */
-  panel:  Array<React.FunctionComponent | React.ComponentClass> 
+  panel:  PanelComponentType[] 
+}
+
+export interface PanelComponentType {
+  /** @name 面板key */
+  key: string,
+  render: React.ReactNode
 }
