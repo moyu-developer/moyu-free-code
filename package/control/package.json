@@ -1,0 +1,59 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "name": "@moyu-code/control",
+  "author": "wangly19",
+  "module": "dist/renders.esm.js",
+  "devDependencies": {
+    "@moyu-code/schema": "workspace:^0.1.0"
+  },
+  "size-limit": [
+    {
+      "path": "dist/renders.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/renders.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "dependencies": {
+    "@dnd-kit/core": "^5.0.1",
+    "@dnd-kit/sortable": "^6.0.0",
+    "@douyinfe/semi-icons": "^2.3.1",
+    "@douyinfe/semi-illustrations": "^2.4.1",
+    "@douyinfe/semi-ui": "^2.3.1",
+    "@moyu-code/materials": "workspace:^0.1.0",
+    "@moyu-code/renders": "workspace:^0.1.0",
+    "@rematch/core": "^2.2.0",
+    "ahooks": "^3.1.10",
+    "immer": "^9.0.12",
+    "react-dnd": "^15.1.0",
+    "react-dnd-html5-backend": "^15.1.1",
+    "react-redux": "^7.2.6",
+    "recoil": "^0.6.1",
+    "redux-undo": "^1.0.1",
+    "ulid": "^2.3.0"
+  }
+}
