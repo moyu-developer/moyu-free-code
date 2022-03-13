@@ -37,8 +37,5 @@
       "path": "dist/renders.esm.js",
       "limit": "10 KB"
     }
-  ],
-  "dependencies": {
-    "@moyu-code/panels": "workspace:^0.1.0"
-  }
+  ]
 }

@@ -5,7 +5,7 @@ export interface MobileRenderProps {
   materialComponents: Record<string, React.FC | React.ComponentClass>,
   remoteComponents?: string[],
   schema: RenderNodeType[],
-  render?: (element: React.ReactNode, item?: RenderNodeType) => React.ReactNode
+  render?: (element: React.ReactNode, item?: RenderNodeType, index?: number) => React.ReactNode
 }
  
 const MobileRender: React.FC<MobileRenderProps> = (props) => {
@@ -28,19 +28,23 @@ const MobileRender: React.FC<MobileRenderProps> = (props) => {
   /** 通过schema，渲染组件树 */
   const schemaComponentTree = React.useMemo(() => {
     if (props.schema && props.schema.length > 0) {
-      return props.schema.map(node => {
+      return props.schema.map((node, componentIndex) => {
         const MaterialComponent = materialComponentsRef.current[node.component]
+        /** 判断当前组件是否已经传入 */
         if (MaterialComponent) {
           const { children, ...componentProps } = node.props || {}
           if (props.render) {
-            return props.render(<MaterialComponent {...componentProps}>
-              children
-            </MaterialComponent>, node)
+            const renderElement = props.render(<MaterialComponent {...componentProps}>
+              {children}
+            </MaterialComponent>, node, componentIndex)
+            console.log(renderElement, 'renderElement')
+            return renderElement
           }
-          return <MaterialComponent {...componentProps}>
-            children
+          return <MaterialComponent {...componentProps} key={node.uid}>
+            {children}
           </MaterialComponent>
         } else {
+          console.warn(`Warning: ${node.component}组件未找到，请检查materialComponents是否存在当前组件类型`, materialComponentsRef)
           return null
         }
       }) 
