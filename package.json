@@ -4,19 +4,42 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx ./package",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx ./package"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/moyu-developer/moyu-free-code.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/moyu-developer/moyu-free-code/issues"
   },
   "homepage": "https://github.com/moyu-developer/moyu-free-code#readme",
   "devDependencies": {
-    "microbundle": "^0.14.2"
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "eslint": "^8.11.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-config-standard-jsx": "^10.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "microbundle": "^0.14.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "sass": "^1.49.7",
+    "size-limit": "^7.0.8",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   }
 }
