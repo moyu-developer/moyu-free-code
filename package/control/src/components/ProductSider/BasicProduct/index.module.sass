@@ -1,0 +1,24 @@
+@import 'src/common/styles/mixins.scss'
+.product
+  &Basic
+    width: 230px
+  &List
+    @include flex($jc: flex-start, $ai: flex-start)
+    flex-wrap: wrap
+    grid-gap: 16px
+    padding: 16px
+.search
+  padding: 0 16px
+
+.card
+  width: 90px
+  height: 90px
+  @include flex($d: column)
+  transition: background .8s
+  &:hover
+    background: var(--semi-color-tertiary-light-hover)
+    border-radius: var(--semi-border-radius-medium)
+  &Name
+    padding-top: 8px
+    font-size: 14px
+    color: var(--semi-color-text-1)
