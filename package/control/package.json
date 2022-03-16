@@ -24,23 +24,21 @@
   },
   "name": "@moyu-code/control",
   "author": "wangly19",
-  "module": "dist/renders.esm.js",
+  "module": "dist/control.esm.js",
   "devDependencies": {
     "@moyu-code/schema": "workspace:^0.1.0"
   },
   "size-limit": [
     {
-      "path": "dist/renders.cjs.production.min.js",
+      "path": "dist/control.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/renders.esm.js",
+      "path": "dist/control.esm.js",
       "limit": "10 KB"
     }
   ],
   "dependencies": {
-    "@dnd-kit/core": "^5.0.1",
-    "@dnd-kit/sortable": "^6.0.0",
     "@douyinfe/semi-icons": "^2.3.1",
     "@douyinfe/semi-illustrations": "^2.4.1",
     "@douyinfe/semi-ui": "^2.3.1",
@@ -48,11 +46,9 @@
     "@moyu-code/renders": "workspace:^0.1.0",
     "@rematch/core": "^2.2.0",
     "ahooks": "^3.1.10",
-    "immer": "^9.0.12",
     "react-dnd": "^15.1.0",
     "react-dnd-html5-backend": "^15.1.1",
     "react-redux": "^7.2.6",
-    "recoil": "^0.6.1",
     "redux-undo": "^1.0.1",
     "ulid": "^2.3.0"
   }
