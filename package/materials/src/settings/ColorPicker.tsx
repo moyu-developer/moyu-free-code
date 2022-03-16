@@ -1,17 +1,16 @@
-import * as React from "react";
-import { Popover, Button, withField } from "@douyinfe/semi-ui";
-import { SketchPicker } from "react-color";
+import * as React from 'react'
+import { Popover, Button, withField } from '@douyinfe/semi-ui'
+import { SketchPicker } from 'react-color'
 
 import type { CommonFieldProps } from '@douyinfe/semi-ui/form/interface'
 
 const ColorPicker: React.FC<CommonFieldProps> = withField((props) => {
-
   console.log(props)
-  
+
   return (
     <Popover
       showArrow
-      trigger="click"
+      trigger='click'
       spacing={0}
       content={
         <SketchPicker
@@ -22,9 +21,9 @@ const ColorPicker: React.FC<CommonFieldProps> = withField((props) => {
     >
       <Button>{props.value || '颜色设置'}</Button>
     </Popover>
-  );
+  )
 }, {
-  valueKey: 'value',
+  valueKey: 'value'
 })
 
 export default ColorPicker
