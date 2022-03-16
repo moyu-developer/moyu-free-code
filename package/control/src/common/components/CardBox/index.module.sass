@@ -1,0 +1,16 @@
+@import 'src/common/styles/mixins.scss'
+.box
+  @include flex($d: column, $ai: flex-start, $jc: flex-start)
+  box-sizing: border-box
+  height: 100vh
+  &Title
+    width: 100%
+    @include flex($jc: space-between)
+    padding: 16px
+  &Container
+    flex: 1
+    width: 100%
+    overflow: auto
+  &Empty
+    height: 100%
+    @include flex()
