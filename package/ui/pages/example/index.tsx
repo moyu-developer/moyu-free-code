@@ -1,11 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Layout, Tooltip } from '@douyinfe/semi-ui'
+import { Button, Layout, Tooltip } from '@douyinfe/semi-ui'
 import {
   IconShoppingBag,
   IconTerminal,
   IconSourceControl,
-  IconBox
+  IconBox,
+  IconSetting
 } from '@douyinfe/semi-icons'
 import {
   MaterialBasicProduct,
@@ -13,7 +14,10 @@ import {
   MaterialRenderCanvas,
   MaterialConfiguration,
   MaterialNavigationTabs,
-  MaterialSchemeView
+  MaterialSchemeView,
+  MaterialComponentTree,
+  MaterialRemoteProduct,
+  MaterialPageInfoModal
 } from '@moyu-code/control'
 import * as Components from 'antd-mobile'
 import * as Materials from '@moyu-code/materials'
@@ -38,6 +42,11 @@ const Example: NextPage = () => {
       {/* 标准层 */}
       <MaterialContainerProvider materials={materials}>
         <MaterialNavigationTabs
+          extra={
+            <MaterialPageInfoModal>
+              <Button type='secondary' icon={<IconSetting />} />
+            </MaterialPageInfoModal>
+          }
           components={[
             {
               tab: (
@@ -54,8 +63,8 @@ const Example: NextPage = () => {
                   <IconShoppingBag size='large' />
                 </Tooltip>
               ),
-              render: <MaterialBasicProduct />,
-              itemKey: 'MaterialBasicProduct3'
+              render: <MaterialRemoteProduct />,
+              itemKey: 'MaterialRemoteProduct'
             },
             {
               tab: (
@@ -63,8 +72,8 @@ const Example: NextPage = () => {
                   <IconSourceControl size='large' />
                 </Tooltip>
               ),
-              render: <MaterialBasicProduct />,
-              itemKey: 'MaterialBasicProduct4'
+              render: <MaterialComponentTree />,
+              itemKey: 'MaterialComponentTree'
             },
             {
               tab: (
