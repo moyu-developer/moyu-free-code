@@ -39,9 +39,7 @@
     }
   ],
   "dependencies": {
-    "@douyinfe/semi-icons": "^2.3.1",
     "@douyinfe/semi-illustrations": "^2.4.1",
-    "@douyinfe/semi-ui": "^2.3.1",
     "@moyu-code/materials": "workspace:^0.1.0",
     "@moyu-code/renders": "workspace:^0.1.0",
     "@rematch/core": "^2.2.0",
