@@ -1,31 +1,27 @@
-import { createModel } from "@rematch/core";
-import { RootModel } from "./connect";
+import { createModel } from '@rematch/core'
+import { RootModel } from './connect'
 import type { MaterialComponentType, RenderNodeType } from '@moyu-code/schema'
-import { findDepSchema } from "../../utils";
+import { findDepSchema } from '../../utils'
 
 interface CommonState {
-  /**
-   * 编辑的uid
-   */
+  /** @name 正在操作的uid */
   uid?: RenderNodeType['uid']
 
-  panels: MaterialComponentType['panel']
-
+  /** @name 当前页面的JSONSchema */
   schema: RenderNodeType[],
 
+  /** @name 组件列表 */
   materials: MaterialComponentType[]
 
-   
 }
 
 const initializeCommonState: CommonState = {
-  panels: [],
   schema: [],
   materials: []
-};
+}
 
 export default createModel<RootModel>()({
-  name: "common",
+  name: 'common',
   state: initializeCommonState,
 
   reducers: {
@@ -43,7 +39,7 @@ export default createModel<RootModel>()({
         }
       }
 
-      console.warn([`Rematch Warning: 当前设置的物料列表为空，避免无意义的updated请尝试添加更多物料`])
+      console.warn(['Rematch Warning: 当前设置的物料列表为空，避免无意义的updated请尝试添加更多物料'])
       return state
     },
 
@@ -56,7 +52,7 @@ export default createModel<RootModel>()({
       console.log(state, data, 'updated')
       return {
         ...state,
-        ...data,
+        ...data
       }
     },
 
@@ -69,7 +65,6 @@ export default createModel<RootModel>()({
       uid: CommonState['uid'],
       fieldProps: RenderNodeType['props']
     }) => {
-
       const newSchema = findDepSchema(state.schema, (node) => {
         if (node.uid === payload.uid) {
           return {
@@ -78,7 +73,7 @@ export default createModel<RootModel>()({
               ...node?.props,
               ...payload.fieldProps?.props,
               style: {
-                ...payload.fieldProps?.props.style
+                ...payload.fieldProps?.props?.style
               }
             }
           }
@@ -92,4 +87,4 @@ export default createModel<RootModel>()({
       }
     }
   }
-});
+})
