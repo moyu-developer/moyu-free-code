@@ -12,7 +12,7 @@ const BasicProduct = () => {
 
   return (
     <Col className={styles.productBasic}>
-      <CardBox title='我的物料'>
+      <CardBox title='我的组件'>
         <div className={styles.search}>
           <Input suffix={<IconSearch />} showClear />
         </div>

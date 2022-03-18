@@ -10,13 +10,15 @@ import {
   IconFilpVertical,
   IconChevronLeft,
   IconChevronRight,
-  IconBrackets,
+  IconExternalOpen,
   IconSend,
   IconSave,
   IconDelete,
   IconMore,
   IconPhoneStroke,
-  IconArrowLeft
+  IconArrowLeft,
+  IconMinusCircle,
+  IconPlusCircle
 } from '@douyinfe/semi-icons'
 import React from 'react'
 import styles from './index.module.sass'
@@ -33,11 +35,20 @@ const Actions = [
     tooltip: '前进',
     itemKey: 'next'
   },
-
   {
-    icon: <IconBrackets />,
-    tooltip: 'Schema',
-    itemKey: 'schema'
+    icon: <IconPlusCircle />,
+    tooltip: '放大',
+    itemKey: 'max'
+  },
+  {
+    icon: <IconMinusCircle />,
+    tooltip: '缩小',
+    itemKey: 'min'
+  },
+  {
+    icon: <IconExternalOpen />,
+    tooltip: '海报分享',
+    itemKey: 'share'
   }
 ]
 

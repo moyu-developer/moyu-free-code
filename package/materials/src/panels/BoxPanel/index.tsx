@@ -65,68 +65,41 @@ const BoxPanel = () => {
           prefix='高'
         />
       </Form.InputGroup>
-      <Form.InputGroup
-        label={{
-          text: '内边距'
-        }}
-      >
-        <Form.InputNumber
-          style={{ width: '50%', marginBottom: 5 }}
-          min={0}
-          field='props.style.paddingTop'
-          prefix='上'
-        />
-        <Form.InputNumber
-          style={{ width: '50%', marginBottom: 5 }}
-          min={0}
-          field='props.style.paddingRight'
-          prefix='右'
-        />
-        <Form.InputNumber
-          style={{ width: '50%' }}
-          min={0}
-          field='props.style.paddingBottom'
-          prefix='下'
-        />
-        <Form.InputNumber
-          style={{ width: '50%' }}
-          min={0}
-          field='props.style.paddingLeft'
-          prefix='左'
-        />
-      </Form.InputGroup>
 
-      <Form.InputGroup
-        label={{
-          text: '外边距'
-        }}
-      >
-        <Form.InputNumber
-          style={{ width: '50%', marginBottom: 5 }}
-          min={0}
-          field='props.style.marginTop'
-          prefix='上'
-        />
-        <Form.InputNumber
-          style={{ width: '50%', marginBottom: 5 }}
-          min={0}
-          field='props.style.marginRight'
-          prefix='右'
-        />
-        <Form.InputNumber
-          style={{ width: '50%' }}
-          min={0}
-          field='props.style.marginBottom'
-          prefix='下'
-        />
-        <Form.InputNumber
-          style={{ width: '50%' }}
-          min={0}
-          field='props.style.marginLeft'
-          prefix='左'
-        />
-      </Form.InputGroup>
-      <BorderBoxPicker field='props.style' label='容器圆角' fullKey='borderRadius' otherKeys={['borderTopLeftRadius', 'borderTopRightRadius', 'borderBottomLeftRadius', 'borderBottomRightRadius']} />
+      <BorderBoxPicker
+        field='props.style'
+        label='容器内距'
+        fullKey='padding'
+        otherKeys={[
+          'paddingTop',
+          'paddingRight',
+          'paddingBottom',
+          'paddingLeft'
+        ]}
+      />
+
+      <BorderBoxPicker
+        field='props.style'
+        label='容器外距'
+        fullKey='margin'
+        otherKeys={[
+          'marginTop',
+          'marginRight',
+          'marginBottom',
+          'marginLeft'
+        ]}
+      />
+      <BorderBoxPicker
+        field='props.style'
+        label='容器圆角'
+        fullKey='borderRadius'
+        otherKeys={[
+          'borderTopLeftRadius',
+          'borderTopRightRadius',
+          'borderBottomLeftRadius',
+          'borderBottomRightRadius'
+        ]}
+      />
     </Collapse.Panel>
   )
 }

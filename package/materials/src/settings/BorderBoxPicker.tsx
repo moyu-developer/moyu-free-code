@@ -19,9 +19,14 @@ const BorderBoxPicker: React.FC<CommonFieldProps & BorderBoxPickerProps> =
       const { value = {}, onChange } = props
       const [isFull, setFullStatus] = React.useState(false)
 
-      const handleChange = (v: number, type?: string) => {
-        if (type) {
-          const newValue = { ...value, [type]: v }
+      /**
+       *
+       * @param v 修改的value
+       * @param type 修改的key
+       */
+      const handleChange = (v: number, key?: string) => {
+        if (key) {
+          const newValue = { ...value, [key]: v }
           onChange(newValue)
         }
       }
