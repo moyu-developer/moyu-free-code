@@ -1,11 +1,19 @@
+import { Plugin, Models } from '@rematch/core'
+import Redux from 'redux'
+import undoable from 'redux-undo'
 
-
-const createUndoPlugin = () => {
+const undoPlugin = <
+	TModels extends Models<TModels>,
+	TExtraModels extends Models<TModels> = Record<string, never>
+>(): Plugin<TModels, TExtraModels> => {
   return {
-    config: {
-      models: {
-        undo: '1',
-      },
+    onReducer (reducer: Redux.Reducer): void | Redux.Reducer {
+      return undoable(reducer)
+    },
+    onRootReducer (rootReducer: Redux.Reducer): Redux.Reducer {
+      return undoable(rootReducer)
     }
   }
 }
+
+export default undoPlugin

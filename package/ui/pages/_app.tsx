@@ -11,7 +11,6 @@ function MyApp (app: AppProps) {
   return (
     <Provider store={store}>
       <AppLayout>
-
         <Component {...pageProps} />
       </AppLayout>
     </Provider>
