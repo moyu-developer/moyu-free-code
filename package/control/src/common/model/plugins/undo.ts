@@ -1,5 +1,4 @@
 import { Plugin, Models } from '@rematch/core'
-import Redux from 'redux'
 import undoable from 'redux-undo'
 
 const undoPlugin = <
