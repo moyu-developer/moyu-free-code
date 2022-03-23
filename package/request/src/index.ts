@@ -1,32 +1,51 @@
-import axios, { AxiosRequestConfig, AxiosInstance, AxiosPromise } from 'axios'
-
-export interface FetchInstanceOptions extends AxiosRequestConfig {
+import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
+import { isSuccess } from './utils'
+export * from './utils'
+export interface FetchInstanceOptions {
   prefix?: string;
   version?: string;
+  middleware?: any[];
+}
+export interface Response<R> {
+  message: string;
+  code: number;
+  data: R;
 }
 
-export class Fetch {
+export class GotAxios {
   private instance: AxiosInstance
-  private options: FetchInstanceOptions | undefined
-  constructor (options?: FetchInstanceOptions) {
-    this.options = options
-    this.instance = axios.create({
-      timeout: options?.timeout,
-      baseURL: options?.baseURL,
-      headers: options?.headers
+  private config!: FetchInstanceOptions | undefined
+  constructor (
+    initialConfig: AxiosRequestConfig,
+    extraConfig?: FetchInstanceOptions
+  ) {
+    this.instance = axios.create(initialConfig)
+    this.config = extraConfig
+  }
+
+  public request<S = any, R = any> (
+    config: AxiosRequestConfig<S>,
+    extraConfig?: Omit<FetchInstanceOptions, 'middleware'>
+  ): Promise<Response<R>> {
+    const version: string = extraConfig?.version || this?.config?.version || ''
+    return this.instance.request({
+      ...config,
+      url: version + config.url
     })
   }
 
-  test () {
-    console.log(this.options)
+  private createRequestInterceptors () {
+    this.instance.interceptors.request.use((config) => {
+      return config
+    })
   }
 
-  fetch <S, R> (payload: AxiosRequestConfig<S> & { version?: string}): AxiosPromise<R> {
-    const { version = '' } = this?.options || payload || {}
-
-    return this.instance({
-      ...payload,
-      url: payload?.url + version
+  private createResponseInterceptors () {
+    this.instance.interceptors.response.use<Response<any>>((res) => {
+      if (isSuccess(res.status) && isSuccess(res.data.code)) {
+        return res.data
+      }
+      return Promise.reject(res)
     })
   }
 }

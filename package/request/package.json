@@ -19,7 +19,6 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "peerDependencies": {},
   "name": "@moyu-code/request",
   "author": "wangly19",
   "module": "dist/request.esm.js",
@@ -32,5 +31,9 @@
       "path": "dist/request.esm.js",
       "limit": "10 KB"
     }
-  ]
+  ],
+  "dependencies": {
+    "@types/koa-compose": "^3.2.5",
+    "koa-compose": "^4.1.0"
+  }
 }
