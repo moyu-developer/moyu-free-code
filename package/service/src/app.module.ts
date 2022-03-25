@@ -5,12 +5,16 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule } from '@nestjs/config'
 import { databaseConfig } from 'config/db'
 import { ViewsModule } from './modules/views/views.module'
+import { AuthModule } from './modules/auth/auth.module'
+import { UserModule } from './modules/user/user.module'
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot(databaseConfig),
-    ViewsModule
+    ViewsModule,
+    UserModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService]

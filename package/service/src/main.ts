@@ -22,18 +22,17 @@ async function bootstrap () {
   })
   app.useGlobalFilters(new HttpExceptionFilter())
   app.useGlobalInterceptors(new TransformResponseInterceptor())
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true
-    })
-  )
+  // app.useGlobalPipes(
+  //   new ValidationPipe({
+  //     whitelist: true,
+  //     forbidNonWhitelisted: true,
+  //     transform: true
+  //   })
+  // )
   const options = new DocumentBuilder()
     .setTitle('Moyu Free API')
     .setDescription('这个作者很懒，什么都没留下')
     .setVersion('1.0')
-    .addTag('cats')
     .build()
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup('docs', app, document)
