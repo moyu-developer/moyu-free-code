@@ -1,0 +1,25 @@
+import { Controller, Post, Body, Request, UseGuards, Version } from '@nestjs/common'
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
+import { AuthService } from './auth.service'
+import { LoginResDto } from './dto/login-res.dto'
+import { LoginReqDto } from './dto/login-req.dto'
+import { LocalAuthGuard } from './auth.guard'
+
+@Controller('auth')
+@ApiTags('auth')
+export class AuthController {
+  constructor (private readonly authService: AuthService) {
+    this.authService = authService
+  }
+
+  @UseGuards(LocalAuthGuard)
+  @Post('/login')
+  @Version('1')
+  @ApiOkResponse({
+    status: 200,
+    type: LoginResDto
+  })
+  async login (@Body() user: LoginReqDto, @Request() request) {
+    return this.authService.login(request.user)
+  }
+}
