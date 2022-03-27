@@ -10,6 +10,7 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   rules: {
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'no-useless-constructor': 'off'
   }
 }
