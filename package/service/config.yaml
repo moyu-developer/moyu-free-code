@@ -5,5 +5,5 @@ development:
     # 获取 github 用户信息 url // eg: https://api.github.com/user?access_token=******&scope=&token_type=bearer
     user_url: https://api.github.com/user
     redirect_uri: http://biaochenxuying.cn/
-    client_id:
-    client_secret:
+    client_id: 00b6c38e8db6913a5017
+    client_secret: 65dc13996e41df5ad57384e84d309fa88a0eb6bf
