@@ -15,7 +15,7 @@ export class ViewsController {
   }
 
   @Get(':id')
-  async getViewById (@Param('id') id: string) {
+  async getViewById (@Param('id') id: number) {
     if (id) {
       return await this.viewsService.findView(Number(id))
     } else {
@@ -24,10 +24,11 @@ export class ViewsController {
   }
 
   @Post('save')
-  async saveView (@Body() view: CreateViewDto): Promise<number> {
+  async saveView (@Body() view: CreateViewDto) {
     return await this.viewsService.saveRecord({
       ...view,
-      status: view?.status || 0
+      status: view?.status || 0,
+      env: view?.env || 0
     })
   }
 }

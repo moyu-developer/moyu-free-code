@@ -16,8 +16,8 @@ export class TransformResponseInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map((data) => ({
         data,
-        code: HttpStatus.CREATED,
-        message: codeMessage[HttpStatus.CREATED]
+        code: HttpStatus.OK,
+        message: codeMessage[HttpStatus.OK]
       }))
     )
   }

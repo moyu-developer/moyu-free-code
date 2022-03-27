@@ -3,10 +3,7 @@ import type {
   ExceptionFilter,
   HttpException
 } from '@nestjs/common'
-import {
-  Catch
-  , HttpStatus
-} from '@nestjs/common'
+import { Catch, HttpStatus } from '@nestjs/common'
 import { codeMessage } from '../enums/http'
 
 @Catch()

@@ -30,12 +30,19 @@ export class CreateViewDto {
   })
     schema: string
 
-    @ApiProperty({
-      required: false,
-      description: 'schema body',
-      enum: [0, 1, 2]
-    })
-      status: 0 | 1 | 2
+  @ApiProperty({
+    required: false,
+    description: 'schema body',
+    enum: [0, 1, 2]
+  })
+    status: 0 | 1 | 2
+
+  @ApiProperty({
+    required: false,
+    description: 'schema body',
+    enum: [0, 1, 2]
+  })
+    env: 0 | 1 | 3
 }
 
 export class UpdateViewDto extends OmitType(CreateViewDto, ['id'] as const) {}
