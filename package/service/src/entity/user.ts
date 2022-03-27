@@ -35,20 +35,37 @@ export class User {
     required: true,
     description: '用户密码'
   })
-  @Column()
-    identifier: string // qq wx_openid github_id
 
-  @Column()
-    login_type: string // wx qq github
-
-  @Column()
     password: string
 
   @Column({
-    comment: '用户头像'
+    comment: '第三方平台的唯一code',
+    unique: false
   })
   @ApiProperty({
-    required: true,
+    required: false,
+    description: '第三方平台的唯一code'
+  })
+    identifier: string // qq wx_openid github_id
+
+  @Column({
+    comment: '第三方平台的来源, 1: 微信，2:QQ，3:Github',
+    unique: false,
+    enum: [1, 2, 3]
+  })
+  @ApiProperty({
+    required: false,
+    description: '第三方平台的来源, 1: 微信，2:QQ，3:Github',
+    enum: [1, 2, 3]
+  })
+    source: 1 | 2 | 3
+
+  @Column({
+    comment: '用户头像',
+    unique: false
+  })
+  @ApiProperty({
+    required: false,
     description: '用户头像'
   })
     avatar?: string
