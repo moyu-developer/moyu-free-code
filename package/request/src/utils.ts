@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from 'axios'
 /**
  * 坚持请求是否成功
  * @param code 当前code码
@@ -21,3 +22,11 @@ export const isLoginInvalid = (code: number) => code === 401
  * @returns  无权限a
  */
 export const isAuthInvalid = (code: number) => code === 403
+
+export type ComposeFunction = <P = any>(s: P) => P
+
+export const easyCompose = (...fns: ComposeFunction[]) => {
+  fns.reduceRight((prevFn, nextFn) =>
+    (params: Parameters<ComposeFunction>) => prevFn(nextFn(params)), (v: any) => v
+  )
+}

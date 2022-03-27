@@ -21,12 +21,14 @@ export class GotAxios {
   ) {
     this.instance = axios.create(initialConfig)
     this.config = extraConfig
+    this.createRequestInterceptors()
+    this.createResponseInterceptors()
   }
 
   public request<S = any, R = any> (
     config: AxiosRequestConfig<S>,
     extraConfig?: Omit<FetchInstanceOptions, 'middleware'>
-  ): Promise<Response<R>> {
+  ): Promise<R> {
     const version: string = extraConfig?.version || this?.config?.version || ''
     return this.instance.request({
       ...config,
@@ -42,10 +44,7 @@ export class GotAxios {
 
   private createResponseInterceptors () {
     this.instance.interceptors.response.use<Response<any>>((res) => {
-      if (isSuccess(res.status) && isSuccess(res.data.code)) {
-        return res.data
-      }
-      return Promise.reject(res)
+      return res.data
     })
   }
 }
