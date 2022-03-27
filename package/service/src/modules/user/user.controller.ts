@@ -13,7 +13,7 @@ export class UserController {
   constructor (private readonly userService: UserService) {
   }
 
-  @UseGuards(LocalAuthGuard)
+  // @UseGuards(LocalAuthGuard)
   @Get('info')
   @ApiBearerAuth()
   @ApiOkResponse({

@@ -40,7 +40,7 @@ export class User {
 
   @Column({
     comment: '第三方平台的唯一code',
-    unique: false
+    nullable: true
   })
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ export class User {
 
   @Column({
     comment: '第三方平台的来源, 1: 微信，2:QQ，3:Github',
-    unique: false,
+    nullable: true,
     enum: [1, 2, 3]
   })
   @ApiProperty({
@@ -62,7 +62,7 @@ export class User {
 
   @Column({
     comment: '用户头像',
-    unique: false
+    nullable: true
   })
   @ApiProperty({
     required: false,
