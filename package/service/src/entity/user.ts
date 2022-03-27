@@ -19,6 +19,12 @@ export class User {
     name: string
 
   @Column()
+    identifier: string // qq wx_openid github_id
+
+  @Column()
+    login_type: string // wx qq github
+
+  @Column()
     password: string
 
   @Column()
