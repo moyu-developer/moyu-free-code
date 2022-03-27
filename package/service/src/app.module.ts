@@ -12,7 +12,7 @@ import { AuthModule } from './modules/auth/auth.module'
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot(databaseConfig),
     ViewsModule,
-    UserModule,
+    // UserModule,
     AuthModule
   ],
   controllers: [AppController]
