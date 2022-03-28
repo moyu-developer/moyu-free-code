@@ -4,11 +4,14 @@ import { AuthService } from './auth.service'
 import { LoginResDto } from './dto/login-res.dto'
 import { LoginReqDto } from './dto/login-req.dto'
 import { LocalAuthGuard } from './auth.guard'
+import { UserService } from '../user/user.service'
 
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
-  constructor (private readonly authService: AuthService) {
+  constructor (
+    private readonly userService: UserService,
+    private readonly authService: AuthService) {
     this.authService = authService
   }
 
@@ -21,5 +24,15 @@ export class AuthController {
   })
   async login (@Body() user: LoginReqDto, @Request() request) {
     return this.authService.login(request.user)
+  }
+
+  @Post('/oauth_login')
+  @Version('1')
+  @ApiOkResponse({
+    status: 200,
+    type: LoginResDto
+  })
+  async oauthLogin (@Body() user: LoginReqDto, @Request() request) {
+    return this.userService.getUserInfo(user)
   }
 }

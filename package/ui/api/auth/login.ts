@@ -17,13 +17,23 @@ export interface LoginReqDto {
    * @type {string}
    * @memberof LoginReqDto
    */
-  username: string;
+  username?: string;
   /**
    * 用户密码
    * @type {string}
    * @memberof LoginReqDto
    */
-  password: string;
+  password?: string;
+
+  /**
+   * 来源
+   */
+  source: 0 | 1 | 2 | 3
+
+  /**
+   * 第三方平台code
+   */
+  code?: string
 }
 
 /**
@@ -69,6 +79,14 @@ export interface LoginResDto {
 export default (data: LoginReqDto) => {
   return got.request<LoginReqDto, LoginResDto>({
     url: '/auth/login',
+    method: 'POST',
+    data
+  })
+}
+
+export const oauthLogin = (data: LoginReqDto) => {
+  return got.request<LoginReqDto, LoginResDto>({
+    url: '/auth/oauth_login',
     method: 'POST',
     data
   })

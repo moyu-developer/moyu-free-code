@@ -5,11 +5,23 @@ export class LoginReqDto {
     required: true,
     description: '用户名'
   })
-    username: string
+    username?: string
 
   @ApiProperty({
     required: true,
     description: '用户密码'
   })
-    password: string
+    password?: string
+
+    @ApiProperty({
+      required: true,
+      description: '来源'
+    })
+      source: 0 | 1 | 2 | 3
+
+    @ApiProperty({
+      required: true,
+      description: '三方平台code'
+    })
+      code?: string
 }
