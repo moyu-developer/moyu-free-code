@@ -1,9 +1,12 @@
-development:
-  github:
-    oauth_uri: https://github.com/login/oauth/authorize
-    access_token_url: https://github.com/login/oauth/access_token
-    # 获取 github 用户信息 url // eg: https://api.github.com/user?access_token=******&scope=&token_type=bearer
-    user_url: https://api.github.com/user
-    redirect_uri: http://localhost:3000/example/
-    client_id: 00b6c38e8db6913a5017
-    client_secret: 65dc13996e41df5ad57384e84d309fa88a0eb6bf
+dev:
+  http:
+    host: ''
+    port: 8500
+
+  db:
+    host: 'localhost'
+    post: 5432
+    database: 'moyu'
+    synchronize: true
+    username: 'postgres'
+    password: '123456'

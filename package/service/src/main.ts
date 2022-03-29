@@ -8,8 +8,10 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { ValidationPipe, VersioningType } from '@nestjs/common'
 import { HttpExceptionFilter } from 'src/common/filter/httpException'
 import { TransformResponseInterceptor } from 'src/common/interceptor/response'
+import gerConfigService from 'src/config'
 
 async function bootstrap () {
+  const httpConfig = gerConfigService().dev.http
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter()
@@ -36,6 +38,6 @@ async function bootstrap () {
     .build()
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup('docs', app, document)
-  await app.listen(8500, '0.0.0.0')
+  await app.listen(httpConfig.port, '0.0.0.0')
 }
 bootstrap()
