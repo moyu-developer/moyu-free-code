@@ -22,6 +22,7 @@ import {
 import * as Components from 'antd-mobile'
 import * as Materials from '@moyu-code/materials'
 import { MaterialComponentType } from '@moyu-code/schema'
+import './model'
 
 import styles from '@/styles/layout.module.css'
 

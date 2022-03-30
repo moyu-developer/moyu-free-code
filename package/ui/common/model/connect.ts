@@ -1,10 +1,10 @@
 import type { Models } from '@rematch/core'
 import commonModel from './common'
-import { SchemaModel } from '@/pages/desktop/model'
+import { MicroPageDesktopModal } from '@/pages/example/model'
 
 export interface RootModel extends Models<RootModel> {
   common: typeof commonModel;
-  schema: SchemaModel;
+  microPage: MicroPageDesktopModal
 }
 
 export const globalModels: Pick<RootModel, 'common'> = {
