@@ -13,6 +13,15 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.alias['@'] = resolve(__dirname, './')
     return config
+  },
+  async redirects () {
+    return [
+      {
+        source: '/',
+        destination: '/dashboard',
+        permanent: true
+      }
+    ]
   }
 }
 
