@@ -48,16 +48,16 @@ export class User {
     identifier: string // qq wx_openid github_id
 
   @Column({
-    comment: '来源,0: 默认 1: 微信，2:QQ，3:Github',
+    comment: '来源,0: 默认 1: 码云，2:Github',
     nullable: true,
-    enum: [0, 1, 2, 3]
+    enum: [0, 1, 2]
   })
   @ApiProperty({
     required: false,
-    description: '来源,0: 默认 1: 微信，2:QQ，3:Github',
-    enum: [0, 1, 2, 3]
+    description: '来源,0: 默认 1: 码云，2:Github',
+    enum: [0, 1, 2]
   })
-    source: 0 | 1 | 2 | 3
+    source: 0 | 1 | 2
 
   @Column({
     comment: '用户头像',

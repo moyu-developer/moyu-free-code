@@ -27,8 +27,10 @@ export interface LoginReqDto {
 
   /**
    * 来源
+   * @type {0 | 1 | 2}
+   * @description 0: 账户密码登录, 1: 码云, 2: gitee
    */
-  source: 0 | 1 | 2 | 3
+  source: 0 | 1 | 2
 
   /**
    * 第三方平台code

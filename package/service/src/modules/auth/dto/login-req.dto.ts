@@ -17,7 +17,7 @@ export class LoginReqDto {
       required: true,
       description: '来源'
     })
-      source: 0 | 1 | 2 | 3
+      source: 0 | 1 | 2
 
     @ApiProperty({
       required: true,
