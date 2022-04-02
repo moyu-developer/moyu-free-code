@@ -11,7 +11,6 @@
   "dependencies": {
     "@douyinfe/semi-illustrations": "^2.7.0",
     "@moyu-code/control": "workspace:^0.1.0",
-    "@moyu-code/e-commerce": "workspace:^0.1.0",
     "@moyu-code/materials": "workspace:^0.1.0",
     "@moyu-code/renders": "workspace:^0.1.0",
     "@moyu-code/request": "workspace:^0.1.0",

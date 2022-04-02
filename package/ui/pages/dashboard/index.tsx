@@ -76,5 +76,9 @@ export default () => {
     }
   ]
 
-  return <Table columns={columns} dataSource={data} pagination={false} />
+  return (
+    <div>
+      <Table columns={columns} dataSource={data} pagination={false} />
+    </div>
+  )
 }
