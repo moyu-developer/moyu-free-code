@@ -1,15 +1,16 @@
 import { HttpException, Injectable } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
 import { InjectRepository } from '@nestjs/typeorm'
 import { User } from 'src/entity'
 import { Repository } from 'typeorm'
 import { CreateUserRequestDto } from './dto/create.dto'
+import { OauthService } from 'src/common/oauth/oauth.service'
 import axios from 'axios'
+import { LoginReqDto } from '../auth/dto/login-req.dto'
 
 @Injectable()
 export class UserService {
   constructor (
-    private configService: ConfigService,
+    private readonly oauthService: OauthService,
     @InjectRepository(User) private readonly user: Repository<User>) {
   }
 
@@ -51,27 +52,21 @@ export class UserService {
     return res
   }
 
-  async getUserInfo (data) {
-    const path = 'https://github.com/login/oauth/access_token'
-    const userPath = 'https://api.github.com/user'
-    const res = await axios.post(path, {
-      client_id: '00b6c38e8db6913a5017',
-      client_secret: '65dc13996e41df5ad57384e84d309fa88a0eb6bf',
-      code: data.code
-    })
-    const token = res.data.split('&')[0].split('=')[1]
-    console.log(res.data)
-    const userInfo = await axios.get(userPath, {
-      headers: {
-        Authorization: `token ${token}`
-      }
-    })
-    // 获取到了github用户信息
-    console.log(userInfo.data)
-    // 验证用户是否已经在数据库中
-
-    // 如果存在就发token  否则添加用户进数据库再发token
-    return userInfo.data
-    // console.log(this.configService.get('development.github'))
+  async getUserInfo (data: LoginReqDto) {
+    if (data.source === 1) {
+      const res = await this.oauthService.gitee(data.code)
+      console.log(res)
+      // 获取到了gitee用户信息 id唯一作为标识符
+      // 验证用户是否已经在数据库中
+      // 如果存在就发token  否则添加用户进数据库再发token
+      return res
+    } else if (data.source === 2) {
+      const res = await this.oauthService.github(data.code)
+      console.log(res)
+      // 获取到了github用户信息 id唯一作为标识符
+      // 验证用户是否已经在数据库中
+      // 如果存在就发token  否则添加用户进数据库再发token
+      return res
+    }
   }
 }
