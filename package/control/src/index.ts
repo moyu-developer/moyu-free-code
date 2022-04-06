@@ -1,6 +1,6 @@
-export { default as MaterialContainerProvider } from './provider/RootProvider'
+export { default as ContainerProvider } from './components/Provider'
 export { default as MaterialBasicProduct } from './components/ProductSider/BasicProduct'
-export { default as MaterialConfiguration } from './components/Configuration'
+export { default as PropertyPanel } from './components/PropertyPanel'
 export { default as MaterialRenderCanvas } from './components/Canvas'
 export { default as MaterialFieldNode } from './components/Canvas/PreViewFieldNode'
 export { default as ToolbarControl } from './components/Canvas/Toolbar'
