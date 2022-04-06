@@ -1,5 +1,7 @@
 import { createModel } from '@rematch/core'
 import { RootModel } from './connect'
+import { saveViewSchemaService, SaveViewSchemaRequest } from '@moyu-code/shared'
+import { Dispatch } from '.'
 
 interface ToolBarState {
   scale: number,
@@ -14,7 +16,22 @@ const state: ToolBarState = {
 export default createModel<RootModel>()({
   name: 'toolbar',
   state,
-  effects: () => ({
+  effects: (dispatch: Dispatch) => ({
+    async save (status: SaveViewSchemaRequest['status'], state) {
+      const pageInfo = state.common?.pageInfo
+      const { data } = await saveViewSchemaService({
+        ...pageInfo,
+        description: pageInfo.description || '',
+        schema: JSON.stringify(state.common.schema) || '',
+        env: 0,
+        status
+      })
+      if (state.common.pageInfo?.id !== data) {
+        dispatch.common.setPageInfo({
+          id: data
+        })
+      }
+    }
   }),
 
   reducers: {

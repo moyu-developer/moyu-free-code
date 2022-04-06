@@ -2,6 +2,7 @@ import { createModel } from '@rematch/core'
 import { RootModel } from './connect'
 import type { MaterialComponentType, RenderNodeType } from '@moyu-code/schema'
 import { findDepSchema } from '../../utils'
+import { isSuccess } from '@moyu-code/request'
 
 interface CommonState {
   /** @name 正在操作的uid */
@@ -13,58 +14,66 @@ interface CommonState {
   /** @name 组件列表 */
   materials: MaterialComponentType[]
 
+  /** 页面信息 */
+  pageInfo: {
+    id?: number;
+    name: string,
+    background: string,
+    description?: string,
+    env?: 0 | 1 | 2,
+    status?: 0 | 1 | 2
+  }
+
 }
 
 const initializeCommonState: CommonState = {
   schema: [],
-  materials: []
+  materials: [],
+  pageInfo: {
+    name: '默认标题',
+    background: '#FFF',
+    description: ''
+  }
 }
 
 export default createModel<RootModel>()({
   name: 'common',
   state: initializeCommonState,
 
-  reducers: {
-
-    /**
-     * 设置新的物料
-     * @param state commonState
-     * @param payload 物料列表
-     */
-    setMaterialComponents: (state, payload: MaterialComponentType[]) => {
-      if (payload.length) {
-        return {
-          ...state,
-          materials: payload
-        }
-      }
-
-      console.warn(['Rematch Warning: 当前设置的物料列表为空，避免无意义的updated请尝试添加更多物料'])
-      return state
+  effects: () => ({
+    async applyPublishBySchema (payload: any) {
     },
 
-    /**
-     * 更新common store 数据
-     * @param state commonState
-     * @param data 修改的数据
-     */
-    updated: (state, data) => {
-      console.log(state, data, 'updated')
+    async applyGetViewDetailById (id: number) {
+    }
+  }),
+
+  reducers: {
+
+    /** 更新common store 数据 */
+    updated (state, data: any) {
       return {
         ...state,
         ...data
       }
     },
 
-    /**
-     * 通过id更新schema Props
-     * @param state commonState
-     * @param data 修改的数据
-     */
-    setSchemaPropsById: (state, payload: {
+    /** 更新页面信息 */
+    setPageInfo (state, info: Partial<CommonState['pageInfo']>) {
+      return {
+        ...state,
+        pageInfo: {
+          ...state.pageInfo,
+          ...info
+        }
+      }
+    },
+
+    /** 通过id更新schema Props */
+    setSchemaPropsById (state, payload: {
       uid: CommonState['uid'],
       fieldProps: RenderNodeType['props']
-    }) => {
+    }) {
       const newSchema = findDepSchema(state.schema, (node) => {
         if (node.uid === payload.uid) {
           return {
@@ -86,5 +95,6 @@ export default createModel<RootModel>()({
         schema: newSchema
       }
     }
+
   }
 })
