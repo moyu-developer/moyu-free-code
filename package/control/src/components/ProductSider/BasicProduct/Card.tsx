@@ -2,17 +2,12 @@ import * as React from 'react'
 import { useDrag } from 'react-dnd'
 import { DropNames } from '../../../common/constant'
 import type { MaterialComponentType } from '@moyu-code/schema'
-import { Avatar, Typography, Space } from '@douyinfe/semi-ui'
-import { useDispatch, useSelector } from 'react-redux'
-import type { Dispatch, RootState } from 'src/common/model'
+import { Avatar } from '@douyinfe/semi-ui'
 import styles from './index.module.sass'
 
 const ComponentCard: React.FC<{
   schemaItem: MaterialComponentType;
 }> = (props) => {
-  const dispatch: Dispatch = useDispatch()
-  const schema = useSelector((state: RootState) => state.common.schema)
-
   const [_, drag] = useDrag(
     () => ({
       type: DropNames.Component,
@@ -24,7 +19,7 @@ const ComponentCard: React.FC<{
         isDragging: monitor.isDragging()
       })
     }),
-    [schema, dispatch]
+    []
   )
 
   return (
