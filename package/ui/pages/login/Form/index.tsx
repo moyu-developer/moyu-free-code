@@ -7,13 +7,16 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import JsCookie from 'js-cookie'
 import styles from './index.module.sass'
-import GiteeSvg from '@/assets/svg/gitee.svg'
+// import GiteeSvg from '@/assets/svg/gitee.svg'
 import { oauthDev } from '@/common/config/oauth'
+import { Gitlab } from '@icon-park/react'
 
 const LoginForm = () => {
   const rememberRef = useRef<Boolean>(Boolean(JsCookie.get('remember')))
   const dispatch: Dispatch = useDispatch()
-  const isLogin = useSelector((state: RootState) => state.loading.effects.common.loginEffect)
+  const isLogin = useSelector(
+    (state: RootState) => state.loading.effects.common.loginEffect
+  )
   const router = useRouter()
 
   const handleLoginFormSubmit = async (formData: Record<string, any>) => {
@@ -25,7 +28,7 @@ const LoginForm = () => {
 
   console.log(rememberRef.current, 'rememberRef.current')
 
-  const handleLogin = async (code:any) => {
+  const handleLogin = async (code: any) => {
     const res = await oauthLogin({ source: 2, code })
     console.log(code)
   }
@@ -39,7 +42,9 @@ const LoginForm = () => {
   return (
     <div className={styles.loginForm}>
       <Form
-        onValueChange={(v) => console.log(v)} onSubmit={handleLoginFormSubmit} initValues={{
+        onValueChange={(v) => console.log(v)}
+        onSubmit={handleLoginFormSubmit}
+        initValues={{
           remember: rememberRef.current
         }}
       >
@@ -68,24 +73,27 @@ const LoginForm = () => {
           <Typography.Text link>找回密码?</Typography.Text>
         </div>
         <Space vertical className={styles.loginFormButtons}>
-          <Button block htmlType='submit' size='large' theme='solid' type='primary' loading={isLogin}>普通登录</Button>
+          <Button
+            block
+            htmlType='submit'
+            size='large'
+            theme='solid'
+            type='primary'
+            loading={isLogin}
+          >
+            普通登录
+          </Button>
           <Space>
-            <IconGithubLogo
-              size='extra-large' onClick={() => {
+            <Button
+              icon={<IconGithubLogo size='extra-large' />}
+              onClick={() => {
                 const config = oauthDev.gitee
                 window.localStorage.preventHref = window.location.href
                 window.location.href = `${config.oauth_uri}?client_id=${config.clientId}&redirect_uri=${config.redirectUri}&response_type=code&&scope=user_info`
               }}
             />
-            <Icon
-              svg={<GiteeSvg />} size='extra-large' onClick={() => {
-                const config = oauthDev.gitee
-                window.localStorage.preventHref = window.location.href
-                window.location.href = `${config.oauth_uri}?client_id=${config.clientId}&redirect_uri=${config.redirectUri}&response_type=code&&scope=user_info`
-              }}
-            />
+            <Button icon={<Gitlab theme='filled' size={24} />} />
           </Space>
-
         </Space>
       </Form>
     </div>

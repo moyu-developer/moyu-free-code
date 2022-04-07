@@ -12,10 +12,10 @@ const nextConfig = {
   reactStrictMode: true,
   webpack: (config) => {
     config.resolve.alias['@'] = resolve(__dirname, './')
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack']
-    })
+    // config.module.rules.push({
+    //   test: /\.svg$/,
+    //   use: ['@svgr/webpack']
+    // })
     return config
   },
   async redirects () {
