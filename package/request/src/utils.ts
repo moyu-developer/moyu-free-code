@@ -23,10 +23,6 @@ export const isLoginInvalid = (code: number) => code === 401
  */
 export const isAuthInvalid = (code: number) => code === 403
 
-export type ComposeFunction = <P = any>(s: P) => P
+export type ComposeFunction = (s: AxiosRequestConfig) => AxiosRequestConfig
 
-export const easyCompose = (...fns: ComposeFunction[]) => {
-  fns.reduceRight((prevFn, nextFn) =>
-    (params: Parameters<ComposeFunction>) => prevFn(nextFn(params)), (v: any) => v
-  )
-}
+export const pipe = (...args: ComposeFunction[]) => (x: AxiosRequestConfig) => args.reduce((res, cb) => cb(res), x)

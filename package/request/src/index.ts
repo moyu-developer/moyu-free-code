@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
-import { isSuccess } from './utils'
+import { pipe, ComposeFunction } from './utils'
 export * from './utils'
 export interface FetchInstanceOptions {
   prefix?: string;
   version?: string;
-  middleware?: any[];
+  pipe?: ComposeFunction[]
 }
 export interface Response<R> {
   message: string;
@@ -38,6 +38,10 @@ export class GotAxios {
 
   private createRequestInterceptors () {
     this.instance.interceptors.request.use((config) => {
+      if (this.config?.pipe) {
+        const pipeConfig = pipe(...this.config?.pipe)(config)
+        return pipeConfig
+      }
       return config
     })
   }
