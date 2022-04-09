@@ -10,7 +10,7 @@ export interface CardBoxProps {
   title?: string;
   emptyText?: string;
   hasEmpty?: boolean;
-  extra?: React.ReactNode
+  extra?: React.ReactNode,
 }
 
 const CardBox: React.FC<CardBoxProps> = (props) => {
