@@ -67,33 +67,6 @@ export default createModel<RootModel>()({
           ...info
         }
       }
-    },
-
-    /** 通过id更新schema Props */
-    setSchemaPropsById (state, payload: {
-      uid: CommonState['uid'],
-      fieldProps: RenderNodeType['props']
-    }) {
-      const newSchema = findDepSchema(state.schema, (node) => {
-        if (node.uid === payload.uid) {
-          return {
-            ...node,
-            props: {
-              ...node?.props,
-              ...payload.fieldProps?.props,
-              style: {
-                ...payload.fieldProps?.props?.style
-              }
-            }
-          }
-        }
-        return node
-      })
-
-      return {
-        ...state,
-        schema: newSchema
-      }
     }
 
   }

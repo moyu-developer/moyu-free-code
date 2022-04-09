@@ -51,6 +51,7 @@
     "react-dnd": "^15.1.0",
     "react-dnd-html5-backend": "^15.1.1",
     "react-redux": "^7.2.6",
+    "redux-undo": "^1.0.1",
     "ulid": "^2.3.0"
   }
 }
