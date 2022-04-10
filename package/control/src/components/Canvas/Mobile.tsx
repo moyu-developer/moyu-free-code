@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from 'src/common/model'
 import { MaterialComponentType } from '@moyu-code/schema'
 import { useThrottleFn } from 'ahooks'
+import Screenshot from 'src/common/components/Screenshot'
 import { ulid } from 'ulid'
 
 interface MobileProps {
@@ -17,7 +18,9 @@ interface MobileProps {
 
 const Mobile: React.FC<MobileProps> = (props) => {
   const dispatch: Dispatch = useDispatch()
-  const schema = useSelector((state: RootState) => state.common.schema)
+  const schema = useSelector((state: RootState) => (state.schema as any)?.present)
+  const scale = useSelector((state: RootState) => state.toolbar.scale / 100)
+  const pageName = useSelector((state: RootState) => state.common.pageInfo.name)
   const checkedUid = useSelector((state: RootState) => state.common.uid)
   /**
    * 拖拽时移动当前的组件。
@@ -35,9 +38,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
 
       /** hover结束后，把删除的item给放置进去 */
       schema.splice(targetIndex, 0, item)
-      dispatch.common.updated({
-        schema: [...schema]
-      })
+      dispatch.schema.updated(schema)
     }
   )
 
@@ -49,16 +50,12 @@ const Mobile: React.FC<MobileProps> = (props) => {
         const uid = ulid()
         if (!didDrop) {
           dispatch.common.updated({
-            schema: [
-              ...schema,
-              {
-                uid: uid,
-                component: item.component,
-                props: item.defaultProps
-              }
-            ],
-            uid,
-            panels: item.panel
+            uid
+          })
+          dispatch.schema.add({
+            uid: uid,
+            component: item.component,
+            props: item.defaultProps
           })
         }
       },
@@ -113,17 +110,23 @@ const Mobile: React.FC<MobileProps> = (props) => {
   const canMoveHover = canDrop && isOver
 
   return (
-    <div className={styles.canvasMobile} ref={mobileDrop}>
-      <div className={styles.canvasMobileTitle}>
-        <Typography.Title heading={6} className={styles.canvasMobileTitle}>页面标题</Typography.Title>
-      </div>
-      <div className={styles.canvasMobileContent}>
-        <MobileRender
-          schema={schema}
-          materialComponents={props.materialComponents}
-          render={handleRenderFieldNode}
-        />
-      </div>
+    <div
+      ref={mobileDrop} style={{
+        transform: `scale(${scale})`
+      }}
+    >
+      <Screenshot title={pageName}>
+        <div style={{
+          height: 750
+        }}
+        >
+          <MobileRender
+            schema={schema}
+            materialComponents={props.materialComponents}
+            render={handleRenderFieldNode}
+          />
+        </div>
+      </Screenshot>
     </div>
   )
 }

@@ -1,9 +1,9 @@
-import * as React from 'react'
+import React from 'react'
 import { Col } from '@douyinfe/semi-ui'
 import Mobile from './Mobile'
-import DevInfo from './DevInfo'
 import { MobileRenderProps } from '@moyu-code/renders'
 import Toolbar from './Toolbar'
+import cs from 'classnames'
 import styles from './index.module.sass'
 
 interface MaterialRenderCanvasProps {
@@ -12,8 +12,7 @@ interface MaterialRenderCanvasProps {
 
 const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
   return (
-    <Col className={styles.canvas}>
-      <DevInfo />
+    <Col className={cs(styles.canvas, '__control_canvas__')}>
       <Mobile materialComponents={props.materialComponents || {}} />
       <Toolbar />
     </Col>

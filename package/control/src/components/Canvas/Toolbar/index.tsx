@@ -4,7 +4,10 @@ import {
   Tooltip,
   Modal,
   Dropdown,
-  SplitButtonGroup
+  SplitButtonGroup,
+  InputGroup,
+  InputNumber,
+  Toast
 } from '@douyinfe/semi-ui'
 import {
   IconFilpVertical,
@@ -16,43 +19,43 @@ import {
   IconDelete,
   IconMore,
   IconPhoneStroke,
-  IconArrowLeft,
   IconMinusCircle,
-  IconPlusCircle
+  IconPlusCircle,
+  IconArrowLeft,
+  IconVideo
 } from '@douyinfe/semi-icons'
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import styles from './index.module.sass'
-
-const Actions = [
-  {
-    icon: <IconChevronLeft />,
-    tooltip: '后退',
-    itemKey: 'back'
-  },
-
-  {
-    icon: <IconChevronRight />,
-    tooltip: '前进',
-    itemKey: 'next'
-  },
-  {
-    icon: <IconPlusCircle />,
-    tooltip: '放大',
-    itemKey: 'max'
-  },
-  {
-    icon: <IconMinusCircle />,
-    tooltip: '缩小',
-    itemKey: 'min'
-  },
-  {
-    icon: <IconExternalOpen />,
-    tooltip: '海报分享',
-    itemKey: 'share'
-  }
-]
+import type { Dispatch, RootState } from 'src/common/model'
+import PreviewFrameModal from '../PreviewFrameModal'
 
 const Toolbar = () => {
+  const scale = useSelector((state: RootState) => state.toolbar.scale)
+  const dispatch: Dispatch = useDispatch()
+
+  const Actions = [
+    {
+      icon: <IconChevronLeft />,
+      tooltip: '后退',
+      itemKey: 'back',
+      onClick: () => dispatch({ type: 'SCHEMA_UNDO' })
+    },
+
+    {
+      icon: <IconChevronRight />,
+      tooltip: '前进',
+      itemKey: 'next',
+      onClick: () => dispatch({ type: 'SCHEMA_REDO' })
+    },
+    {
+      icon: <IconExternalOpen />,
+      tooltip: '海报分享',
+      itemKey: 'share',
+      onClick: () => console.log(1)
+    }
+  ]
+
   /** 处理当前Schema的发布 */
   const handleSchemaPublish = () => {
     Modal.info({
@@ -60,7 +63,13 @@ const Toolbar = () => {
       content: '是否要发布当前页面，发布页面后会立即同步并且生效，请谨慎操作。',
       icon: <IconSend />,
       cancelButtonProps: { theme: 'borderless' },
-      okButtonProps: { theme: 'solid' }
+      okButtonProps: {
+        theme: 'solid',
+        onClick: async () => {
+          await dispatch.toolbar.save(1)
+          Toast.success('发布成功')
+        }
+      }
     })
   }
 
@@ -74,11 +83,45 @@ const Toolbar = () => {
       <Space spacing={0}>
         {Actions.map((el) => (
           <Tooltip key={el.itemKey} content={el.tooltip}>
-            <Button icon={el.icon} theme='borderless' type='primary' />
+            <Button
+              icon={el.icon}
+              theme='borderless'
+              type='primary'
+              onClick={() => el.onClick()}
+            />
           </Tooltip>
         ))}
+        <InputGroup>
+          <Button
+            theme='borderless'
+            type='primary'
+            disabled={scale === 50}
+            icon={<IconMinusCircle />}
+            onClick={() => dispatch.toolbar.narrow()}
+          />
+          <InputNumber
+            value={scale}
+            className={styles.toolbarZoom}
+            hideButtons
+            prefix='%'
+            min={50}
+            max={150}
+            defaultValue={100}
+            onNumberChange={(v) => dispatch.toolbar.setScale(Number(v))}
+          />
+          <Button
+            theme='borderless'
+            type='primary'
+            disabled={scale === 150}
+            icon={<IconPlusCircle />}
+            onClick={() => dispatch.toolbar.amplify()}
+          />
+        </InputGroup>
       </Space>
       <Space>
+        <PreviewFrameModal>
+          <Button theme='borderless' type='primary' icon={<IconVideo />} />
+        </PreviewFrameModal>
         <SplitButtonGroup aria-label='项目操作按钮组'>
           <Button
             theme='solid'
@@ -91,8 +134,18 @@ const Toolbar = () => {
           </Button>
           <Dropdown
             menu={[
-              { node: 'item', name: '预览', icon: <IconPhoneStroke /> },
-              { node: 'item', name: '保存', icon: <IconSave /> },
+              {
+                node: 'item',
+                name: '预览',
+                icon: <IconPhoneStroke />,
+                onClick: () => {}
+              },
+              {
+                node: 'item',
+                name: '保存',
+                icon: <IconSave />,
+                onClick: () => dispatch.toolbar.save(0)
+              },
               {
                 node: 'item',
                 name: '删除',
