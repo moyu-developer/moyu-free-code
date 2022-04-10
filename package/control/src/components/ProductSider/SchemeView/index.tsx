@@ -6,7 +6,7 @@ import CardBox from '../../../common/components/CardBox'
 import styles from './index.module.sass'
 
 const SchemaView = () => {
-  const schema = useSelector((s: RootState) => s.common.schema)
+  const schema = useSelector((s: RootState) => s.schema)
 
   console.log(JSON.stringify(schema, null, 2))
 

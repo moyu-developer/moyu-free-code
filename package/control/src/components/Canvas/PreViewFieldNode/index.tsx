@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useDrop, useDrag } from 'react-dnd'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { Dispatch, RootState } from 'src/common/model'
-import { DropNames } from '../../../common/constant'
+import { DropNames } from 'src/common/constant'
 import MoveHoverNode, {
   HoverNodeAction,
   MoveHoverNodeProps
@@ -25,7 +25,7 @@ const PreViewFieldNode: React.FC<PreViewFieldNodeProps> = (props) => {
   const { uid, schema } = useSelector(
     (state: RootState) => ({
       uid: state.common.uid,
-      schema: state.common.schema
+      schema: (state.schema as any)?.present
     }),
     shallowEqual
   )
@@ -35,38 +35,20 @@ const PreViewFieldNode: React.FC<PreViewFieldNodeProps> = (props) => {
   const onTriggerFieldNodeAction: MoveHoverNodeProps['onTrigger'] =
     React.useCallback(
       async (type) => {
-        const moveData = schema?.[props.index]
         switch (type) {
           case HoverNodeAction.MOVE_UP:
-            schema[props.index] = schema[props.index - 1]
-            schema[props.index - 1] = moveData
-            dispatch.common.updated({
-              schema: [...schema]
-            })
+            dispatch.schema.up(props.index)
 
             break
           case HoverNodeAction.MOVE_DOWN:
-            schema[props.index] = schema[props.index + 1]
-            schema[props.index + 1] = moveData
-            dispatch.common.updated({
-              schema: [...schema]
-            })
+            dispatch.schema.down(props.index)
             break
 
           case HoverNodeAction.COPY:
-            schema.splice(props.index, 0, {
-              ...moveData,
-              uid: ulid()
-            })
-            dispatch.common.updated({
-              schema: [...schema]
-            })
+            dispatch.schema.copy(props.index)
             break
           case HoverNodeAction.DELETE:
-            schema.splice(props.index, 1)
-            dispatch.common.updated({
-              schema: [...schema]
-            })
+            dispatch.schema.delete(props.index)
             break
 
           default:
@@ -74,7 +56,7 @@ const PreViewFieldNode: React.FC<PreViewFieldNodeProps> = (props) => {
         }
         return true
       },
-      [uid, schema, dispatch, props.index]
+      [props.index]
     )
 
   /**

@@ -12,7 +12,7 @@ const PropertyPanel = () => {
   const [activeKey, setActiveKey] = React.useState<string | string[]>()
 
   const { schema, materials } = useSelector((state: RootState) => ({
-    schema: state.common.schema,
+    schema: (state.schema as any)?.present,
     materials: state.common.materials
   }))
   const uid = useSelector((state: RootState) => state.common.uid)
@@ -35,10 +35,7 @@ const PropertyPanel = () => {
    * @param values 配置的面板属性
    */
   const { run: handleConfigurationFormChange } = useThrottleFn((formData) => {
-    dispatch.common.setSchemaPropsById({
-      uid,
-      fieldProps: formData
-    })
+    dispatch.schema.setProps({ uid, props: formData?.props || {} })
   })
 
   React.useEffect(() => {
