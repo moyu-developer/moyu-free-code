@@ -4,7 +4,11 @@
 #__next {
   height: 100vh;
   overflow: hidden;
-  background: var(--semi-color-nav-bg);
+  background: var(--semi-color-bg-4);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 

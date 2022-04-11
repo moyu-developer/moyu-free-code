@@ -10,6 +10,7 @@ const semi = require('@douyinfe/semi-next').default({
 
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   webpack: (config) => {
     config.resolve.alias['@'] = resolve(__dirname, './')
     // config.module.rules.push({

@@ -5,8 +5,7 @@ import {
   IconShoppingBag,
   IconTerminal,
   IconSourceControl,
-  IconBox,
-  IconSetting
+  IconBox
 } from '@douyinfe/semi-icons'
 import {
   MaterialBasicProduct,

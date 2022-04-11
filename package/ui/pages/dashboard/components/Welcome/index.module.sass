@@ -1,0 +1,15 @@
+@import '@/styles/mixins.scss'
+
+.welcome
+  height: 80px
+  width: 960px
+  margin: auto
+  line-height: 80px
+  @include flex($jc: space-between)
+  
+  &Left
+    flex: 1
+
+  &Right
+    width: 200px
+    @include flex($jc: flex-end)

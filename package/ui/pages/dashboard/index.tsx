@@ -1,84 +1,31 @@
-import { IconMore } from '@douyinfe/semi-icons'
-import { Avatar, Table } from '@douyinfe/semi-ui'
+import { Row, Col, Card, Empty } from '@douyinfe/semi-ui'
+import Welcome from './components/Welcome/index'
+import { IllustrationConstruction, IllustrationConstructionDark } from '@douyinfe/semi-illustrations'
+import styles from './index.module.sass'
 
 export default () => {
-  const columns = [
-    {
-      title: '标题',
-      dataIndex: 'name',
-      render: (text, record, index) => {
-        return (
-          <div>
-            <Avatar size='small' shape='square' src={record.nameIconSrc} style={{ marginRight: 12 }} />
-            {text}
-          </div>
-        )
-      }
-    },
-    {
-      title: '大小',
-      dataIndex: 'size'
-    },
-    {
-      title: '所有者',
-      dataIndex: 'owner',
-      render: (text, record, index) => {
-        return (
-          <div>
-            <Avatar size='small' color={record.avatarBg} style={{ marginRight: 4 }}>
-              {typeof text === 'string' && text.slice(0, 1)}
-            </Avatar>
-            {text}
-          </div>
-        )
-      }
-
-    },
-    {
-      title: '更新日期',
-      dataIndex: 'updateTime'
-    },
-    {
-      title: '',
-      dataIndex: 'operate',
-      render: () => {
-        return <IconMore />
-      }
-    }
-  ]
-  const data = [
-    {
-      key: '1',
-      name: 'Semi Design 设计稿.fig',
-      nameIconSrc: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/figma-icon.png',
-      size: '2M',
-      owner: '姜鹏志',
-      updateTime: '2020-02-02 05:13',
-      avatarBg: 'grey'
-    },
-    {
-      key: '2',
-      name: 'Semi Design 分享演示文稿',
-      nameIconSrc: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/docs-icon.png',
-      size: '2M',
-      owner: '郝宣',
-      updateTime: '2020-01-17 05:31',
-      avatarBg: 'red'
-    },
-    {
-      key: '3',
-      name: '设计文档',
-      nameIconSrc: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/docs-icon.png',
-      size: '34KB',
-      owner: 'Zoey Edwards',
-      updateTime: '2020-01-26 11:01',
-      avatarBg: 'light-blue'
-    }
-  ]
-
   return (
-    <div>
-      <Table columns={columns} dataSource={data} pagination={false} />
+    <div className={styles.dashboard}>
+      <Welcome />
+      <div className={styles.dashboardMain}>
+        <div className={styles.dashboardList}>
+          <div>
+            111
+          </div>
+          {
+           false && (
+             <div className={styles.dashboardEmpty}>
+               <Empty
+                 image={<IllustrationConstruction style={{ width: 200, height: 200 }} />}
+                 darkModeImage={<IllustrationConstructionDark style={{ width: 200, height: 200 }} />}
+                 title='快速入门 - 搭建第一个群应用'
+                 description='跟随宜小搭的指引，我们来一起创建一个群应用'
+               />
+             </div>
+           )
+         }
+        </div>
+      </div>
     </div>
   )
 }
