@@ -8,16 +8,11 @@ import styles from './index.module.sass'
 import { IconHandle } from '@douyinfe/semi-icons'
 
 const ComponentTree = () => {
-  const schema = useSelector((state: RootState) => state.common.schema, shallowEqual)
+  const schema = useSelector((state: RootState) => (state.schema as any)?.present)
 
   const treeNode = React.useMemo(() => {
-    return schema.map((node) => ({
-      label: node.component,
-      value: node.uid,
-      key: node.uid,
-      icon: <IconHandle />,
-      children: []
-    })) as TreeNodeData[]
+    console.log(schema, 'schema')
+    return []
   }, [schema])
 
   return (

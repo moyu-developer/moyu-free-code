@@ -4,12 +4,10 @@ import { saveViewSchemaService, SaveViewSchemaRequest } from '@moyu-code/shared'
 
 interface ToolBarState {
   scale: number,
-  pointer: number
 }
 
 const state: ToolBarState = {
-  scale: 100,
-  pointer: 0
+  scale: 100
 }
 
 export default createModel<RootModel>()({
@@ -21,7 +19,7 @@ export default createModel<RootModel>()({
       const { data } = await saveViewSchemaService({
         ...pageInfo,
         description: pageInfo.description || '',
-        schema: JSON.stringify(state.schema) || '',
+        schema: JSON.stringify((state.schema as any)?.present) || '',
         env: 0,
         status
       })
@@ -34,14 +32,6 @@ export default createModel<RootModel>()({
   }),
 
   reducers: {
-    /** 后退 */
-    back (state) {
-      state.pointer += 1
-    },
-    /** 前进 */
-    forward (state) {
-      state.pointer -= 1
-    },
     /** 放大 */
     amplify (state) {
       state.scale += 10
