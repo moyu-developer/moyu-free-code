@@ -41,3 +41,5 @@
 ::-webkit-scrollbar-thumb:hover { /* 鼠标移入滑块 */
   background: #909090;
 }
+
+.arco-icon { font-size: 24; stroke-linejoin: bevel; stroke-width: 5; }
