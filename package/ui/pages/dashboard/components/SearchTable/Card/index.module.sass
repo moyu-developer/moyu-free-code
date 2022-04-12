@@ -1,0 +1,24 @@
+@import '@/styles/mixins.scss'
+
+.card
+  width: 100%
+  &Body
+    height: 150px
+    @include flex($d: column, $jc: space-between, $ai: flex-start)
+
+  &Avatar
+    height: 40px
+    width: 40px
+
+  &Title
+    flex: 1
+  &Header
+    @include flex($jc: flex-start)
+    font-weight: 700
+    gap: 10px
+    
+
+  &Footer
+    width: 100%
+    @include flex($jc: space-between)
+    

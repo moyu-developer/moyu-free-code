@@ -1,6 +1,7 @@
 import { Row, Col, Card, Empty } from '@douyinfe/semi-ui'
 import Welcome from './components/Welcome/index'
 import { IllustrationConstruction, IllustrationConstructionDark } from '@douyinfe/semi-illustrations'
+import SearchTable from './components/SearchTable'
 import styles from './index.module.sass'
 
 export default () => {
@@ -10,7 +11,7 @@ export default () => {
       <div className={styles.dashboardMain}>
         <div className={styles.dashboardList}>
           <div>
-            111
+            <SearchTable />
           </div>
           {
            false && (

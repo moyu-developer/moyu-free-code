@@ -52,7 +52,7 @@ const LoginForm = () => {
           field='username'
           size='large'
           label='账号'
-          suffix={<Typography.Text>@moyu.dev</Typography.Text>}
+          suffix='@moyu.dev'
           trigger='blur'
           placeholder='请输入账号名称'
           rules={[{ required: true, message: '请输入账号名称???' }]}
@@ -83,17 +83,17 @@ const LoginForm = () => {
           >
             普通登录
           </Button>
-          <Space>
-            <Button
-              icon={<IconGithubLogo size='extra-large' />}
-              onClick={() => {
-                const config = oauthDev.gitee
-                window.localStorage.preventHref = window.location.href
-                window.location.href = `${config.oauth_uri}?client_id=${config.clientId}&redirect_uri=${config.redirectUri}&response_type=code&&scope=user_info`
-              }}
-            />
-            <Button icon={<Gitlab theme='filled' size={24} />} />
-          </Space>
+          <Button
+            block
+            size='large'
+            icon={<IconGithubLogo size='extra-large' />}
+            onClick={() => {
+              const config = oauthDev.gitee
+              window.localStorage.preventHref = window.location.href
+              window.location.href = `${config.oauth_uri}?client_id=${config.clientId}&redirect_uri=${config.redirectUri}&response_type=code&&scope=user_info`
+            }}
+          >Github
+          </Button>
         </Space>
       </Form>
     </div>

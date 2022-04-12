@@ -11,7 +11,7 @@ export default function Login () {
         mode='horizontal'
         className={styles.loginHeader}
         header={{
-          logo: <img src='https://sf6-cdn-tos.douyinstatic.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/webcast_logo.svg' />,
+          logo: <img src='https://s2.loli.net/2022/03/16/f6AbT7nGh8OQt9y.png' />,
           text: 'Moyu Free'
         }}
       />
