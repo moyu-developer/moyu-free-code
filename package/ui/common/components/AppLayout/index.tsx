@@ -57,21 +57,6 @@ const AppLayout: React.FC<{}> = (props) => {
               text: 'Moyu Free'
             }}
           >
-            <Nav.Item
-              itemKey='Home'
-              text='示例'
-              icon={<IconPhoneStroke size='large' />}
-            />
-            <Nav.Item
-              itemKey='Live'
-              text='页面管理'
-              icon={<IconFolder size='large' />}
-            />
-            <Nav.Item
-              itemKey='Setting'
-              text='设置'
-              icon={<IconSetting size='large' />}
-            />
             <Nav.Footer>
               <AvatarBar />
             </Nav.Footer>
