@@ -1,7 +1,9 @@
-import { ApiProperty, OmitType } from '@nestjs/swagger'
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
+import { Response } from 'src/common/dto/response.dto'
+import { User } from 'src/entity'
 
-export class CreateViewDto {
-  @ApiProperty({
+export class CreateViewRequestDto {
+  @ApiPropertyOptional({
     required: false,
     description: '更新view时，必传'
   })
@@ -43,6 +45,8 @@ export class CreateViewDto {
     enum: [0, 1, 2]
   })
     env: 0 | 1 | 3
-}
 
-export class UpdateViewDto extends OmitType(CreateViewDto, ['id'] as const) {}
+  user: User
+}
+export class CreateViewResponseDto extends Response {
+}
