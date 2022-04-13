@@ -1,5 +1,6 @@
-import { IconPlusCircle } from '@douyinfe/semi-icons'
-import { Space, Button, Row, Col, Typography } from '@douyinfe/semi-ui'
+import { IconHash } from '@douyinfe/semi-icons'
+import { Space, Button, Typography } from '@douyinfe/semi-ui'
+import { PageViewSettingModal } from '@moyu-code/control'
 import styles from './index.module.sass'
 
 const Welcome = () => {
@@ -11,18 +12,20 @@ const Welcome = () => {
         </Typography.Title>
 
         <Typography.Text type='quaternary'>
-          您可以从这里开始创建群应用～
+          从这里可以快速创建微页面～
         </Typography.Text>
       </Space>
       <div className={styles.welcomeRight}>
-        {' '}
-        <Button
-          theme='solid'
-          type='primary'
-          icon={<IconPlusCircle />}
-        >
-          创建微页面
-        </Button>
+        <PageViewSettingModal>
+          <Button
+            theme='solid'
+            type='primary'
+            icon={<IconHash />}
+          >
+            创建微页面
+          </Button>
+        </PageViewSettingModal>
+
       </div>
     </div>
   )
