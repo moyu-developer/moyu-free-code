@@ -13,7 +13,7 @@ export class UserController {
   constructor (private readonly userService: UserService) {
   }
 
-  // @UseGuards(LocalAuthGuard)
+  @UseGuards(LocalAuthGuard)
   @Get('info')
   @ApiBearerAuth()
   @ApiOkResponse({
@@ -21,7 +21,8 @@ export class UserController {
   })
   async getUserInfo (@Request() request) {
     const user = request.user
-    return await this.userService.findUserInfoById(Number(1))
+    console.log(user, 'user')
+    return await this.userService.findUserInfoById(Number(user?.id))
   }
 
   @Post('register')

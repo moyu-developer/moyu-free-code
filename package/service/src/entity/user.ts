@@ -4,8 +4,10 @@ import {
   Column,
   PrimaryColumn,
   PrimaryGeneratedColumn,
-  Generated
+  OneToMany
 } from 'typeorm'
+
+import { View } from 'src/entity'
 
 @Entity('user')
 export class User {

@@ -1,7 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
-import { CreateViewDto } from './dto/create.dto'
+import { Body, Controller, Get, Param, Post, Query, Request, UseGuards } from '@nestjs/common'
+import { ApiBearerAuth, ApiOkResponse, ApiResponse, ApiResponseProperty, ApiSecurity, ApiTags } from '@nestjs/swagger'
+import { GetRequestUser, ReturnUserTypes } from 'src/common/utils/decorator'
+import { User, View } from 'src/entity'
+import { LocalAuthGuard } from '../auth/auth.guard'
+import { CreateViewRequestDto } from './dto/create.dto'
+import { QueryViewListRequestDto, QueryViewListResponseDto } from './dto/list.dto'
 import { ViewsService } from './views.service'
+import { AuthGuard } from '@nestjs/passport'
 
 @Controller({
   version: '1',
@@ -14,7 +19,24 @@ export class ViewsController {
     this.viewsService = viewsService
   }
 
+  @UseGuards(LocalAuthGuard)
+  @Get('list')
+  @ApiSecurity('获取页面列表')
+  @ApiBearerAuth()
+  async getSchemaViewList (@Query() query: QueryViewListRequestDto, @GetRequestUser() user: ReturnUserTypes) {
+    const currentUser = new User()
+    const [list, total] = await this.viewsService.findAll({
+      ...query,
+      user: currentUser
+    })
+    return {
+      total,
+      list
+    }
+  }
+
   @Get(':id')
+  @ApiSecurity('通过id获取页面schema')
   async getViewById (@Param('id') id: number) {
     if (id) {
       return await this.viewsService.findView(Number(id))
@@ -24,11 +46,15 @@ export class ViewsController {
   }
 
   @Post('save')
-  async saveView (@Body() view: CreateViewDto) {
+  @ApiBearerAuth()
+  @ApiSecurity('获取页面列表')
+  @ApiSecurity('保存页面schema')
+  @UseGuards(LocalAuthGuard)
+  async saveView (@Body() view: CreateViewRequestDto, @GetRequestUser() user: ReturnUserTypes) {
     return await this.viewsService.saveRecord({
       ...view,
       status: view?.status || 0,
       env: view?.env || 0
-    })
+    }, user.id)
   }
 }

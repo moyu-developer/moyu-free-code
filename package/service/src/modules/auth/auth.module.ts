@@ -13,7 +13,8 @@ import { JwtStrategy } from './jwt.strategy'
     UserModule,
     PassportModule,
     JwtModule.register({
-      secret: jwtConstants.secret
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '8h', jwtid: 'token' } // token 过期时效
     })
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],

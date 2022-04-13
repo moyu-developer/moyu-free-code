@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm'
+import { User } from 'src/entity'
+import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm'
 
 @Entity('view')
 export class View {

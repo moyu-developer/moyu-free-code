@@ -20,7 +20,6 @@ export class UserService {
    * @returns 用户信息
    */
   async findUserByName (name: string) {
-    console.log(name, 'name')
     const user = await this.user.findOneBy({ name })
     return user
   }

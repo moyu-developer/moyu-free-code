@@ -5,6 +5,7 @@ import { LoginResDto } from './dto/login-res.dto'
 import { LoginReqDto } from './dto/login-req.dto'
 import { LocalAuthGuard } from './auth.guard'
 import { UserService } from '../user/user.service'
+import { AuthGuard } from '@nestjs/passport'
 
 @Controller('auth')
 @ApiTags('auth')
@@ -15,7 +16,7 @@ export class AuthController {
     this.authService = authService
   }
 
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(AuthGuard('local'))
   @Post('/login')
   @Version('1')
   @ApiOkResponse({
