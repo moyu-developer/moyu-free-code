@@ -2,7 +2,10 @@ import { GotAxios, ComposeFunction } from '@moyu-code/request'
 import jsCookie from 'js-cookie'
 
 const setRequestToken: ComposeFunction = (config) => {
-  config.headers.token = jsCookie.get('signAccessToken')
+  const token = jsCookie.get('signAccessToken')
+  if (token) {
+    config.headers.Authorization = 'Bearer ' + jsCookie.get('signAccessToken')
+  }
   return config
 }
 

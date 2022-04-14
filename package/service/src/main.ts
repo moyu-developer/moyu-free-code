@@ -35,6 +35,7 @@ async function bootstrap () {
     .setTitle('Moyu Free API')
     .setDescription('这个作者很懒，什么都没留下')
     .setVersion('1.0')
+    .addBearerAuth()
     .build()
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup('docs', app, document)
