@@ -23,11 +23,10 @@ export class ViewsController {
   @Get('list')
   @ApiSecurity('获取页面列表')
   @ApiBearerAuth()
-  async getSchemaViewList (@Query() query: QueryViewListRequestDto, @GetRequestUser() user: ReturnUserTypes) {
-    const currentUser = new User()
+  async getSchemaViewList (@Query() query: QueryViewListRequestDto, @GetRequestUser() user: User) {
     const [list, total] = await this.viewsService.findAll({
       ...query,
-      user: currentUser
+      user
     })
     return {
       total,
@@ -45,16 +44,18 @@ export class ViewsController {
     }
   }
 
+  @UseGuards(LocalAuthGuard)
   @Post('save')
   @ApiBearerAuth()
   @ApiSecurity('获取页面列表')
   @ApiSecurity('保存页面schema')
   @UseGuards(LocalAuthGuard)
-  async saveView (@Body() view: CreateViewRequestDto, @GetRequestUser() user: ReturnUserTypes) {
+  async saveView (@Body() view: CreateViewRequestDto, @GetRequestUser() user: User) {
     return await this.viewsService.saveRecord({
       ...view,
       status: view?.status || 0,
       env: view?.env || 0
-    }, user.id)
+
+    }, user)
   }
 }

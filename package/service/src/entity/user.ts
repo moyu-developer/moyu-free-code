@@ -71,7 +71,10 @@ export class User {
   })
     avatar?: string
 
-  constructor (body?: Partial<User>) {
-    Object.assign(this, body)
-  }
+    @OneToMany(() => View, (view) => view.user)
+      views: View[]
+
+    constructor (body?: Partial<User>) {
+      Object.assign(this, body)
+    }
 }

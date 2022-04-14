@@ -45,8 +45,6 @@ export class CreateViewRequestDto {
     enum: [0, 1, 2]
   })
     env: 0 | 1 | 3
-
-  user: User
 }
 export class CreateViewResponseDto extends Response {
 }

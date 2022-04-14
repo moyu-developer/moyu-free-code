@@ -14,6 +14,7 @@ export class ViewsService {
   async findAll (query: QueryViewListRequestDto & {user: User}) {
     const { size, current, ...params } = query
     const data = await this.views.findAndCount({
+      where: params,
       skip: (query.current - 1) * query.size,
       take: query.size
     })
@@ -26,9 +27,9 @@ export class ViewsService {
     })
   }
 
-  async saveRecord (record: CreateViewRequestDto, id: number) {
+  async saveRecord (record: CreateViewRequestDto, user: User) {
     const view = new View(record)
-    const user = new User({ id })
+    view.user = user
     const result = await this.views.manager.save(view)
     return result.id
   }

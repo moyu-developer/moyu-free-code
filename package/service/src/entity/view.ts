@@ -21,6 +21,12 @@ export class View {
     description?: string
 
   @Column({
+    nullable: true,
+    comment: '页面图片'
+  })
+    thumbnail?: string
+
+  @Column({
     default: '#FFFFFF',
     nullable: true,
     comment: '页面背景'
@@ -47,7 +53,10 @@ export class View {
     })
       env: number
 
-    constructor (body?: Partial<View>) {
-      Object.assign(this, body)
-    }
+      @ManyToOne(() => User, (user) => user.views)
+        user: User
+
+      constructor (body?: Partial<View>) {
+        Object.assign(this, body)
+      }
 }
