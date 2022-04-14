@@ -1,3 +1,4 @@
+import { User } from 'src/entity'
 import type { ExecutionContext } from '@nestjs/common'
 import { createParamDecorator } from '@nestjs/common'
 export interface ReturnUserTypes {
@@ -16,8 +17,8 @@ export const GetRequestUser = createParamDecorator(
     const req = ctx.switchToHttp().getRequest()
     console.log(req.user, 'req')
     if (data) {
-      return req.user.data
+      return new User(req.user.data)
     }
-    return req.user
+    return new User(req.User)
   }
 )
