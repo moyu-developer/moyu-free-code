@@ -1,15 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
-import login, { LoginReqDto, oauthLogin } from '@/api/auth/login'
+import { useEffect, useRef } from 'react'
+import { LoginReqDto, oauthLogin } from '@/api/auth/login'
 import type { Dispatch, RootState } from '@/common/model'
-import { IconGithubLogo, IconGitlabLogo } from '@douyinfe/semi-icons'
-import { Space, Form, Button, Typography, Icon } from '@douyinfe/semi-ui'
+import { Space, Button, Typography, Form, Input, Checkbox } from 'antd'
+import { GithubFilled } from '@ant-design/icons'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import JsCookie from 'js-cookie'
 import styles from './index.module.sass'
-// import GiteeSvg from '@/assets/svg/gitee.svg'
 import { oauthDev } from '@/common/config/oauth'
-import { Gitlab } from '@icon-park/react'
 
 const LoginForm = () => {
   const rememberRef = useRef<Boolean>(Boolean(JsCookie.get('remember')))
@@ -42,42 +40,38 @@ const LoginForm = () => {
   return (
     <div className={styles.loginForm}>
       <Form
-        onValueChange={(v) => console.log(v)}
-        onSubmit={handleLoginFormSubmit}
-        initValues={{
+        layout='vertical'
+        onValuesChange={(v) => console.log(v)}
+        onFinish={handleLoginFormSubmit}
+        initialValues={{
           remember: rememberRef.current
         }}
       >
-        <Form.Input
-          field='username'
-          size='large'
+        <Form.Item
+          name='username'
           label='账号'
-          suffix='@moyu.dev'
-          trigger='blur'
-          placeholder='请输入账号名称'
           rules={[{ required: true, message: '请输入账号名称???' }]}
-        />
-        <Form.Input
-          mode='password'
-          size='large'
-          field='password'
+        >
+          <Input placeholder='请输入账号名称' size='large' />
+        </Form.Item>
+        <Form.Item
+          name='password'
           label='密码'
-          trigger='blur'
-          placeholder='请输入当前密码'
           rules={[{ required: true, message: '请输入当前密码???' }]}
-        />
+        >
+          <Input.Password placeholder='请输入当前密码' size='large' />
+        </Form.Item>
         <div className={styles.loginFormRemember}>
-          <Form.Checkbox value={false} field='remember' noLabel>
-            记住我
-          </Form.Checkbox>
-          <Typography.Text link>找回密码?</Typography.Text>
+          <Form.Item name='remember' valuePropName='checked' noStyle>
+            <Checkbox>记住我</Checkbox>
+          </Form.Item>
+          <Typography.Link>找回密码?</Typography.Link>
         </div>
-        <Space vertical className={styles.loginFormButtons}>
+        <Space direction='vertical' className={styles.loginFormButtons}>
           <Button
             block
             htmlType='submit'
             size='large'
-            theme='solid'
             type='primary'
             loading={isLogin}
           >
@@ -86,13 +80,14 @@ const LoginForm = () => {
           <Button
             block
             size='large'
-            icon={<IconGithubLogo size='extra-large' />}
+            icon={<GithubFilled />}
             onClick={() => {
               const config = oauthDev.gitee
               window.localStorage.preventHref = window.location.href
               window.location.href = `${config.oauth_uri}?client_id=${config.clientId}&redirect_uri=${config.redirectUri}&response_type=code&&scope=user_info`
             }}
-          >Github
+          >
+            Github
           </Button>
         </Space>
       </Form>

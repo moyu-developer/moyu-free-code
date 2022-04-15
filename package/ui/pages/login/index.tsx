@@ -1,27 +1,16 @@
-import { Col, Row, Nav, Typography, Banner } from '@douyinfe/semi-ui'
-import { IconHorn, IconTick } from '@douyinfe/semi-icons'
+import NavBar from '@/common/components/NavBar'
 import React from 'react'
 import LoginForm from './Form'
+import { Alert, Typography, Col, Row } from 'antd'
 import styles from './index.module.sass'
 
 export default function Login () {
   return (
     <div className={styles.login}>
-      <Nav
-        mode='horizontal'
-        className={styles.loginHeader}
-        header={{
-          logo: <img src='https://s2.loli.net/2022/03/16/f6AbT7nGh8OQt9y.png' />,
-          text: 'Moyu Free'
-        }}
-      />
+      <NavBar />
       <div className={styles.message}>
-        <Banner
-          type='info'
-          icon={<IconHorn />}
-          closeIcon={<IconTick />}
-          description='A pre-released version is available.'
-        />
+
+        <Alert message='Info Text' type='info' />
       </div>
 
       <Row>
@@ -34,7 +23,7 @@ export default function Login () {
           <div className={styles.loginBody}>
             <div className={styles.loginBodyWelcome}>
               <Typography.Text>欢迎您，Moyu boys and girls 😊</Typography.Text>
-              <Typography.Title heading={3}>登录你的账号开始</Typography.Title>
+              <Typography.Title level={3}>登录你的账号开始</Typography.Title>
             </div>
             <LoginForm />
           </div>
