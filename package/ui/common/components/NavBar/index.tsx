@@ -1,4 +1,4 @@
-import { Typography, Space } from '@arco-design/web-react'
+import { Typography, Space } from 'antd'
 import styles from './index.module.sass'
 
 const NavBar = () => {
