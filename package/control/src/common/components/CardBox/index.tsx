@@ -1,10 +1,7 @@
 import * as React from 'react'
-import { Empty, Typography } from '@douyinfe/semi-ui'
+import { Result, Typography } from 'antd'
+import { SmileOutlined } from '@ant-design/icons'
 import styles from './index.module.sass'
-import {
-  IllustrationConstruction,
-  IllustrationConstructionDark
-} from '@douyinfe/semi-illustrations'
 
 export interface CardBoxProps {
   title?: string;
@@ -17,7 +14,7 @@ const CardBox: React.FC<CardBoxProps> = (props) => {
   return (
     <div className={styles.box}>
       <div className={styles.boxTitle}>
-        <Typography.Title heading={6}>{props?.title}</Typography.Title>
+        <div className={styles.boxTitleText}>{props?.title}</div>
         <div>
           {props?.extra}
         </div>
@@ -29,18 +26,11 @@ const CardBox: React.FC<CardBoxProps> = (props) => {
             )
           : (
             <div className={styles.boxEmpty}>
-              <Empty
-                image={
-                  <IllustrationConstruction style={{ width: 150, height: 150 }} />
-              }
-                darkModeImage={
-                  <IllustrationConstructionDark
-                    style={{ width: 150, height: 150 }}
-                  />
-              }
+              <Result
+                icon={<SmileOutlined />}
                 title='当前区域空空如也'
-                description={props.emptyText}
-              />
+                subTitle={props.emptyText}
+              />,
             </div>
             )}
       </div>
