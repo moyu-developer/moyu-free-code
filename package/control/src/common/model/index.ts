@@ -16,9 +16,6 @@ const store = init<RootModel>({
   name: '__moyu_code__',
   models: globalModels,
   plugins: [
-    immerPlugin({
-      whitelist: ['toolbar', 'schema']
-    }),
     undoPlugin(['schema'])
   ]
 })

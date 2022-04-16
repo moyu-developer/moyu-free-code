@@ -58,16 +58,5 @@ export default createModel<RootModel>()({
       }
     },
 
-    /** 更新页面信息 */
-    setPageInfo (state, info: Partial<CommonState['pageInfo']>) {
-      return {
-        ...state,
-        pageInfo: {
-          ...state.pageInfo,
-          ...info
-        }
-      }
-    }
-
   }
 })

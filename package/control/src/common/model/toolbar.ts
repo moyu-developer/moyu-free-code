@@ -34,15 +34,24 @@ export default createModel<RootModel>()({
   reducers: {
     /** 放大 */
     amplify (state) {
-      state.scale += 10
+      return {
+        ...state,
+        scale: state.scale + 10
+      }
     },
     /** 缩小 */
     narrow (state) {
-      state.scale -= 10
+      return {
+        ...state,
+        scale: state.scale - 10
+      }
     },
     /** 设置 scale */
     setScale (state, size: number) {
-      state.scale = size
+      return {
+        ...state,
+        scale: size
+      }
     }
   }
 })
