@@ -26,12 +26,18 @@ const PreViewFieldNode: React.FC<PreViewFieldNodeProps> = (props) => {
     (state: RootState) => ({
       uid: state.common.uid,
       schema: (state.schema as any)?.present
-    }),
-    shallowEqual
+    })
   )
 
   const dispatch: Dispatch = useDispatch()
 
+  /**
+   * 操作面板回调
+   * @action { HoverNodeAction.MOVE_UP } 上移
+   * @action { HoverNodeAction.MOVE_DOWN } 下移
+   * @action { HoverNodeAction.COPY }复制
+   * @action { HoverNodeAction.DELETE } 删除
+   */
   const onTriggerFieldNodeAction: MoveHoverNodeProps['onTrigger'] =
     React.useCallback(
       async (type) => {
@@ -62,7 +68,7 @@ const PreViewFieldNode: React.FC<PreViewFieldNodeProps> = (props) => {
   /**
    * 当前FieldNode点击事件
    */
-  const handleFieldWrapClick = React.useCallback(() => {
+  const handleFieldWrapClick = () => {
     if (!props.uid) {
       console.warn(
         '当前Field未传入uid，onClick失效，请检查props。当前props：',
@@ -79,7 +85,7 @@ const PreViewFieldNode: React.FC<PreViewFieldNodeProps> = (props) => {
       return
     }
     props.onClick(props.uid)
-  }, [props.uid, props.onClick])
+  }
 
   /** 当前field 绑定的Element */
   const fieldRef = useRef<HTMLDivElement | null>(null)

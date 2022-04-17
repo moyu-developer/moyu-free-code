@@ -1,7 +1,8 @@
-import { Button, Col, Descriptions, Modal, Row, Space, Tag } from '@douyinfe/semi-ui'
+import { Badge, Col, Descriptions, Modal, Row, Button, Tag } from 'antd'
+import { IconBrandChrome } from '@tabler/icons'
 import Screenshot from 'src/common/components/Screenshot'
 import React, { useState } from 'react'
-import styles from './index.module.sass'
+import Icon from 'src/common/components/AntSvg'
 
 const PreviewFrameModal: React.FC = (props) => {
   const [visible, setVisible] = useState(false)
@@ -19,6 +20,7 @@ const PreviewFrameModal: React.FC = (props) => {
         visible={visible}
         onOk={onClose}
         zIndex={2030}
+        footer={false}
         onCancel={onClose}
       >
         <Row gutter={30}>
@@ -29,13 +31,17 @@ const PreviewFrameModal: React.FC = (props) => {
 
           </Col>
           <Col span={12}>
-            <Descriptions
-              align='center' data={[
-                { key: '页面版本', value: <Tag color='green'>v1.0.0</Tag> },
-                { key: '当前环境', value: <Tag color='blue'>browser</Tag> },
-                { key: '发布状态', value: '未发布' }
-              ]}
-            />
+            <Descriptions title='页面信息' column={1}>
+              <Descriptions.Item label='页面版本'>
+                <Tag color='geekblue'>v1.0.0</Tag>
+              </Descriptions.Item>
+              <Descriptions.Item label='当前环境'>
+                <Button icon={<Icon icon={IconBrandChrome} />} type='link' />
+              </Descriptions.Item>
+              <Descriptions.Item label='发布状态'>
+                <Badge status='success' text='未发布' />
+              </Descriptions.Item>
+            </Descriptions>
           </Col>
         </Row>
       </Modal>

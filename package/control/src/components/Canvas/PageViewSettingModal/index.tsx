@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { Col, Form, Modal, Row, Space } from '@douyinfe/semi-ui'
+import { Button, Col, Form, Input, Modal, Row, Space, Image } from 'antd'
 import { useState } from 'react'
+import styles from './index.module.sass'
 
 const PageViewSettingModal: React.FC = (props) => {
   const [visible, setVisible] = useState(false)
@@ -16,52 +17,53 @@ const PageViewSettingModal: React.FC = (props) => {
       </div>
       <Modal
         title='页面设置'
+        okText='保存'
         visible={visible}
         onCancel={() => setVisible(false)}
       >
         <Form>
-          <Row gutter={[40, 0]}>
-            <Col span={12}>
-              <Form.Input
-                field='name'
-                label='名称（Input）'
-                initValue='mikeya'
-                trigger='blur'
-              />
-            </Col>
+          <Row>
+            <Col span={16}>
+              <Row gutter={[40, 0]}>
+                <Col span={12}>
+                  <Form.Item name='name' label='名称'>
+                    <Input />
+                  </Form.Item>
+                </Col>
 
-            <Col span={12}>
-              <Form.Input
-                field='name'
-                label='背景'
-                initValue='mikeya'
-                trigger='blur'
-              />
-            </Col>
-            <Col span={12}>
-              <Form.Input
-                field='name'
-                label='环境'
-                initValue='mikeya'
-                trigger='blur'
-              />
-            </Col>
+                <Col span={12}>
+                  <Form.Item name='name' label='背景'>
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item name='name' label='环境'>
+                    <Input />
+                  </Form.Item>
+                </Col>
 
-            <Col span={12}>
-              <Form.Input
-                field='name'
-                label='背景'
-                initValue='mikeya'
-                trigger='blur'
-              />
+                <Col span={12}>
+                  <Form.Item name='name' label='状态'>
+                    <Input />
+                  </Form.Item>
+                </Col>
+
+                <Col span={24}>
+                  <Form.Item name='description' label='页面描述'>
+                    <Input.TextArea />
+                  </Form.Item>
+                </Col>
+              </Row>
             </Col>
-            <Col span={24}>
-              <Form.TextArea
-                style={{ height: 120 }}
-                field='description'
-                label='页面描述'
-                placeholder='对页面做一个备注吧，如果有的话！'
-              />
+            <Col span={8}>
+              <div className={styles.icon}>
+                <span className={styles.iconText}>页面图标</span>
+                <Image
+                  width={80}
+                  src='https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+                />
+                <Button>更改icon</Button>
+              </div>
             </Col>
           </Row>
         </Form>
