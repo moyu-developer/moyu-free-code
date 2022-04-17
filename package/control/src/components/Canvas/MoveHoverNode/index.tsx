@@ -1,14 +1,9 @@
-import { Button, Popover, Space, Toast, Tooltip } from '@douyinfe/semi-ui'
-import {
-  IconArrowDown,
-  IconArrowUp,
-  IconCopy,
-  IconDelete
-} from '@douyinfe/semi-icons'
+import { Button, Popover, Space, message, Tooltip } from 'antd'
+import { IconCopy, IconTrash, IconArrowNarrowUp, IconArrowNarrowDown } from '@tabler/icons'
 import * as React from 'react'
-import {} from './'
 import styles from './index.module.sass'
 import { RootState } from 'src/common/model'
+import Icon from 'src/common/components/AntSvg'
 
 export enum HoverNodeAction {
   'MOVE_UP' = 0,
@@ -34,9 +29,9 @@ const MoveHoverNode = (props: MoveHoverNodeProps) => {
 
     const success = await props.onTrigger(type)
     if (success) {
-      Toast.success('操作成功')
+      message.success('操作成功')
     } else {
-      Toast.success('操作失败')
+      message.success('操作失败')
     }
   }
 
@@ -53,45 +48,48 @@ const MoveHoverNode = (props: MoveHoverNodeProps) => {
   return (
     <div className={styles.hover}>
       <Popover
-        position='right'
-        trigger='custom'
         visible
-        spacing={15}
+        autoAdjustOverflow
+        placement='right'
+        trigger='custom'
         content={
-          <Space vertical spacing={0}>
+          <Space direction='vertical' size={0}>
             <Tooltip
-              content={isStart ? '当前元素已在首位' : '上移'}
-              position='right'
+              title={isStart ? '当前元素已在首位' : '上移'}
+              placement='right'
             >
               <Button
-                icon={<IconArrowUp />}
+                type='link'
+                icon={<Icon icon={IconArrowNarrowUp} />}
                 disabled={isStart}
                 onClick={() =>
                   handleSelectedSchemaTrigger(HoverNodeAction.MOVE_UP)}
               />
             </Tooltip>
             <Tooltip
-              content={isEnd ? '当前元素已在末尾' : '下移'}
-              position='right'
+              title={isEnd ? '当前元素已在末尾' : '下移'}
+              placement='right'
             >
               <Button
-                icon={<IconArrowDown />}
+                type='link'
+                icon={<Icon icon={IconArrowNarrowDown} />}
                 disabled={isEnd}
                 onClick={() =>
                   handleSelectedSchemaTrigger(HoverNodeAction.MOVE_DOWN)}
               />
             </Tooltip>
-            <Tooltip content='复制' position='right'>
+            <Tooltip title='复制' placement='right'>
               <Button
-                icon={<IconCopy />}
+                type='link'
+                icon={<Icon icon={IconCopy} />}
                 onClick={() =>
                   handleSelectedSchemaTrigger(HoverNodeAction.COPY)}
               />
             </Tooltip>
-            <Tooltip content='删除' position='right'>
+            <Tooltip title='删除' placement='right'>
               <Button
-                icon={<IconDelete />}
-                theme='light'
+                type='link'
+                icon={<Icon icon={IconTrash} />}
                 onClick={() =>
                   handleSelectedSchemaTrigger(HoverNodeAction.DELETE)}
               />

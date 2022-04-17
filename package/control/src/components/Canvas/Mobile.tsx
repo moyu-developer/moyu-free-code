@@ -1,13 +1,11 @@
 import * as React from 'react'
-import { Typography } from '@douyinfe/semi-ui'
 import { useDrop } from 'react-dnd'
-import styles from './index.module.sass'
 import { DropNames } from '../../common/constant'
 import { MobileRender, MobileRenderProps } from '@moyu-code/renders'
 import PreViewFieldNode, { PreViewFieldNodeProps } from './PreViewFieldNode'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from 'src/common/model'
-import { MaterialComponentType } from '@moyu-code/schema'
+import { MaterialComponentType } from '@moyu-code/shared'
 import { useThrottleFn } from 'ahooks'
 import Screenshot from 'src/common/components/Screenshot'
 import { ulid } from 'ulid'
@@ -29,6 +27,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
    */
   const { run: onMoveFieldCard } = useThrottleFn(
     (dragIndex: number, targetIndex: number) => {
+      console.log(schema, 'schema')
       const item = schema[dragIndex]
 
       if (!item) throw new Error('操作数据不存在')
@@ -38,7 +37,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
 
       /** hover结束后，把删除的item给放置进去 */
       schema.splice(targetIndex, 0, item)
-      dispatch.schema.updated(schema)
+      dispatch.schema.updated([...schema])
     }
   )
 
@@ -54,7 +53,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
           })
           dispatch.schema.add({
             uid: uid,
-            component: item.component,
+            component: item.component.displayName,
             props: item.defaultProps
           })
         }
@@ -74,24 +73,23 @@ const Mobile: React.FC<MobileProps> = (props) => {
    * @param componentIndex 层级
    * @returns 组件
    */
-  const handleRenderFieldNode: MobileRenderProps['render'] = (
-    element,
-    renderCell,
-    componentIndex
-  ) => {
+  const handleRenderFieldNode: MobileRenderProps['render'] = (bridge) => {
+    const { item: renderCell, index, child } = bridge
     return (
       <PreViewFieldNode
         key={renderCell?.uid}
         uid={renderCell?.uid as string}
-        index={componentIndex}
+        index={index}
         hasSelected={checkedUid === renderCell?.uid}
         onMoveFieldCard={onMoveFieldCard}
         onClick={onFieldNodeSelectedByUid}
       >
-        {element}
+        {child}
       </PreViewFieldNode>
     )
   }
+
+  console.log(checkedUid, schema, 'checkedUid')
 
   /**
    * FieldNode 点击，通过uid选中当前的panel
@@ -121,6 +119,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
         }}
         >
           <MobileRender
+            key={checkedUid}
             schema={schema}
             materialComponents={props.materialComponents}
             render={handleRenderFieldNode}
