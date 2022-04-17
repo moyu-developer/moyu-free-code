@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useDrag } from 'react-dnd'
 import { DropNames } from '../../../common/constant'
-import type { MaterialComponentType } from '@moyu-code/schema'
-import { Avatar } from '@douyinfe/semi-ui'
+import type { MaterialComponentType } from '@moyu-code/shared'
+import { Avatar } from 'antd'
 import styles from './index.module.sass'
 
 const ComponentCard: React.FC<{
