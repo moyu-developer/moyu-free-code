@@ -4,7 +4,7 @@ import jsCookie from 'js-cookie'
 const setRequestToken: ComposeFunction = (config) => {
   config.headers = {
     ...config.headers,
-    token: jsCookie.get('signAccessToken') || ''
+    Authorization: 'Bearer ' + jsCookie.get('signAccessToken')
   }
   return config
 }

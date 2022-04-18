@@ -2,30 +2,30 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { Button, Layout, Tooltip } from '@douyinfe/semi-ui'
 import {
-  IconShoppingBag,
-  IconTerminal,
-  IconSourceControl,
-  IconBox
-} from '@douyinfe/semi-icons'
-import {
   MaterialBasicProduct,
   ContainerProvider,
   MaterialRenderCanvas,
-  PropertyPanel,
-  MaterialNavigationTabs,
-  MaterialSchemeView,
-  MaterialComponentTree,
-  MaterialRemoteProduct
+  PropertyPanel
 } from '@moyu-code/control'
 import * as Materials from '@moyu-code/materials'
-import * as Components from 'antd-mobile'
-import { MaterialComponentType } from '@moyu-code/schema'
+import { MaterialComponentType, ReactComponent } from '@moyu-code/shared'
 import './model'
 
 import styles from '@/styles/layout.module.css'
 
 const materials: MaterialComponentType[] = Object.keys(Materials).map(
   (k: string) => (Materials as Record<string, MaterialComponentType>)[k]
+)
+
+const renderComponents: Record<string, ReactComponent> = {}
+
+Object.keys(Materials).forEach(
+  (k: string) => {
+    const material = (Materials as Record<string, MaterialComponentType>)[k]
+    if (material.component?.displayName && material.component?.render) {
+      renderComponents[material.component?.displayName] = material.component?.render
+    }
+  }
 )
 
 const Example: NextPage = () => {
@@ -40,53 +40,11 @@ const Example: NextPage = () => {
       </Head>
       {/* 标准层 */}
       <ContainerProvider materials={materials}>
-        <MaterialNavigationTabs
-          components={[
-            {
-              tab: (
-                <Tooltip content='组件中心' position='right'>
-                  <IconBox size='large' />
-                </Tooltip>
-              ),
-              render: <MaterialBasicProduct />,
-              itemKey: 'MaterialBasicProduct1'
-            },
-            {
-              tab: (
-                <Tooltip content='组件商店' position='right'>
-                  <IconShoppingBag size='large' />
-                </Tooltip>
-              ),
-              render: <MaterialRemoteProduct />,
-              itemKey: 'MaterialRemoteProduct'
-            },
-            {
-              tab: (
-                <Tooltip content='组件树🌲' position='right'>
-                  <IconSourceControl size='large' />
-                </Tooltip>
-              ),
-              render: <MaterialComponentTree />,
-              itemKey: 'MaterialComponentTree'
-            },
-            {
-              tab: (
-                <Tooltip content='JSON Schema' position='right'>
-                  <IconTerminal size='large' />
-                </Tooltip>
-              ),
-              render: <MaterialSchemeView />,
-              itemKey: 'MaterialSchemeView'
-            }
-          ]}
-        />
         {/* 物料列表区 */}
-        {/* <MaterialBasicProduct /> */}
+        <MaterialBasicProduct />
         {/* 渲染器 */}
         <MaterialRenderCanvas
-          materialComponents={{
-            ...(Components as any)
-          }}
+          materialComponents={renderComponents}
         />
         {/* 属性编辑器 */}
         <PropertyPanel />
