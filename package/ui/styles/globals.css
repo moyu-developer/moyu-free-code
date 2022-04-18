@@ -42,4 +42,8 @@
   background: #909090;
 }
 
-.arco-icon { font-size: 24; stroke-linejoin: bevel; stroke-width: 5; }
+.icon-tabler {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.5
+}
