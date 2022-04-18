@@ -1,5 +1,6 @@
-import * as React from 'react'
+import React, { createElement } from 'react'
 
+export type ReactComponent = Parameters<typeof createElement>[0]
 /**
  * @interface 声明RenderNode的节点类型
  * @description 一个pattern大概的长相
@@ -41,7 +42,13 @@ export interface MaterialComponentType {
    * @name 渲染的组件
    * @description 组件必然要有一个展示的node
    */
-  component: string;
+  component: {
+    /** @name 显示名称 */
+    displayName: string;
+
+    /** @name 显示名称 */
+    render: ReactComponent
+  };
 
   /**
    * @name 默认的props
@@ -52,11 +59,16 @@ export interface MaterialComponentType {
   /**
    * @name 属性面板，用于配置props内容
    */
-  panel: Array<React.FunctionComponent | React.ComponentClass>
-}
+  panel: Array<{
+    /** @name 面板key */
+    key: string,
 
-export interface PanelComponentType {
-  /** @name 面板key */
-  key: string,
-  render: React.ReactNode
+    /** @name 面板Node */
+    render: React.ReactNode
+  }>
+
+  /**
+   * 桥
+   */
+  bridge?: Record<string, any>
 }
