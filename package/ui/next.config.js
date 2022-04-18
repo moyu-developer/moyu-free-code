@@ -2,7 +2,7 @@
 const { resolve } = require('path')
 const withImages = require('next-images')
 const withTM = require('next-transpile-modules')([
-  'antd-mobile'
+  'react-vant'
 ])
 const semi = require('@douyinfe/semi-next').default({
   /* the extension options */
