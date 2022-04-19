@@ -37,5 +37,8 @@
       "path": "dist/renders.esm.js",
       "limit": "10 KB"
     }
-  ]
+  ],
+  "dependencies": {
+    "@moyu-code/shared": "workspace:^0.1.0"
+  }
 }

@@ -1,14 +1,30 @@
 import * as React from 'react'
 import { useDrop } from 'react-dnd'
+import GridLayout from 'react-grid-layout'
 import { DropNames } from '../../common/constant'
 import { MobileRender, MobileRenderProps } from '@moyu-code/renders'
 import PreViewFieldNode, { PreViewFieldNodeProps } from './PreViewFieldNode'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from 'src/common/model'
-import { MaterialComponentType } from '@moyu-code/shared'
+import { MaterialComponentType, RenderNodeType } from '@moyu-code/shared'
 import { useThrottleFn } from 'ahooks'
 import Screenshot from 'src/common/components/Screenshot'
 import { ulid } from 'ulid'
+
+const layout = [
+  { i: 'a', x: 0, y: 0, w: 1, h: 2 },
+  { i: 'b', x: 1, y: 0, w: 3, h: 2 },
+  { i: 'c', x: 4, y: 0, w: 1, h: 2 }
+]
+
+const CustomGridItemComponent = React.forwardRef<any, any>(({ style, className, ...props }, ref) => {
+  return (
+    <div style={{ ...style }} className={className} ref={ref}>
+      {/* Some other content */}
+      c
+    </div>
+  )
+})
 
 interface MobileProps {
   materialComponents: MobileRenderProps['materialComponents'];
@@ -48,14 +64,14 @@ const Mobile: React.FC<MobileProps> = (props) => {
         const didDrop = monitor.didDrop()
         const uid = ulid()
         if (!didDrop) {
-          dispatch.common.updated({
-            uid
-          })
-          dispatch.schema.add({
-            uid: uid,
-            component: item.component.displayName,
-            props: item.defaultProps
-          })
+          // dispatch.common.updated({
+          //   uid
+          // })
+          // dispatch.schema.add({
+          //   uid: uid,
+          //   component: item.component.displayName,
+          //   props: item.defaultProps
+          // })
         }
       },
       collect: (monitor) => ({
@@ -105,7 +121,25 @@ const Mobile: React.FC<MobileProps> = (props) => {
     }
   }, [dispatch])
 
-  const canMoveHover = canDrop && isOver
+  /**
+   * 当组件卡片落地
+   * @param layout 页面落地网格layout布局
+   * @param grid 当前组件所处网格
+   * @param event 事件回调
+   */
+  const onComponentDropCallback = (layout: GridLayout.Layout[], grid: GridLayout.Layout, event) => {
+    const dropComponentSchema: MaterialComponentType = JSON.parse(event.dataTransfer.getData('schemaItem'))
+    const uid = ulid()
+    dispatch.common.updated({
+      uid
+    })
+    dispatch.schema.add({
+      uid: uid,
+      component: dropComponentSchema.component.displayName,
+      props: dropComponentSchema.defaultProps,
+      gridLayout: grid
+    })
+  }
 
   return (
     <div
@@ -113,17 +147,40 @@ const Mobile: React.FC<MobileProps> = (props) => {
         transform: `scale(${scale})`
       }}
     >
-      <Screenshot title={pageName}>
+      <Screenshot
+        gridBackground
+        title={pageName} style={{
+          width: 375
+        }}
+      >
         <div style={{
           height: 750
         }}
         >
-          <MobileRender
-            key={checkedUid}
-            schema={schema}
-            materialComponents={props.materialComponents}
-            render={handleRenderFieldNode}
-          />
+          <GridLayout
+            isDroppable
+            onLayoutChange={(layout) => console.log(layout, 'GridLayout.onLayoutChange')}
+            className='layout'
+            useCSSTransforms
+            allowOverlap
+            cols={12}
+            margin={[0, 0]}
+            rowHeight={30}
+            width={375}
+            onDrop={onComponentDropCallback}
+          >
+            {/* {
+              layout.map(el => {
+                return <div key={el.i} data-grid={el}>{el.i}</div>
+              })
+            } */}
+            <MobileRender
+              schema={schema}
+              materialComponents={props.materialComponents}
+              render={handleRenderFieldNode}
+            />
+          </GridLayout>
+
         </div>
       </Screenshot>
     </div>

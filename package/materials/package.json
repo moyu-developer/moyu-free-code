@@ -39,6 +39,7 @@
     }
   ],
   "dependencies": {
+    "@moyu-code/shared": "workspace:^0.1.0",
     "@types/react-color": "^3.0.6",
     "react-color": "^2.19.3"
   }

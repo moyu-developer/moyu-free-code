@@ -1,14 +1,17 @@
 import * as React from 'react'
-import { Col, Form, Collapse, Button } from '@douyinfe/semi-ui'
+import { Col, Form, Collapse, Button } from 'antd'
 import { useThrottleFn } from 'ahooks'
-import CardBox from 'src/common/components/CardBox'
 import { useSelector, useDispatch } from 'react-redux'
 import type { Dispatch, RootState } from 'src/common/model'
-import { IconAlignTop } from '@douyinfe/semi-icons'
+import { IconChevronUp } from '@tabler/icons'
 import styles from './index.module.sass'
+import CardBox from 'src/common/components/CardBox'
+import Icon from 'src/common/components/AntSvg'
+
+const { Panel } = Collapse
 
 const PropertyPanel = () => {
-  const formRef = React.useRef<any>()
+  const [form]: any = Form.useForm()
   const [activeKey, setActiveKey] = React.useState<string | string[]>()
 
   const { schema, materials } = useSelector((state: RootState) => ({
@@ -19,12 +22,16 @@ const PropertyPanel = () => {
 
   const dispatch: Dispatch = useDispatch()
 
+  console.log(schema, 'schema', materials)
+
   const currentPanels = React.useMemo(() => {
     const componentType = schema.find(
       (record) => record.uid === uid
     )?.component
     if (componentType) {
-      const material = materials.find((item) => item.component === componentType)
+      const material = materials.find(
+        (item) => item.component.displayName === componentType
+      )
       return material?.panel || []
     }
     return []
@@ -35,17 +42,16 @@ const PropertyPanel = () => {
    * @param values 配置的面板属性
    */
   const { run: handleConfigurationFormChange } = useThrottleFn((formData) => {
-    dispatch.schema.setProps({ uid, props: formData?.props || {} })
+    dispatch.schema.setProps({ uid, props: formData || {} })
   })
 
   React.useEffect(() => {
     if (schema.length > 0) {
       const props = schema.find((node) => node.uid === uid)?.props
-      formRef.current.setValues({
-        props
-      })
+      console.log(props, 'props')
+      form.setFieldsValue && form.setFieldsValue(props)
     }
-  }, [uid])
+  }, [uid, schema])
 
   return (
     <Col className={styles.configuration}>
@@ -57,34 +63,22 @@ const PropertyPanel = () => {
           activeKey && activeKey.length > 0
             ? (
               <Button
-                icon={<IconAlignTop />}
+                icon={<Icon icon={IconChevronUp} />}
                 onClick={() => setActiveKey([])}
-                theme='borderless'
                 type='primary'
               />
               )
             : null
         }
       >
-        <Collapse
-          keepDOM
-          activeKey={activeKey}
-          onChange={(keys) => setActiveKey(keys)}
-        >
-          <Form
-            onValueChange={handleConfigurationFormChange}
-            labelPosition='left'
-            getFormApi={(formApi) => (formRef.current = formApi)}
-          >
-            {currentPanels.map((panel, i) =>
-              React.createElement(panel, {
-                key: i
-              })
-            )}
-          </Form>
-        </Collapse>
+        <Form form={form} onValuesChange={handleConfigurationFormChange}>
+          <Collapse defaultActiveKey={['1']} ghost>
+            {currentPanels.map((panel) => {
+              return panel.render
+            })}
+          </Collapse>
+        </Form>
       </CardBox>
-
     </Col>
   )
 }

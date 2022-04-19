@@ -1,4 +1,5 @@
 import React, { createElement } from 'react'
+import type { Layout } from 'react-grid-layout'
 
 export type ReactComponent = Parameters<typeof createElement>[0]
 /**
@@ -13,6 +14,9 @@ export interface RenderNodeType {
 
   /** @name 渲染npm组件的标识 */
   component: string;
+
+  /** @name layout渲染块 */
+  gridLayout: Omit<Layout, 'i'>;
 
   props?: Record<string, any> & {
     style?: React.CSSProperties;

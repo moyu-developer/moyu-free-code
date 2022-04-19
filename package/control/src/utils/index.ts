@@ -1,4 +1,4 @@
-import { RenderNodeType } from '@moyu-code/schema'
+import { RenderNodeType } from '@moyu-code/shared'
 
 export const findDepSchema = (
   data: RenderNodeType[],

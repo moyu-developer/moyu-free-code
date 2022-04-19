@@ -1,6 +1,6 @@
 import { createModel } from '@rematch/core'
 import { RootModel } from './connect'
-import type { RenderNodeType } from '@moyu-code/schema'
+import type { RenderNodeType } from '@moyu-code/shared'
 import { ulid } from 'ulid'
 import { Key } from 'react'
 import { findDepSchema } from 'src/utils'

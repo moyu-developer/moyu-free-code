@@ -1,8 +1,6 @@
 import { createModel } from '@rematch/core'
 import { RootModel } from './connect'
-import type { MaterialComponentType, RenderNodeType } from '@moyu-code/schema'
-import { findDepSchema } from '../../utils'
-import { isSuccess } from '@moyu-code/request'
+import type { MaterialComponentType, RenderNodeType } from '@moyu-code/shared'
 
 interface CommonState {
   /** @name 正在操作的uid */
@@ -56,7 +54,7 @@ export default createModel<RootModel>()({
         ...state,
         ...data
       }
-    },
+    }
 
   }
 })

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Col, Input, Space, Typography } from 'antd'
-import ProductCard from './Card'
+import ProductCard from './GridDragCard'
 import { IconSearch } from '@tabler/icons'
 import Icon from 'src/common/components/AntSvg'
 import CardBox from 'src/common/components/CardBox'
