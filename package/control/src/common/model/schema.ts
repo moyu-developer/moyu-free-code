@@ -1,5 +1,6 @@
 import { createModel } from '@rematch/core'
 import { RootModel } from './connect'
+import type { Layout } from 'react-grid-layout'
 import type { RenderNodeType } from '@moyu-code/shared'
 import { ulid } from 'ulid'
 import { Key } from 'react'
@@ -54,6 +55,13 @@ export default createModel<RootModel>()({
       } = payload
       const index = schema.findIndex(v => v.uid === uid)
       return updated(schema, { [index]: { props: { $merge: props } } })
+    },
+    setGridLayout: (schema, cell: Layout) => {
+      const { i, ...layout } = cell || {}
+
+      return schema.map((item) => {
+        return item.uid === i ? ({ i: item.uid, ...item }) : item
+      })
     }
   }
 })
