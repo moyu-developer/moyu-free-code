@@ -7,6 +7,9 @@ const PictureAds: MaterialComponentType = {
   defaultProps: {
     src: 'https://img.yzcdn.cn/vant/cat.jpeg'
   },
+  gridLayout: {
+    h: 4
+  },
   component: {
     displayName: 'PictureAds',
     render: Render
