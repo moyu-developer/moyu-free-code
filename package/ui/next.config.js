@@ -2,11 +2,15 @@
 const { resolve } = require('path')
 const withImages = require('next-images')
 const withTM = require('next-transpile-modules')([
-  'react-vant'
+  'react-vant',
+  'antd'
 ])
 const semi = require('@douyinfe/semi-next').default({
   /* the extension options */
 })
+
+const withLess = require('next-with-less')
+const withPlugins = require('next-compose-plugins')
 
 const nextConfig = {
   reactStrictMode: true,
@@ -30,4 +34,16 @@ const nextConfig = {
   }
 }
 
-module.exports = withTM(withImages(semi(nextConfig)))
+const plugins = [
+  /* ...other plugins... */
+  [withLess, {
+    lessLoaderOptions: {
+
+    }
+  }],
+  withTM,
+  withImages,
+  semi
+]
+
+module.exports = withPlugins(plugins, nextConfig)
