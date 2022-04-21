@@ -5,10 +5,11 @@ import type { NextPage } from 'next'
 import store from '@/common/model'
 import AppLayout from '@/common/components/AppLayout'
 import { ConfigProvider } from 'antd'
-import zhCN from 'antd/es/locale/zh_CN'
+import CN from 'antd/lib/locale-provider/zh_CN'
 import '@/styles/globals.css'
-import '@moyu-code/control/dist/control.cjs.development.css'
 import 'antd/dist/antd.variable.min.css'
+import '@moyu-code/control/dist/control.cjs.development.css'
+import '@/styles/theme/theme.css'
 
 ConfigProvider.config({
   theme: {
@@ -24,7 +25,7 @@ const MyApp: NextPage<any> = (app: AppProps) => {
 
   return (
     <StrictMode>
-      <ConfigProvider>
+      <ConfigProvider locale={CN}>
         <Provider store={store}>
           <AppLayout>
             <Component {...pageProps} />
