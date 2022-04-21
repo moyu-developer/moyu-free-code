@@ -1,14 +1,16 @@
 import * as React from 'react'
-import Empty from './Empty'
-import { RenderNodeType, ReactComponent } from '@moyu-code/shared'
+import {
+  RenderNodeType,
+  ReactComponent,
+  ReactNodeBaseAttrProps
+} from '@moyu-code/shared'
 
 export interface MobileRenderProps {
   materialComponents: Record<string, ReactComponent>;
   remoteComponents?: string[];
   schema: RenderNodeType[];
   empty?: React.ReactNode;
-  style?: React.CSSProperties;
-  className?: string;
+  onContainerRender?: (e: React.ReactNode) => React.ReactNode;
   render?: (renderItem: {
     child: React.ReactNode;
     item: RenderNodeType;
@@ -16,7 +18,9 @@ export interface MobileRenderProps {
   }) => React.ReactNode;
 }
 
-const MobileRender: React.FC<MobileRenderProps> = (props) => {
+const MobileRender: React.FC<MobileRenderProps & ReactNodeBaseAttrProps> = (
+  props
+) => {
   /**
    * 物料组件的Ref缓存层
    * 需要使用者提供当前需要渲染的物料组件集合
@@ -30,42 +34,39 @@ const MobileRender: React.FC<MobileRenderProps> = (props) => {
     }
   }, [props.materialComponents])
 
-  return (
-    <>
-      {props.schema && props.schema.length > 0
-        ? props.schema.map((node, componentIndex) => {
-          const MaterialComponent =
-              materialComponentsRef.current[node.component]
-          /** 判断当前组件是否已经传入 */
-          if (MaterialComponent) {
-            const { children, ...componentProps } = node.props || {}
-            if (props.render) {
-              return props.render({
-                child: (
-                  <MaterialComponent {...componentProps}>
-                    {children}
-                  </MaterialComponent>
-                ),
-                item: node,
-                index: componentIndex
-              })
-            }
-            return (
-              <MaterialComponent {...componentProps} key={node.uid}>
+  const element = React.useMemo(() => {
+    return props.schema.map((node, index) => {
+      const MaterialComponent = materialComponentsRef.current[node.component]
+
+      if (MaterialComponent) {
+        const { children, ...componentProps } = node.props || {}
+        if (props.render) {
+          return props.render({
+            child: (
+              <MaterialComponent {...componentProps}>
                 {children}
               </MaterialComponent>
-            )
-          } else {
-            console.warn(
-                `Warning: ${node.component}组件未找到，请检查materialComponents是否存在当前组件类型`,
-                materialComponentsRef
-            )
-            return null
-          }
-        })
-        : props.empty || <Empty />}
-    </>
-  )
+            ),
+            item: node,
+            index: index
+          })
+        }
+        return (
+          <MaterialComponent {...componentProps} key={node.uid}>
+            {children}
+          </MaterialComponent>
+        )
+      } else {
+        console.warn(
+          `Warning: ${node.component}组件未找到，请检查materialComponents是否存在当前组件类型`,
+          materialComponentsRef
+        )
+        return null
+      }
+    })
+  }, [props.schema])
+
+  return <>{props.onContainerRender ? props.onContainerRender(element) : element}</>
 }
 
-export default MobileRender
+export default React.memo(MobileRender)

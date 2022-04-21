@@ -56,11 +56,16 @@ export default createModel<RootModel>()({
       const index = schema.findIndex(v => v.uid === uid)
       return updated(schema, { [index]: { props: { $merge: props } } })
     },
-    setGridLayout: (schema, cell: Layout) => {
-      const { i, ...layout } = cell || {}
-
+    setGridLayout: (schema, record: Layout) => {
+      const { i, ...layout } = record
       return schema.map((item) => {
-        return item.uid === i ? ({ i: item.uid, ...item }) : item
+        if (item.uid === i) {
+          return {
+            ...item,
+            gridLayout: layout
+          }
+        }
+        return item
       })
     }
   }

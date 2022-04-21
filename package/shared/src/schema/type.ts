@@ -61,6 +61,11 @@ export interface MaterialComponentType {
   defaultProps?: RenderNodeType['props'];
 
   /**
+   * @name 组件默认的grid属性
+   */
+  gridLayout?: Partial<Layout>
+
+  /**
    * @name 属性面板，用于配置props内容
    */
   panel: Array<{
