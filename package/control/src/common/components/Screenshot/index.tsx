@@ -1,6 +1,7 @@
 import React from 'react'
 import { Typography } from 'antd'
 import cs from 'classnames'
+import { IconSmartHome, IconX } from '@tabler/icons'
 import styles from './index.module.sass'
 
 export interface ScreenshotProps {
@@ -8,21 +9,34 @@ export interface ScreenshotProps {
   className?: string;
   style?: React.CSSProperties
   gridBackground?: boolean
+  width?: number | string
+  height?: number | string
+
 }
 
 const Screenshot: React.FC<ScreenshotProps> = (props) => {
   return (
     <div
-      className={cs(styles.Mobile, props.className, {
-        [styles.MobileGridBg]: props.gridBackground
-      })} style={props.style}
+      className={cs(styles.Mobile, props.className)} style={{
+        ...props.style,
+        width: props.width,
+        height: props.height
+      }}
     >
       <div className={styles.MobileTitle}>
-        <Typography.Title level={5} className={styles.canvasMobileTitle}>
+        <Typography.Title level={5} className={styles.MobileContentName}>
           {props.title}
         </Typography.Title>
+        <div className={styles.MobilePill}>
+          <IconSmartHome />
+          <IconX />
+        </div>
       </div>
-      <div className={styles.MobileContent}>{props.children}</div>
+      <div className={cs(styles.MobileContent, {
+        [styles.MobileGridBg]: props.gridBackground
+      })}
+      >{props.children}
+      </div>
     </div>
   )
 }

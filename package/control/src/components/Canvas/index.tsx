@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col } from 'antd'
+import { Col, Spin } from 'antd'
 import Mobile from './Mobile'
 import { MobileRenderProps } from '@moyu-code/renders'
 import Toolbar from './Toolbar'
@@ -13,8 +13,10 @@ interface MaterialRenderCanvasProps {
 const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
   return (
     <Col className={cs(styles.canvas, '__control_canvas__')}>
-      <Mobile materialComponents={props.materialComponents || {}} />
       <Toolbar />
+      <div className={styles.canvasBody}>
+        <Mobile materialComponents={props.materialComponents || {}} />
+      </div>
     </Col>
   )
 }

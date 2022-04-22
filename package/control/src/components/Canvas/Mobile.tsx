@@ -5,13 +5,15 @@ import {
   GridLayoutRender,
   GridLayoutRenderProps
 } from '@moyu-code/renders'
-import PreViewFieldNode, { PreViewFieldNodeProps } from './PreViewFieldNode'
 import GridLayoutItem from './GridLayoutItem'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from 'src/common/model'
 import { MaterialComponentType } from '@moyu-code/shared'
-import { useThrottleFn } from 'ahooks'
 import Screenshot from 'src/common/components/Screenshot'
+import MoveHoverNode, {
+  HoverNodeAction,
+  MoveHoverNodeProps
+} from './MoveHoverNode'
 import { ulid } from 'ulid'
 
 interface MobileProps {
@@ -27,7 +29,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
   const pageName = useSelector(
     (state: RootState) => state.common.pageInfo.name
   )
-  const checkedUid = useSelector((state: RootState) => state.common.uid)
+  const selectedId = useSelector((state: RootState) => state.common.uid)
 
   /**
    *
@@ -36,37 +38,42 @@ const Mobile: React.FC<MobileProps> = (props) => {
    * @param componentIndex 层级
    * @returns 组件
    */
-  const handleRenderFieldNode: GridLayoutRenderProps['onItemRender'] = (element, node) => {
+  const handleRenderFieldNode: GridLayoutRenderProps['onItemRender'] = (
+    element,
+    node
+  ) => {
     const { nodeData } = node
     return (
-      <GridLayoutItem uid={nodeData.uid} key={nodeData.uid} data-grid={{ i: nodeData.uid, ...nodeData.gridLayout }}>
+      <GridLayoutItem
+        selected={selectedId === nodeData.uid}
+        onClick={() => onFieldNodeSelectedById(nodeData.uid)}
+        key={nodeData.uid}
+        data-grid={{ i: nodeData.uid, ...nodeData.gridLayout }}
+      >
         {element}
       </GridLayoutItem>
     )
   }
 
-  console.log(checkedUid, schema, 'checkedUid')
-
   /**
    * FieldNode 点击，通过uid选中当前的panel
    * @name uid 组件uuid，唯一生成的key
    */
-  const onFieldNodeSelectedByUid: PreViewFieldNodeProps['onClick'] =
-    React.useCallback(
-      (uid: string) => {
-        if (uid) {
-          dispatch.common.updated({
-            uid
-          })
-        } else {
-          console.warn(
-            'Warning: 组件需要传入uid，通过uuid()方法生成，它具有页面的唯一性。当前uid: ',
-            uid
-          )
-        }
-      },
-      [dispatch]
-    )
+  const onFieldNodeSelectedById = React.useCallback(
+    (uid: React.Key) => {
+      if (uid) {
+        dispatch.common.updated({
+          uid
+        })
+      } else {
+        console.warn(
+          'Warning: 组件需要传入uid，通过uuid()方法生成，它具有页面的唯一性。当前uid: ',
+          uid
+        )
+      }
+    },
+    [dispatch]
+  )
 
   /**
    * 当组件卡片落地
@@ -109,10 +116,57 @@ const Mobile: React.FC<MobileProps> = (props) => {
    * @param placeholder 描述
    * @param element 元素
    */
-  const onComponentViewResizeChange = React.useCallback<ReactGridLayout.ItemCallback>((...args) => {
-    const record = args[2]
-    dispatch.schema.setGridLayout(record)
-  }, [dispatch])
+  const onComponentViewResizeChange =
+    React.useCallback<ReactGridLayout.ItemCallback>(
+      (...args) => {
+        const record = args[2]
+        dispatch.schema.setGridLayout(record)
+      },
+      [dispatch]
+    )
+
+  /**
+   * 操作面板回调
+   * @action { HoverNodeAction.MOVE_UP } 上移
+   * @action { HoverNodeAction.MOVE_DOWN } 下移
+   * @action { HoverNodeAction.COPY }复制
+   * @action { HoverNodeAction.DELETE } 删除
+   */
+  const onTriggerFieldNodeAction: MoveHoverNodeProps['onTrigger'] =
+    React.useCallback(
+      async (type) => {
+        const selectedIndex: number = schema.findIndex(
+          (v) => v.uid === selectedId
+        )
+        if (selectedId >= 0) {
+          switch (type) {
+            case HoverNodeAction.MOVE_UP:
+              dispatch.schema.up(selectedIndex)
+
+              break
+            case HoverNodeAction.MOVE_DOWN:
+              dispatch.schema.down(selectedIndex)
+              break
+
+            case HoverNodeAction.COPY:
+              dispatch.schema.copy(selectedIndex)
+              break
+            case HoverNodeAction.DELETE:
+              dispatch.schema.delete(selectedIndex)
+              break
+
+            default:
+              break
+          }
+          return true
+        }
+        console.warn(
+          `onTriggerFieldNodeAction params [selected] position ${selectedId}...`
+        )
+        return false
+      },
+      [selectedId]
+    )
 
   /**
    * 获取页面的layouts布局
@@ -131,10 +185,14 @@ const Mobile: React.FC<MobileProps> = (props) => {
         transform: `scale(${scale})`
       }}
     >
-      <Screenshot
-        gridBackground
-        title={pageName}
-      >
+      <Screenshot gridBackground title={pageName}>
+        {selectedId && (
+          <MoveHoverNode
+            uid={selectedId}
+            schema={schema}
+            onTrigger={onTriggerFieldNodeAction}
+          />
+        )}
         <GridLayoutRender
           height={750}
           width={375}
@@ -149,7 +207,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
               allowOverlap
               cols={24}
               margin={[0, 0]}
-              rowHeight={30}
+              rowHeight={2}
               width={375}
               style={{
                 height: 750
