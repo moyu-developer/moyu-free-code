@@ -1,16 +1,33 @@
-import React from 'react'
-import { Layout } from 'react-grid-layout'
-import styles from './index.module.scss'
+import React, { ReactNode } from 'react'
+import cs from 'classnames'
+import styles from './index.module.sass'
 
 export interface GridLayoutItemProps {
-  uid: string;
-  grid: Omit<Layout, 'i'>;
+  selected?: boolean,
+  children?: ReactNode;
+  style?: React.CSSProperties;
+  className?: string;
+  onClick?: () => void;
 }
 
-const GridLayoutItem: React.FC<GridLayoutItemProps> = (props) => {
-  return (
-    <div className={styles.gridItem} key={props.uid} data-grid={{ ...props.grid, i: props.uid }}>
-      {props.children}
-    </div>
-  )
-}
+const GridLayoutItem = React.forwardRef<any, GridLayoutItemProps>(
+  (props, ref) => {
+    const { style, className, ...other } = props
+
+    return (
+      <div
+        style={{ ...style }}
+        className={cs(className, {
+          [styles.selected]: props.selected
+        })}
+        ref={ref}
+        {...other}
+        onClick={props.onClick}
+      >
+        {props.children}
+      </div>
+    )
+  }
+)
+
+export default GridLayoutItem

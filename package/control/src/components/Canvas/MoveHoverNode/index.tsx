@@ -42,7 +42,7 @@ const MoveHoverNode = (props: MoveHoverNodeProps) => {
 
   /** 当前位置是否是结束 */
   const isEnd = React.useMemo(() => {
-    return props.uid === props.schema[props.schema.length - 1].uid
+    return props.uid === props.schema?.[props.schema.length - 1].uid
   }, [props.uid, props.schema])
 
   return (
