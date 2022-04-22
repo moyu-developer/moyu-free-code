@@ -4,12 +4,21 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import store from 'src/common/model'
 import { Provider } from 'react-redux'
-import type { MaterialComponentType } from '@moyu-code/shared'
+import type { MaterialComponentType, RenderNodeType } from '@moyu-code/shared'
 import './index.module.sass'
 
 export interface MaterialContainerProviderProps {
+  /** 装修组件 */
   materials?: MaterialComponentType[],
+
+  /** @name 页面id */
   id?: number,
+
+  /** @name 页面高度 */
+  height?: string | number
+
+  /** @name Schema修改的Filter */
+  onBeforeSchema?: (schema?: RenderNodeType[]) => RenderNodeType[]
 }
 
 const ContainerProvider: React.FC<MaterialContainerProviderProps> = (props) => {
@@ -36,11 +45,7 @@ const ContainerProvider: React.FC<MaterialContainerProviderProps> = (props) => {
   return (
     <Provider store={store}>
       <DndProvider backend={HTML5Backend}>
-        <Row
-          style={{
-            height: '100%'
-          }}
-        >
+        <Row>
           {props.children}
         </Row>
       </DndProvider>
