@@ -72,7 +72,7 @@ const PropertyPanel = () => {
         }
       >
         <Form form={form} onValuesChange={handleConfigurationFormChange}>
-          <Collapse defaultActiveKey={['1']} ghost>
+          <Collapse defaultActiveKey={['1']} ghost expandIconPosition='right'>
             {currentPanels.map((panel) => {
               return panel.render
             })}

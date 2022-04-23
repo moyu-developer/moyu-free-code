@@ -44,3 +44,16 @@ export const findTreePath = (
   }
   return []
 }
+
+export const parseSchemaJSON = (str: string): RenderNodeType[] => {
+  try {
+    const parseData = JSON.parse(str)
+    if (Array.isArray(parseData)) {
+      return parseData
+    }
+    return []
+  } catch (error) {
+    console.warn(`Parsing failed. Check the incoming data。 data = ${str}`)
+    return []
+  }
+}
