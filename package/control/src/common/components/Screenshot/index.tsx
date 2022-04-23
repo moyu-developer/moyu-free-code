@@ -24,9 +24,9 @@ const Screenshot: React.FC<ScreenshotProps> = (props) => {
       }}
     >
       <div className={styles.MobileTitle}>
-        <Typography.Title level={5} className={styles.MobileContentName}>
+        <div className={styles.MobileContentName}>
           {props.title}
-        </Typography.Title>
+        </div>
         <div className={styles.MobilePill}>
           <IconSmartHome />
           <IconX />
