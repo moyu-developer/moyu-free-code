@@ -138,7 +138,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
         const selectedIndex: number = schema.findIndex(
           (v) => v.uid === selectedId
         )
-        if (selectedId >= 0) {
+        if (selectedIndex >= 0) {
           switch (type) {
             case HoverNodeAction.MOVE_UP:
               dispatch.schema.up(selectedIndex)
@@ -165,7 +165,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
         )
         return false
       },
-      [selectedId]
+      [selectedId, schema]
     )
 
   /**
@@ -204,10 +204,10 @@ const Mobile: React.FC<MobileProps> = (props) => {
               layout={layouts}
               isDroppable
               useCSSTransforms
-              allowOverlap
+              // allowOverlap
               cols={24}
               margin={[0, 0]}
-              rowHeight={2}
+              rowHeight={375 / 24}
               width={375}
               style={{
                 height: 750

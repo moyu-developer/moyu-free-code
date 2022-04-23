@@ -15,8 +15,10 @@ const MicroCard: FC<QueryViewListResponseDto['data']['list'][0]> = (props) => {
   const statusTag = viewStatusOptions.find((v) => v.value === props.status)
 
   return (
-    <Card className={styles.card}>
-      <div className={styles.cardBody}>
+    <Card className={styles.card} hoverable>
+      <div
+        className={styles.cardBody} onClick={() => router.push(`/example?id=${props.id}`)}
+      >
         <div className={styles.cardHeader}>
           <Avatar src={props.thumbnail}>BD</Avatar>
           <span className={styles.cardTitle}>{props.name}</span>

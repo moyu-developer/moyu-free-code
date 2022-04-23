@@ -25,8 +25,8 @@ const PreviewFrameModal: React.FC = (props) => {
       >
         <Row gutter={30}>
           <Col span={12}>
-            <Screenshot title='第一个微页面'>
-              <iframe width={350} height={700} src='http://localhost:3001/' allowFullScreen />
+            <Screenshot title='第一个微页面' width={375}>
+              <iframe width={375} height={700} src='http://localhost:3001/' allowFullScreen />
             </Screenshot>
 
           </Col>

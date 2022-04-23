@@ -1,6 +1,8 @@
 import { createModel } from '@rematch/core'
 import { RootModel } from './connect'
 import type { MaterialComponentType, RenderNodeType } from '@moyu-code/shared'
+import { getViewByIdService } from '@moyu-code/shared'
+import { parseSchemaJSON } from 'src/utils'
 
 interface CommonState {
   /** @name 正在操作的uid */
@@ -38,18 +40,38 @@ export default createModel<RootModel>()({
   name: 'common',
   state: initializeCommonState,
 
-  effects: () => ({
-    async applyPublishBySchema (payload: any) {
+  effects: (dispatch) => ({
+    async applyPublishBySchema (_, state) {
     },
 
+    /**
+     * 获取当前页面信息和单体结构
+     * @param id 页面id
+     */
     async applyGetViewDetailById (id: number) {
+      const { code, data } = await getViewByIdService(id)
+      if (code === 200) {
+        const { schema, ...pageInfo } = data
+        dispatch.schema.updated(parseSchemaJSON(schema))
+        dispatch.common.updated({
+          pageInfo: pageInfo
+        })
+      }
     }
   }),
 
   reducers: {
 
     /** 更新common store 数据 */
-    updated (state, data: any) {
+    updated (state, data: Partial<CommonState>) {
+      return {
+        ...state,
+        ...data
+      }
+    },
+
+    /** 更新common store 数据 */
+    setPageInfo (state, data: Partial<CommonState>) {
       return {
         ...state,
         ...data

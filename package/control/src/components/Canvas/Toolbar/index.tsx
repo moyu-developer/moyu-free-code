@@ -55,13 +55,12 @@ const Toolbar = () => {
 
   /** 处理当前Schema的发布 */
   const handleSchemaPublish = () => {
-    Modal.info({
-      type: 'info',
+    Modal.confirm({
       title: '是否发布？',
       content: '是否要发布当前页面，发布页面后会立即同步并且生效，请谨慎操作。',
       onOk: async () => {
         await dispatch.toolbar.save(1)
-        message.success('发布成功')
+        return true
       }
     })
   }

@@ -6,6 +6,7 @@ export interface GetViewByIdRequest {
 
 export interface GetViewByIdResponse {
   message: string;
+  code: number;
   data: null | {
     id: number;
     name: string;
