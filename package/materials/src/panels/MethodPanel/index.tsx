@@ -1,20 +1,43 @@
 import * as React from 'react'
-import { Collapse, Form } from '@douyinfe/semi-ui'
+import { Collapse, Form, Input, Radio, Select } from 'antd'
 
-export const PanelKey = 'method_panel_key'
+const RequestOptions = ['POST', 'GET', 'DELETE', 'PUT'].map(v => ({ label: v, value: v }))
 
-const FontPanel: React.FC = () => {
-  return (
-    <Collapse.Panel header='函数面板' itemKey={PanelKey}>
-      <Form.Select field='Role' label=''>
-        <Form.Select.Option value='guest' />
+export const PanelKey = 'request_panel_key'
 
-        <Form.Select.Option value='guest'>访客</Form.Select.Option>
+export const RequestPanel = {
+  key: PanelKey,
+  render: (
+    <Collapse.Panel header='接口请求' key={PanelKey}>
+      {/* <Input.Group compact>
+        <Form.Item name={['__request', 'baseurl']} noStyle>
+          <Select>
+            <Select.Option value='http://localhost:8400/'>地址1</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item name={['__request', 'path']} noStyle>
+          <Input placeholder='接口的路径名，get参数可以配置在后边' />
+        </Form.Item>
+      </Input.Group> */}
 
-        <Form.Select.Option value='guest'>访客</Form.Select.Option>
-      </Form.Select>
+      <Form.Item name={['__request', 'method']} label='请求方式'>
+        <Radio.Group options={RequestOptions} optionType='button' size='small' />
+      </Form.Item>
+
+      <Form.List name={['__request', 'payload']}>
+        {fields =>
+          fields.map(field => (
+            <React.Fragment key={field.key}>
+              <Form.Item name={[field.name, 'key']}>
+                <Input />
+              </Form.Item>
+              <Form.Item name={[field.name, 'value']}>
+                <Input />
+              </Form.Item>
+            </React.Fragment>
+          ))}
+      </Form.List>
+
     </Collapse.Panel>
   )
 }
-
-export default FontPanel
