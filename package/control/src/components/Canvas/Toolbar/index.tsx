@@ -4,9 +4,7 @@ import {
   Tooltip,
   Modal,
   InputNumber,
-  message,
-  Input,
-  Typography
+  message
 } from 'antd'
 import {
   IconArrowBackUp,
@@ -49,7 +47,7 @@ const Toolbar = () => {
       icon: IconShare,
       tooltip: '海报分享',
       itemKey: 'share',
-      onClick: () => console.log(1)
+      onClick: () => message.error('功能还没有开发～')
     }
   ]
 
@@ -101,6 +99,7 @@ const Toolbar = () => {
           </Tooltip>
           <InputNumber
             prefix='%'
+            bordered={false}
             style={{ width: 65 }}
             value={scale}
             controls={false}

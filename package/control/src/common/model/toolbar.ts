@@ -16,16 +16,16 @@ export default createModel<RootModel>()({
   effects: (dispatch) => ({
     async save (status: SaveViewSchemaRequest['status'], state) {
       const pageInfo = state.common?.pageInfo
-      const { data } = await saveViewSchemaService({
+      const { data: id } = await saveViewSchemaService({
         ...pageInfo,
         description: pageInfo.description || '',
         schema: JSON.stringify((state.schema as any)?.present) || '',
         env: 0,
         status
       })
-      if (state.common.pageInfo?.id !== data) {
-        dispatch.common.setPageInfo({
-          id: data
+      if (state.common.pageInfo?.id !== id) {
+        dispatch.common.updated({
+          
         })
       }
     }
