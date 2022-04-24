@@ -13,7 +13,7 @@ import '@/styles/theme/theme.css'
 
 ConfigProvider.config({
   theme: {
-    primaryColor: '#1660D6',
+    primaryColor: '#3562EC',
     successColor: '#008053',
     errorColor: '#D32F2F',
     warningColor: '#EA9204'
