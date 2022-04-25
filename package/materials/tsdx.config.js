@@ -5,7 +5,8 @@ module.exports = {
     config.plugins.push(
       postcss({
         inject: false,
-        extract: !!options.writeMeta
+        extract: !!options.writeMeta,
+        modules: true
       })
     )
     return config
