@@ -10,6 +10,7 @@ export interface GridLayoutRenderProps {
   width?:string | number;
   sourceData: RenderNodeType[];
   components: Record<string, ReactComponent>;
+  rowHeight?: number;
   className?: string;
   onItemRender?: (element: React.ReactNode, node?: {
     nodeData: RenderNodeType,
@@ -30,6 +31,9 @@ const GridLayoutRender = (props: GridLayoutRenderProps) => {
           index
         })
       }
+
+      const { x, y } = node.gridLayout
+
       return <MaterialComponent key={node.uid} {...componentProps}>{children}</MaterialComponent>
     })
 

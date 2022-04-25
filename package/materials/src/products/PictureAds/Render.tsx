@@ -4,7 +4,7 @@ import { Image } from 'react-vant'
 const PictureAds: React.FC = (props: any) => {
   console.log(props, 'props.lazyiamge')
   return (
-    <Image {...props} />
+    <Image {...props} fit='cover' />
   )
 }
 
