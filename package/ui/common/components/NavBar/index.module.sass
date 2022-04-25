@@ -3,10 +3,15 @@
   height: 60px
   @include flex($jc: flex-start)
   padding: 0 20px
+  border-bottom: 1px solid #EDEDEE
   &Logo
     width: 33px
     height: 33px
   &Name
     font-size: 20px
-    color: var(--color-text-1)
+    font-family: Futura
     font-weight: 500
+
+  &Footer
+    flex: 1
+    @include flex($jc: flex-end)

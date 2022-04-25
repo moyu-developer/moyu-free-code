@@ -1,0 +1,22 @@
+@import '@/styles/mixins.scss'
+
+.avatar
+  @include flex($jc: flex-start)
+  gap: 5px
+  height: 100%
+
+  &Icon
+    @include flex()
+    padding: 8px
+    cursor: pointer
+    transition: all 1s
+
+    &:hover
+      background: #E6E8EA
+
+    &Large
+      width: 18px
+      height: 18px
+  
+  &Src
+    margin-left: 8px

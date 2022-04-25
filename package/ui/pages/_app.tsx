@@ -1,7 +1,6 @@
 import React, { StrictMode } from 'react'
 import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
-import type { NextPage } from 'next'
 import store from '@/common/model'
 import AppLayout from '@/common/components/AppLayout'
 import { ConfigProvider } from 'antd'
@@ -20,9 +19,8 @@ ConfigProvider.config({
   }
 })
 
-const MyApp: NextPage<any> = (app: AppProps) => {
+const MyApp = (app: AppProps) => {
   const { Component, pageProps } = app
-
   return (
     <StrictMode>
       <ConfigProvider locale={CN}>
