@@ -5,7 +5,7 @@ import {
   GridLayoutRender,
   GridLayoutRenderProps
 } from '@moyu-code/renders'
-import GridLayoutItem from './GridLayoutItem'
+import GridLayoutItem from '../GridLayoutItem'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from 'src/common/model'
 import { MaterialComponentType } from '@moyu-code/shared'
@@ -13,7 +13,7 @@ import Screenshot from 'src/common/components/Screenshot'
 import MoveHoverNode, {
   HoverNodeAction,
   MoveHoverNodeProps
-} from './MoveHoverNode'
+} from '../MoveHoverNode'
 import { ulid } from 'ulid'
 
 interface MobileProps {
@@ -180,11 +180,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
   }, [schema])
 
   return (
-    <div
-      style={{
-        transform: `scale(${scale})`
-      }}
-    >
+    <div>
       <Screenshot gridBackground title={pageName}>
         {selectedId && (
           <MoveHoverNode
@@ -194,7 +190,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
           />
         )}
         <GridLayoutRender
-          height={750}
+          height='80vh'
           width={375}
           sourceData={schema}
           components={props.materialComponents}
@@ -207,11 +203,8 @@ const Mobile: React.FC<MobileProps> = (props) => {
               // allowOverlap
               cols={24}
               margin={[0, 0]}
-              rowHeight={375 / 24}
+              rowHeight={5}
               width={375}
-              style={{
-                height: 750
-              }}
               onDropDragOver={() => ({ w: 24 })}
               onDrop={onComponentDropCallback}
               onDragStop={onComponentViewResizeChange}

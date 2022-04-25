@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Spin } from 'antd'
+import { Col } from 'antd'
 import Mobile from './Mobile'
 import { MobileRenderProps } from '@moyu-code/renders'
 import Toolbar from './Toolbar'
