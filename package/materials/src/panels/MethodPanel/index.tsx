@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Collapse, Form, Input, Radio, Select } from 'antd'
+import { Collapse, Form, Input, Radio } from 'antd'
+import BaseUrlSetter from './BaseUrlSetter'
 
 const RequestOptions = ['POST', 'GET', 'DELETE', 'PUT'].map(v => ({ label: v, value: v }))
 
@@ -8,17 +9,11 @@ export const PanelKey = 'request_panel_key'
 export const RequestPanel = {
   key: PanelKey,
   render: (
-    <Collapse.Panel header='接口请求' key={PanelKey}>
-      {/* <Input.Group compact>
-        <Form.Item name={['__request', 'baseurl']} noStyle>
-          <Select>
-            <Select.Option value='http://localhost:8400/'>地址1</Select.Option>
-          </Select>
-        </Form.Item>
-        <Form.Item name={['__request', 'path']} noStyle>
-          <Input placeholder='接口的路径名，get参数可以配置在后边' />
-        </Form.Item>
-      </Input.Group> */}
+    <Collapse.Panel header='Request' key={PanelKey}>
+
+      <Form.Item label='转发地址'>
+        <BaseUrlSetter />
+      </Form.Item>
 
       <Form.Item name={['__request', 'method']} label='请求方式'>
         <Radio.Group options={RequestOptions} optionType='button' size='small' />
