@@ -4,7 +4,8 @@ export * from './utils'
 export interface FetchInstanceOptions {
   prefix?: string;
   version?: string;
-  pipe?: ComposeFunction[]
+  pipe?: ComposeFunction[],
+  onSuccess?: (res?: any) => void
 }
 export interface Response<R> {
   message: string;
@@ -48,6 +49,9 @@ export class GotAxios {
 
   private createResponseInterceptors () {
     this.instance.interceptors.response.use<Response<any>>((res) => {
+      if (this.config?.onSuccess) {
+        this.config?.onSuccess(res)
+      }
       return res.data
     })
   }

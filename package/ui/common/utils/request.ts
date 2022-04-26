@@ -1,4 +1,5 @@
 import { GotAxios, ComposeFunction } from '@moyu-code/request'
+import { Modal } from 'antd'
 import jsCookie from 'js-cookie'
 
 const setRequestToken: ComposeFunction = (config) => {
@@ -14,7 +15,14 @@ const got = new GotAxios({
   baseURL: '//localhost:8500/api'
 }, {
   version: '/v1',
-  pipe: [setRequestToken]
+  pipe: [setRequestToken],
+  onSuccess: (res) => {
+    if (res?.data.code === 401) {
+      Modal.confirm({
+        title: '身份已过期'
+      })
+    }
+  }
 })
 
 export default got
