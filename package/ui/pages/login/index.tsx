@@ -3,10 +3,16 @@ import React from 'react'
 import LoginForm from './Form'
 import { Alert, Typography, Col, Row } from 'antd'
 import styles from './index.module.sass'
+import Head from 'next/head'
 
 export default function Login () {
   return (
     <div className={styles.login}>
+      <Head>
+        <title>登录你的账号</title>
+        <meta name='description' content='在这里登录你的账号开始' />
+        <link rel='icon' href='/favicon.ico' />s
+      </Head>
       <NavBar />
       <div className={styles.message}>
 

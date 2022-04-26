@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { Button } from 'antd'
 import styles from './index.module.sass'
 import './model'
+import Head from 'next/head'
 
 export default () => {
   const dispatch: Dispatch = useDispatch()
@@ -19,6 +20,11 @@ export default () => {
 
   return (
     <div className={styles.dashboard}>
+      <Head>
+        <title>仪表板 - 首页</title>
+        <meta name='description' content='仪表板内容，在这里创建你的页面' />
+        <link rel='icon' href='/favicon.ico' />s
+      </Head>
       <Welcome />
       <div className={styles.dashboardMain}>
         <div className={styles.dashboardList}>

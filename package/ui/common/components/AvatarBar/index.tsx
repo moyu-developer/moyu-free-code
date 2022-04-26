@@ -44,18 +44,14 @@ const AvatarBar = () => {
       <Dropdown
         overlay={
           <Menu onClick={onSystemExit}>
-            <Menu.Item>菜单项一</Menu.Item>
-            <Menu.Item>菜单项二</Menu.Item>
-            <Menu.SubMenu title='子菜单'>
-              <Menu.Item>子菜单项</Menu.Item>
-            </Menu.SubMenu>
+            <Menu.Item>退出登录</Menu.Item>
           </Menu>
         }
         placement='bottom'
         arrow
       >
-        <div className={styles.avatarSrc}>
-          <Avatar src={userInfo?.avatar} />
+        <div className='styles.avatarSrc'>
+          <Avatar src={userInfo?.avatar} size={34} />
         </div>
       </Dropdown>
     </div>

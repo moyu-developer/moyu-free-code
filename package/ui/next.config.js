@@ -17,10 +17,6 @@ const nextConfig = {
   swcMinify: true,
   webpack: (config) => {
     config.resolve.alias['@'] = resolve(__dirname, './')
-    // config.module.rules.push({
-    //   test: /\.svg$/,
-    //   use: ['@svgr/webpack']
-    // })
     return config
   },
   async redirects () {
@@ -38,7 +34,11 @@ const plugins = [
   /* ...other plugins... */
   [withLess, {
     lessLoaderOptions: {
-
+      // 'border-radius-base': '#EDEDEE'
+      lessOptions: {
+        modifyVars: {
+        }
+      }
     }
   }],
   withTM,
