@@ -1,4 +1,4 @@
-import { Checkbox, Space } from 'antd'
+import { Checkbox, Form, Space } from 'antd'
 import type { CustomSetterFormItemProps } from '../../types/global'
 import React, { useCallback } from 'react'
 
@@ -13,6 +13,8 @@ const CheckboxTargetValue = {
 const FontStyleSetter: React.FC<
   CustomSetterFormItemProps & FontStyleSetterProps
 > = (props) => {
+  console.log(props, 'value')
+
   const handleFontStyleSetterChange = useCallback(
     (key: 'fontWeight' | 'fontStyle' | 'textDecoration', checked: boolean) => {
       props?.onChange &&
