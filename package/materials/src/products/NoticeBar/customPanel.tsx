@@ -6,7 +6,7 @@ const { Panel } = Collapse
 export const NoticeBarPanel = {
   key: 'notice_props_panel_key',
   render: (
-    <Panel header='组件设置' key='notice_props_panel_key'>
+    <Panel header='组件' key='notice_props_panel_key'>
       <Form.Item name='scrollable' valuePropName='checked' label='滚动播放' tooltip='开启滚动播放'>
         <Switch />
       </Form.Item>

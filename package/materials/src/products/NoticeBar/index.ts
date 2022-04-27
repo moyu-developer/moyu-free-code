@@ -1,6 +1,7 @@
 import { MaterialComponentType } from '@moyu-code/shared'
-import { FontStylePanel } from '../../panels/FontPanel'
+import { FontStylePanel } from 'src/panels/FontPanel'
 import { NoticeBarPanel } from './customPanel'
+import { RequestPanel } from 'src/panels/MethodPanel'
 import { NoticeBar } from 'react-vant'
 
 const Button: MaterialComponentType = {
@@ -8,7 +9,11 @@ const Button: MaterialComponentType = {
   defaultProps: {
     text: 'testValue'
   },
-  panel: [FontStylePanel, NoticeBarPanel],
+  gridLayout: {
+    minH: 4,
+    h: 4
+  },
+  panel: [FontStylePanel, NoticeBarPanel, RequestPanel],
   component: {
     displayName: 'NoticeBar',
     render: NoticeBar
