@@ -1,6 +1,7 @@
 import { createModel } from '@rematch/core'
 import { RootModel } from './connect'
 import { saveViewSchemaService, SaveViewSchemaRequest } from '@moyu-code/shared'
+import { message } from 'antd'
 
 interface ToolBarState {
   scale: number,
@@ -23,10 +24,11 @@ export default createModel<RootModel>()({
         env: 0,
         status
       })
+      message.success(status === 1 ? '保存成功' : '发布成功')
       if (state.common.pageInfo?.id !== id) {
-        dispatch.common.updated({
-          
-        })
+        // dispatch.common.updated({
+
+        // })
       }
     }
   }),

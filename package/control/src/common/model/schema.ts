@@ -54,7 +54,20 @@ export default createModel<RootModel>()({
         }
       } = payload
       const index = schema.findIndex(v => v.uid === uid)
-      return updated(schema, { [index]: { props: { $merge: props } } })
+      return updated(schema, {
+        [index]: {
+          props: {
+            $apply: (oldProps) => ({
+              ...oldProps,
+              ...props,
+              style: {
+                ...oldProps?.style,
+                ...props?.style
+              }
+            })
+          }
+        }
+      })
     },
     setGridLayout: (schema, record: Layout) => {
       const { i, ...layout } = record
