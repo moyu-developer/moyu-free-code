@@ -3,6 +3,7 @@ import {
   RenderNodeType,
   ReactComponent
 } from '@moyu-code/shared'
+import GridRow from './GridRow'
 
 export interface GridLayoutRenderProps {
   onRender?: ((element: React.ReactNode) => React.ReactNode);
@@ -32,9 +33,11 @@ const GridLayoutRender = (props: GridLayoutRenderProps) => {
         })
       }
 
-      const { x, y } = node.gridLayout
-
-      return <MaterialComponent key={node.uid} {...componentProps}>{children}</MaterialComponent>
+      return (
+        <GridRow {...node.gridLayout} key={node.uid}>
+          <MaterialComponent {...componentProps}>{children}</MaterialComponent>
+        </GridRow>
+      )
     })
 
     if (props.onRender) {

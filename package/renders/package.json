@@ -39,6 +39,7 @@
     }
   ],
   "dependencies": {
-    "@moyu-code/shared": "workspace:^0.1.0"
+    "@moyu-code/shared": "workspace:^0.1.0",
+    "bignumber.js": "^9.0.2"
   }
 }
