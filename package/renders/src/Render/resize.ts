@@ -1,5 +1,5 @@
 import { RenderNodeType } from '@moyu-code/shared'
-import BigNumber from 'bignumber.js'
+import { Big } from 'big.js'
 import React from 'react'
 
 export interface GridLayoutOptions {
@@ -19,17 +19,15 @@ export class GridLayout {
     }
 
     const { x, y, w, h } = grid
-    const colWidth = new BigNumber(100 / this.options.col)
-    const colHeight = new BigNumber(this.options.rowHeight)
-
-    console.log(grid, colWidth, colHeight, 'resize')
-    return {
-      position: 'absolute',
-      height: colHeight.multipliedBy(h).toNumber(),
-      width: colWidth.multipliedBy(w).toNumber() + 'vw',
-      transform: `translate(${colWidth
-        .multipliedBy(x - 1)
-        .toNumber()}vw, ${colHeight.multipliedBy(y - 1).toNumber()})px`
-    }
+    const colWidth = Big(100 / this.options.col)
+    const colHeight = Big(this.options.rowHeight)
+    return (
+      {
+        height: colHeight.times(h).toNumber(),
+        width: parseFloat(colWidth.times(w).toString()) + 'vw',
+        position: 'absolute',
+        transform: `translate(${colWidth.times(x) + 'vw'}, ${colHeight.times(y).toNumber() + 'px'})`
+      }
+    )
   }
 }
