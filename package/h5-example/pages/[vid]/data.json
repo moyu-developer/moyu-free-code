@@ -1,0 +1,43 @@
+[
+  {
+    "uid": "01G1BCMEEBG8MB7BW1J2NV7VXZ",
+    "component": "PictureAds",
+    "props": { "src": "https://img.yzcdn.cn/vant/cat.jpeg" },
+    "gridLayout": {
+      "w": 12,
+      "h": 49,
+      "x": 0,
+      "y": 0,
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    }
+  },
+  {
+    "uid": "01G1BCMFGNJKPWV0GKNTJZWCQ6",
+    "component": "NoticeBar",
+    "props": {
+      "text": "testValue1",
+      "style": {
+        "fontWeight": "bold",
+        "fontStyle": "italic",
+        "textDecoration": "line-through",
+        "fontSize": 18,
+        "textAlign": "right",
+        "color": "#9013fe"
+      },
+      "scrollable": true,
+      "wrapable": true
+    },
+    "gridLayout": {
+      "w": 24,
+      "h": 30,
+      "x": 0,
+      "y": 49,
+      "minH": 4,
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    }
+  }
+]
