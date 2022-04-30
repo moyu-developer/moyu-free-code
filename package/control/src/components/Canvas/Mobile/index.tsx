@@ -15,6 +15,7 @@ import MoveHoverNode, {
   MoveHoverNodeProps
 } from '../MoveHoverNode'
 import { ulid } from 'ulid'
+import styles from './index.module.sass'
 
 interface MobileProps {
   materialComponents: MobileRenderProps['materialComponents'];
@@ -29,7 +30,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
   const pageName = useSelector(
     (state: RootState) => state.common.pageInfo.name
   )
-  const selectedId = useSelector((state: RootState) => state.common.uid)
+  const selectedId = useSelector((state: RootState) => state.common?.uid)
 
   /**
    *
@@ -119,6 +120,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
   const onComponentViewResizeChange =
     React.useCallback<ReactGridLayout.ItemCallback>(
       (...args) => {
+        console.log(args, '组件发生改变了')
         const record = args[2]
         dispatch.schema.setGridLayout(record)
       },
@@ -151,8 +153,13 @@ const Mobile: React.FC<MobileProps> = (props) => {
             case HoverNodeAction.COPY:
               dispatch.schema.copy(selectedIndex)
               break
-            case HoverNodeAction.DELETE:
+            case HoverNodeAction.DELETE: {
               dispatch.schema.delete(selectedIndex)
+              const sliceItem = schema?.[selectedIndex - 1]
+              dispatch.common.updated({
+                uid: sliceItem ? sliceItem.uid : undefined
+              })
+            }
               break
 
             default:
@@ -180,27 +187,30 @@ const Mobile: React.FC<MobileProps> = (props) => {
   }, [schema])
 
   return (
-    <div>
-      <Screenshot gridBackground title={pageName}>
-        {selectedId && (
-          <MoveHoverNode
-            uid={selectedId}
-            schema={schema}
-            onTrigger={onTriggerFieldNodeAction}
-          />
-        )}
+    <div className={styles.mobileWrapper}>
+      <Screenshot gridBackground title={pageName} width={375}>
+        {selectedId
+          ? (
+            <MoveHoverNode
+              uid={selectedId}
+              schema={schema}
+              onTrigger={onTriggerFieldNodeAction}
+            />
+            )
+          : null}
         <GridLayoutRender
-          height='80vh'
+          height={850}
           width={375}
           sourceData={schema}
           components={props.materialComponents}
           onItemRender={handleRenderFieldNode}
           onRender={(element) => (
             <ReactGridLayout
+              className={styles.mobileLayout}
               layout={layouts}
+              allowOverlap
               isDroppable
               useCSSTransforms
-              // allowOverlap
               cols={24}
               margin={[0, 0]}
               rowHeight={5}

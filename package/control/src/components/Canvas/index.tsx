@@ -14,9 +14,7 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
   return (
     <Col className={cs(styles.canvas, '__control_canvas__')}>
       <Toolbar />
-      <div className={styles.canvasBody}>
-        <Mobile materialComponents={props.materialComponents || {}} />
-      </div>
+      <Mobile materialComponents={props.materialComponents || {}} />
     </Col>
   )
 }

@@ -19,3 +19,23 @@ export const MicroViewStatus = [
     value: 2
   }
 ]
+
+/**
+ * 页面布局模式
+ */
+export const LayoutOptions = [
+  {
+    label: '网格布局',
+    value: 'grid'
+  },
+  {
+    label: '线性布局',
+    value: 'linear',
+    disabled: true
+  },
+  {
+    label: '弹性布局',
+    value: 'flex',
+    disabled: true
+  }
+]
