@@ -4,7 +4,9 @@ import {
   Tooltip,
   Modal,
   InputNumber,
-  message
+  message,
+  Dropdown,
+  Select
 } from 'antd'
 import {
   IconArrowBackUp,
@@ -13,10 +15,7 @@ import {
   IconPresentationAnalytics,
   IconSend,
   IconPlus,
-  IconMinus,
-  IconLayoutBoardSplit,
-  IconTable,
-  IconTemplate
+  IconMinus
 } from '@tabler/icons'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -24,6 +23,7 @@ import styles from './index.module.sass'
 import type { Dispatch, RootState } from 'src/common/model'
 import PreviewFrameModal from '../PreviewFrameModal'
 import Icon from 'src/common/components/AntSvg'
+import { LayoutOptions } from 'src/common/constant'
 
 const Toolbar = () => {
   const scale = useSelector((state: RootState) => state.toolbar.scale)
@@ -66,15 +66,7 @@ const Toolbar = () => {
   return (
     <div className={styles.toolbar}>
       <Space>
-        <Tooltip title='网格布局'>
-          <Button type='link' icon={<Icon icon={IconLayoutBoardSplit} />} />
-        </Tooltip>
-        <Tooltip title='弹性布局'>
-          <Button type='text' icon={<Icon icon={IconTable} />} />
-        </Tooltip>
-        <Tooltip title='线性布局'>
-          <Button type='text' icon={<Icon icon={IconTemplate} />} />
-        </Tooltip>
+        <Select defaultValue='grid' options={LayoutOptions} />
       </Space>
       <Space size={5}>
         {Actions.map((el) => (

@@ -37,13 +37,23 @@ const MoveHoverNode = (props: MoveHoverNodeProps) => {
 
   /** 当前位置是否是开始 */
   const isStart = React.useMemo(() => {
-    return props.uid === props.schema?.[0].uid
-  }, [props.uid, props.schema])
+    if (props?.uid) {
+      return props?.uid === props.schema?.[0].uid
+    }
+    return true
+  }, [props?.uid, props.schema])
 
   /** 当前位置是否是结束 */
   const isEnd = React.useMemo(() => {
-    return props.uid === props.schema?.[props.schema.length - 1].uid
-  }, [props.uid, props.schema])
+    if (props?.uid) {
+      return props?.uid === props.schema?.[props.schema.length - 1].uid
+    }
+    return true
+  }, [props?.uid, props.schema])
+
+  if (!props?.uid) {
+    return null
+  }
 
   return (
     <div className={styles.hover}>

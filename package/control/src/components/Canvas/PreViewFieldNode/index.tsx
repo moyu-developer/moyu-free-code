@@ -69,7 +69,7 @@ const PreViewFieldNode: React.FC<PreViewFieldNodeProps> = (props) => {
    * 当前FieldNode点击事件
    */
   const handleFieldWrapClick = () => {
-    if (!props.uid) {
+    if (!props?.uid) {
       console.warn(
         '当前Field未传入uid，onClick失效，请检查props。当前props：',
         props
@@ -84,7 +84,7 @@ const PreViewFieldNode: React.FC<PreViewFieldNodeProps> = (props) => {
       )
       return
     }
-    props.onClick(props.uid)
+    props.onClick(props?.uid)
   }
 
   /** 当前field 绑定的Element */
@@ -116,7 +116,7 @@ const PreViewFieldNode: React.FC<PreViewFieldNodeProps> = (props) => {
   const [{ isDragging }, drag] = useDrag({
     type: DropNames.Field,
     item: () => {
-      return { uid: props.uid, index: props.index }
+      return { uid: props?.uid, index: props.index }
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging()
