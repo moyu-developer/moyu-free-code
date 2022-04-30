@@ -21,9 +21,10 @@ export class GridLayout {
     const { x, y, w, h } = grid
     const colWidth = Big(100 / this.options.col)
     const colHeight = Big(this.options.rowHeight)
+    console.log(grid.y, 'grid')
     return (
       {
-        height: colHeight.times(h).toNumber(),
+        height: parseFloat(colHeight.times(h).toString()),
         width: parseFloat(colWidth.times(w).toString()) + 'vw',
         position: 'absolute',
         transform: `translate(${colWidth.times(x) + 'vw'}, ${colHeight.times(y).toNumber() + 'px'})`
