@@ -1,7 +1,7 @@
 import * as Materials from '@moyu-code/materials'
 import { MaterialComponentType, ReactComponent } from '@moyu-code/shared'
 import { GridLayoutRender } from '@moyu-code/renders'
-import schema from './data.json'
+import { useMemo } from 'react'
 import type { NextPage } from 'next'
 
 const renderComponents: Record<string, ReactComponent> = {}
@@ -16,10 +16,20 @@ Object.keys(Materials).forEach((k: string) => {
 
 const MicroView: NextPage<any, any> = (props) => {
   console.log(props, 'props')
+
+  const schema = useMemo(() => {
+    if (props.pageData?.schema) {
+      return JSON.parse(props.pageData?.schema) || []
+    }
+    return []
+  }, [props?.pageData])
+
+  console.log(schema, 'schema')
+
   return (
     <GridLayoutRender
       height='100vh'
-      sourceData={props.schema || []}
+      sourceData={schema || []}
       components={renderComponents}
       onRender={(element) => {
         return (
@@ -36,9 +46,8 @@ const MicroView: NextPage<any, any> = (props) => {
   )
 }
 
-MicroView.getInitialProps = async (ctx) => {
-  console.log(ctx.query, 'ctx')
-  const res = await fetch(`http://localhost:8500/api/v1/views/${ctx.query}`)
+MicroView.getInitialProps = async ({ query }) => {
+  const res = await fetch(`http://localhost:8500/api/v1/views/${query?.vid}`)
   const json = await res.json()
   if (json.code === 200) {
     return {
