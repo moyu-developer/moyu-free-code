@@ -8,7 +8,7 @@
   <h3 align="center">Moyu Free Code</h3>
 
   <p align="center">
-    一个简单的Schema页面搭建器。
+    一个简单的Schema页面搭建平台。
     <br />
     <a href=""><strong>浏览文档 »</strong></a>
     <br />
