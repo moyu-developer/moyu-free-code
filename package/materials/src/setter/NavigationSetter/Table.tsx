@@ -1,5 +1,10 @@
 import { Table } from 'antd'
 import React from 'react'
+import { NavigationTab } from '.'
+
+export interface NavigationTableProps {
+  type: NavigationTab
+}
 
 const baseColumns = [
   {
@@ -20,7 +25,7 @@ const baseColumns = [
   }
 ]
 
-const NavigationTable = () => {
+const NavigationTable: React.FC<NavigationTableProps> = () => {
   const columns = Object.assign(baseColumns)
 
   return <Table columns={columns} rowKey='id' />
