@@ -10,16 +10,35 @@ export const FontStylePanel = {
   key: 'style_panel_key',
   render: (
     <Panel header='字体' key='style_panel_key'>
-
       <Form.Item name={['style', 'fontSize']} label='字体大小'>
         <Slider marks={FontSizeMarks} min={10} max={18} />
       </Form.Item>
 
       <Form.Item label='对齐方式' name={['style', 'textAlign']}>
-        <Radio.Group optionType='button' options={TextAlignOptions} size='small' />
+        <Radio.Group
+          optionType='button'
+          options={TextAlignOptions}
+          size='small'
+        />
       </Form.Item>
 
-      <Form.Item name={['style']} label='字体样式'>
+      <Form.Item
+        name={['style']} label='字体样式' shouldUpdate={(p, n) => {
+          if (p?.style?.fontWeight !== n?.style?.fontWeight) {
+            return true
+          }
+
+          if (p?.style?.fontStyle !== n?.style?.fontStyle) {
+            return true
+          }
+
+          if (p?.style?.textDecoration !== n?.style?.textDecoration) {
+            return true
+          }
+
+          return false
+        }}
+      >
         <FontStyleSetter />
       </Form.Item>
 

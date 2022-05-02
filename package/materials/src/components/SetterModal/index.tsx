@@ -4,6 +4,7 @@ import { Modal, ModalProps } from 'antd'
 export interface SetterModalProps extends Omit<ModalProps, 'visible'> {
   trigger?: React.ReactNode;
   children?: React.ReactNode;
+  onInitial?: () => void
 }
 
 const SetterModal: React.FC<SetterModalProps> = (props) => {
@@ -12,9 +13,16 @@ const SetterModal: React.FC<SetterModalProps> = (props) => {
 
   const onTrigger = () => {
     setVisible(true)
+    props.onInitial && props.onInitial()
   }
 
-  const onDestroy = () => {
+  const onDestroy: ModalProps['onCancel'] = (e) => {
+    setVisible(false)
+    props.onCancel && props.onCancel(e)
+  }
+
+  const onSuccess: ModalProps['onOk'] = async (e) => {
+    await props.onOk(e)
     setVisible(false)
   }
 
@@ -26,6 +34,7 @@ const SetterModal: React.FC<SetterModalProps> = (props) => {
         visible={visible}
         title={props.title}
         onCancel={onDestroy}
+        onOk={onSuccess}
         zIndex={2300}
         width={680}
       >

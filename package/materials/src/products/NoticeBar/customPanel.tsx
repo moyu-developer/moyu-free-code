@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Collapse, Form, Input, InputNumber, Switch } from 'antd'
+import NavigationSetter from 'src/setter/NavigationSetter'
 
 const { Panel } = Collapse
 
@@ -25,6 +26,10 @@ export const NoticeBarPanel = {
 
       <Form.Item name='speed' label='滚动速度' tooltip='滚动速率'>
         <InputNumber controls min={0} precision={0} prefix='px/s' />
+      </Form.Item>
+
+      <Form.Item name='userId' label='导航选择' tooltip='选择当前系统的导航菜单，页面内置地址和活动落地页'>
+        <NavigationSetter />
       </Form.Item>
     </Panel>
   )

@@ -2,9 +2,9 @@ import { MaterialComponentType } from '@moyu-code/shared'
 import { FontStylePanel } from 'src/panels/FontPanel'
 import { NoticeBarPanel } from './customPanel'
 import { RequestPanel } from 'src/panels/MethodPanel'
-import { NoticeBar } from 'react-vant'
+import NoticeBar from './View'
 
-const Button: MaterialComponentType = {
+const NoticeBarProduct: MaterialComponentType = {
   name: '公告提示',
   defaultProps: {
     text: 'testValue'
@@ -20,4 +20,4 @@ const Button: MaterialComponentType = {
   }
 }
 
-export default Button
+export default NoticeBarProduct

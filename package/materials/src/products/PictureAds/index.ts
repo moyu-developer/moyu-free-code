@@ -8,7 +8,7 @@ const PictureAds: MaterialComponentType = {
     src: 'https://img.yzcdn.cn/vant/cat.jpeg'
   },
   gridLayout: {
-    h: 4
+    h: 80
   },
   component: {
     displayName: 'PictureAds',
