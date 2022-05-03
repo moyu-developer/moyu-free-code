@@ -47,3 +47,8 @@
   height: 16px;
   stroke-width: 2
 }
+
+
+:root {
+  --moyu-background-white: #FFFFFF
+}

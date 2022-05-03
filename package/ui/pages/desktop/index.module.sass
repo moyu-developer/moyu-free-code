@@ -2,14 +2,12 @@
 .dashboard
   @include flex($d: column, $jc: flex-start, $ai: flex-start)
   height: 100%
+  background: #FFF
   &Main
     flex: 1
-    width: 100%
-    padding: 20px 0
-    width: 1148px
+    width: 1200px
     margin: auto
-  &Col
-    height: 100%
+    padding: 20px 0
   &List
     height: 100%
     border-radius: 12px
@@ -18,4 +16,8 @@
     height: 100%
     height: 100%
     @include flex()
-    background: var(--semi-color-fill-0)
+    background: #EAECEC
+
+.action
+  @include flex($jc: flex-start)
+  gap: 16px

@@ -1,5 +1,5 @@
 import { QueryViewListResponseDto } from '@/api/view/list'
-import { Card, Avatar, Typography, Tag, Dropdown, Menu, Button } from 'antd'
+import { Card, Avatar, Typography, Tag, Dropdown, Menu, Button, Space } from 'antd'
 import { EllipsisOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
@@ -12,7 +12,6 @@ const viewStatusOptions = [
 
 const MicroCard: FC<QueryViewListResponseDto['data']['list'][0]> = (props) => {
   const router = useRouter()
-  const statusTag = viewStatusOptions.find((v) => v.value === props.status)
 
   return (
     <Card className={styles.card} hoverable>
@@ -20,8 +19,8 @@ const MicroCard: FC<QueryViewListResponseDto['data']['list'][0]> = (props) => {
         className={styles.cardBody} onClick={() => router.push(`/example?id=${props.id}`)}
       >
         <div className={styles.cardHeader}>
-          <Avatar src={props.thumbnail}>BD</Avatar>
-          <span className={styles.cardTitle}>{props.name}</span>
+          <Avatar src={props.thumbnail} size='large' shape='square'>BD</Avatar>
+          <span className={styles.cardHeaderName}>{props.name}</span>
         </div>
         <div className={styles.cardText}>
           <Typography.Paragraph
@@ -35,18 +34,16 @@ const MicroCard: FC<QueryViewListResponseDto['data']['list'][0]> = (props) => {
           </Typography.Paragraph>
         </div>
         <div className={styles.cardFooter}>
-          {statusTag
-            ? (
-              <Tag color={statusTag.color}>{statusTag.label}</Tag>
-              )
-            : null}
+          <Space size={1}>
+            <Tag color='processing'>HTML5</Tag>
+            <Tag color='processing'>微信小程序</Tag>
+          </Space>
           <Dropdown
             placement='bottom'
             overlay={
               <Menu>
-                <Menu.Item key='1'>1st menu item</Menu.Item>
-                <Menu.Item key='2'>2nd menu item</Menu.Item>
-                <Menu.Item key='3'>3rd menu item</Menu.Item>
+                <Menu.Item key='1'>删除</Menu.Item>
+                <Menu.Item key='2'>取消发布</Menu.Item>
               </Menu>
             }
           >

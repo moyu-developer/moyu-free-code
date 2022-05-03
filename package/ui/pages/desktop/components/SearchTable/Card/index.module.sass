@@ -13,10 +13,11 @@
   &Title
     flex: 1
   &Header
-    @include flex($jc: flex-start)
-    font-weight: 700
+    @include flex($jc: flex-start, $ai: flex-start)
     gap: 10px
-    
+
+    &Name
+      font-weight: 700
 
   &Footer
     width: 100%
