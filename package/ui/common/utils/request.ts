@@ -1,6 +1,9 @@
 import { GotAxios, ComposeFunction } from '@moyu-code/request'
 import { Modal } from 'antd'
 import jsCookie from 'js-cookie'
+import { throttle } from 'lodash'
+import Router from 'next/router'
+import store from '@/common/model'
 
 const setRequestToken: ComposeFunction = (config) => {
   config.headers = {
@@ -16,13 +19,22 @@ const got = new GotAxios({
 }, {
   version: '/v1',
   pipe: [setRequestToken],
-  onSuccess: (res) => {
-    if (res?.data.code === 401) {
+  onSuccess: throttle((res) => {
+    if (res?.data.code === 401 && jsCookie.get('signAccessToken')) {
+      jsCookie.remove('signAccessToken')
+      store.dispatch.common.updated({
+        token: undefined
+      })
       Modal.confirm({
-        title: '身份已过期'
+        title: '身份已过期',
+        content: '',
+        okText: '去登录',
+        onOk: async () => {
+          Router.replace('/login')
+        }
       })
     }
-  }
+  }, 1000)
 })
 
 export default got

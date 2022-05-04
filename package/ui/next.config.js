@@ -23,7 +23,7 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/dashboard',
+        destination: '/desktop',
         permanent: true
       }
     ]
