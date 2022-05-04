@@ -50,7 +50,7 @@ const AvatarBar = () => {
         placement='bottom'
         arrow
       >
-        <div className='styles.avatarSrc'>
+        <div className={styles.avatarSrc}>
           <Avatar src={userInfo?.avatar} size={34} />
         </div>
       </Dropdown>

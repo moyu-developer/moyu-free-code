@@ -1,5 +1,7 @@
 import React from 'react'
 import { Space } from 'antd'
+import Link from 'next/link'
+import NavBarMenu from './Menu'
 import styles from './index.module.sass'
 
 export interface NavBarProps {
@@ -9,13 +11,18 @@ export interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = (props) => {
   return (
     <div className={styles.navbar}>
-      <Space align='center'>
-        <img
-          className={styles.navbarLogo}
-          src='https://s2.loli.net/2022/03/16/f6AbT7nGh8OQt9y.png'
-        />
-        <div className={styles.navbarName}>Moyu Free</div>
-      </Space>
+      <Link href='/'>
+        <Space align='center'>
+          <img
+            className={styles.navbarLogo}
+            src='https://s2.loli.net/2022/03/16/f6AbT7nGh8OQt9y.png'
+          />
+          <div className={styles.navbarName}>Moyu Free</div>
+        </Space>
+      </Link>
+      <div className={styles.navbarMenu}>
+        <NavBarMenu/>
+      </div>
       <div className={styles.navbarFooter}>{props.footer}</div>
     </div>
   )
