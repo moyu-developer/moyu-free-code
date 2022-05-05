@@ -35,20 +35,21 @@ const PropertyPanel = () => {
       return material?.panel || []
     }
     return []
-  }, [uid, schema, materials])
+  }, [uid])
 
   /**
    * 属性面板修改回调
    * @param values 配置的面板属性
    */
-  const { run: handleConfigurationFormChange } = useThrottleFn((formData) => {
-    dispatch.schema.setProps({ uid, props: formData || {} })
+  const { run: handleConfigurationFormChange } = useThrottleFn((formData, allProps) => {
+    console.log(formData, allProps, 'handleConfigurationFormChange')
+    dispatch.schema.setProps({ uid, props: formData })
   })
 
   React.useEffect(() => {
     if (schema.length > 0) {
       const props = schema.find((node) => node.uid === uid)?.props
-      console.log(props, 'props')
+      console.log(props, 'setProps')
       form.setFieldsValue && form.setFieldsValue(props)
     }
   }, [uid, schema])
@@ -72,7 +73,9 @@ const PropertyPanel = () => {
         }
       >
         <Form form={form} onValuesChange={handleConfigurationFormChange}>
-          <Collapse defaultActiveKey={['1']} ghost expandIconPosition='right'>
+          <Collapse
+            ghost expandIconPosition='right'
+          >
             {currentPanels.map((panel) => {
               return panel.render
             })}

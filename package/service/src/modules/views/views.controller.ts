@@ -55,7 +55,6 @@ export class ViewsController {
       ...view,
       status: view?.status || 0,
       env: view?.env || 0
-
     }, user)
   }
 }
