@@ -1,9 +1,11 @@
 import { MaterialComponentType } from '@moyu-code/shared'
-import Render from './Render'
+import RenderView from './View'
+import React from 'react'
+import { PictureAdsPanel } from './Panel'
 
 const PictureAds: MaterialComponentType = {
   name: '图片广告',
-  panel: [],
+  panel: [React.createElement(PictureAdsPanel) as any],
   defaultProps: {
     src: 'https://img.yzcdn.cn/vant/cat.jpeg'
   },
@@ -12,7 +14,7 @@ const PictureAds: MaterialComponentType = {
   },
   component: {
     displayName: 'PictureAds',
-    render: Render
+    render: RenderView
   }
 }
 
