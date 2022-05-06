@@ -76,8 +76,8 @@ const PropertyPanel = () => {
           <Collapse
             ghost expandIconPosition='right'
           >
-            {currentPanels.map((panel) => {
-              return panel.render
+            {currentPanels.map(({ key, render: RenderPanel }) => {
+              return <RenderPanel key={key} />
             })}
           </Collapse>
         </Form>

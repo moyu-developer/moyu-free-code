@@ -188,7 +188,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
 
   return (
     <div className={styles.mobileWrapper}>
-      <Screenshot gridBackground title={pageName} width={375}>
+      <Screenshot gridBackground title={pageName} width={383}>
         {selectedId
           ? (
             <MoveHoverNode
