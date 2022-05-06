@@ -1,13 +1,14 @@
 import { MaterialComponentType } from '@moyu-code/shared'
 import RenderView from './View'
-import React from 'react'
-import { PictureAdsPanel } from './Panel'
+import * as PictureAdsPanel from './Panel'
 
 const PictureAds: MaterialComponentType = {
   name: '图片广告',
-  panel: [React.createElement(PictureAdsPanel) as any],
+  panel: [PictureAdsPanel],
   defaultProps: {
-    src: 'https://img.yzcdn.cn/vant/cat.jpeg'
+    imageProps: {
+      src: 'https://img.yzcdn.cn/vant/cat.jpeg'
+    }
   },
   gridLayout: {
     h: 80

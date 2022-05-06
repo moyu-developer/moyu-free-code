@@ -1,10 +1,14 @@
-import React from 'react'
-import { Image } from 'react-vant'
+import React, { ReactNode } from 'react'
+import { Image, ImageProps } from 'react-vant'
 
-const PictureAds: React.FC = (props: any) => {
-  console.log(props, 'props.lazyiamge')
+interface PictureAdsProps {
+  imageProps?: ImageProps,
+  children?: ReactNode
+}
+
+const PictureAds: React.FunctionComponent<PictureAdsProps> = (props) => {
   return (
-    <Image {...props} fit='cover' />
+    <Image {...props.imageProps} fit='cover' />
   )
 }
 
