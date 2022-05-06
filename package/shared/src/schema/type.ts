@@ -69,15 +69,9 @@ export interface MaterialComponentType {
    * @name 属性面板，用于配置props内容
    */
   panel: Array<{
-    /** @name 面板key */
-    key: string,
-
-    /** @name 面板Node */
-    render: React.ReactNode
+    key: React.Key,
+    bridge?: Record<string, any>,
+    render: ReactComponent
   }>
 
-  /**
-   * 桥
-   */
-  bridge?: Record<string, any>
 }
