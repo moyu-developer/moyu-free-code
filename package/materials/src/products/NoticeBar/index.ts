@@ -1,7 +1,7 @@
 import { MaterialComponentType } from '@moyu-code/shared'
-import { FontStylePanel } from 'src/panels/FontPanel'
-import { NoticeBarPanel } from './customPanel'
-import { RequestPanel } from 'src/panels/MethodPanel'
+import * as FontPanel from 'src/panels/FontPanel'
+import * as NoticeBarPanel from './Panel'
+import * as RequestPanel from 'src/panels/RequestPanel'
 import NoticeBar from './View'
 
 const NoticeBarProduct: MaterialComponentType = {
@@ -13,7 +13,8 @@ const NoticeBarProduct: MaterialComponentType = {
     minH: 4,
     h: 4
   },
-  panel: [FontStylePanel, NoticeBarPanel, RequestPanel],
+  icon: 'https://s2.loli.net/2022/05/07/u8ydWT6PmoBcJKi.png',
+  panel: [FontPanel, NoticeBarPanel, RequestPanel],
   component: {
     displayName: 'NoticeBar',
     render: NoticeBar

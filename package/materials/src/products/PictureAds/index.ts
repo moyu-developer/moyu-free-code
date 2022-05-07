@@ -13,6 +13,7 @@ const PictureAds: MaterialComponentType = {
   gridLayout: {
     h: 80
   },
+  icon: 'https://s2.loli.net/2022/05/07/PO7yUoGEnw4DspI.png',
   component: {
     displayName: 'PictureAds',
     render: RenderView

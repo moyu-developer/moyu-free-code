@@ -2,12 +2,11 @@ import * as React from 'react'
 import { Collapse, Form, Input, InputNumber, Switch } from 'antd'
 import NavigationSetter from 'src/setter/NavigationSetter'
 
-const { Panel } = Collapse
+export const key = 'NoticeBarPanel'
 
-export const NoticeBarPanel = {
-  key: 'notice_props_panel_key',
-  render: (
-    <Panel header='组件' key='notice_props_panel_key'>
+export const render = React.memo((props) => {
+  return (
+    <Collapse.Panel {...props} header='组件' key='notice_props_panel_key'>
       <Form.Item name='scrollable' valuePropName='checked' label='滚动播放' tooltip='开启滚动播放'>
         <Switch />
       </Form.Item>
@@ -31,6 +30,6 @@ export const NoticeBarPanel = {
       <Form.Item name='userId' label='导航选择' tooltip='选择当前系统的导航菜单，页面内置地址和活动落地页'>
         <NavigationSetter />
       </Form.Item>
-    </Panel>
+    </Collapse.Panel>
   )
-}
+})

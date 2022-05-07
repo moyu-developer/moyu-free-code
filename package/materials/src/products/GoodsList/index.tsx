@@ -9,6 +9,8 @@ const NoticeBarProduct: MaterialComponentType = {
     minH: 4,
     h: 4
   },
+  icon: 'https://s2.loli.net/2022/05/07/GZTxnQFpBmKd2i6.png',
+
   panel: [],
   component: {
     displayName: 'GoodsList',
