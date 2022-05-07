@@ -1,10 +1,9 @@
 import type { RootState, Dispatch } from '@/common/model'
-import { IconChevronDown, IconBrandGithub, IconSun } from '@tabler/icons'
-import { Space, Button, Dropdown, Menu, Avatar, Typography } from 'antd'
+import { IconBrandGithub, IconSun } from '@tabler/icons'
+import { Dropdown, Menu, Avatar } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { MaterialIcon } from '@/../control/dist'
 import styles from './index.module.sass'
 
 const AvatarBar = () => {

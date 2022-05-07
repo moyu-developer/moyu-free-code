@@ -3,7 +3,7 @@ import { RootModel } from './connect'
 import LoginAPI, { LoginReqDto } from '@/api/auth/login'
 import UserInfoAPI, { QueryUserInfoResponseDto } from '@/api/user/info'
 import { isSuccess } from '@moyu-code/request'
-import { Toast } from '@douyinfe/semi-ui'
+import { message as Message } from 'antd'
 import jsCookie from 'js-cookie'
 
 interface CommonState {
@@ -27,9 +27,9 @@ export default createModel<RootModel>()({
         dispatch.common.updated({
           token: data.token
         })
-        Toast.success('登录成功：很高兴您能够访问我们的程序')
+        Message.success('登录成功：很高兴您能够访问我们的程序')
       } else {
-        Toast.error(`登录失败：${message}`)
+        Message.error(`登录失败：${message}`)
       }
       return isSuccess(code)
     },

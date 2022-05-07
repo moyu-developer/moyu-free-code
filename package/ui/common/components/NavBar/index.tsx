@@ -6,6 +6,7 @@ import styles from './index.module.sass'
 
 export interface NavBarProps {
   footer?: React.ReactNode;
+  hiddenMenu?: boolean
 }
 
 const NavBar: React.FC<NavBarProps> = (props) => {
@@ -21,7 +22,9 @@ const NavBar: React.FC<NavBarProps> = (props) => {
         </Space>
       </Link>
       <div className={styles.navbarMenu}>
-        <NavBarMenu/>
+        {
+          props.hiddenMenu ? null : <NavBarMenu />
+        }
       </div>
       <div className={styles.navbarFooter}>{props.footer}</div>
     </div>
