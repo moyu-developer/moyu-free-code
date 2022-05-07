@@ -12,6 +12,10 @@ export const TextAlignOptions = [
   {
     label: '居右',
     value: 'right'
+  },
+  {
+    label: '平分',
+    value: 'justify'
   }
 ]
 
