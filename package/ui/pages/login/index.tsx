@@ -13,7 +13,7 @@ export default function Login () {
         <meta name='description' content='在这里登录你的账号开始' />
         <link rel='icon' href='/favicon.ico' />s
       </Head>
-      <NavBar />
+      <NavBar hiddenMenu />
       <div className={styles.message}>
 
         <Alert message='Info Text' type='info' />
