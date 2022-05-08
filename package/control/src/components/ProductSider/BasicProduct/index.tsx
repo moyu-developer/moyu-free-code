@@ -14,7 +14,7 @@ const BasicProduct = () => {
 
   /** 搜索结果 */
   const searchResult = React.useMemo(() => {
-    const result = materials.filter(item => item.name.includes(searchVal))
+    const result = materials.filter((item) => item.name.includes(searchVal))
     return result.length > 0 ? result : materials
   }, [searchVal, materials])
 
@@ -23,14 +23,22 @@ const BasicProduct = () => {
       <CardBox title='我的组件'>
         <div className={styles.componentContent}>
           <div className={styles.search}>
-            <Input value={searchVal} suffix={<Icon icon={IconSearch} />} onChange={v => setSearchVal(v.target.value)} />
+            <Input.Search
+              value={searchVal}
+              prefix={<Icon icon={IconSearch} />}
+              enterButton='搜索'
+              onSearch={(v) => setSearchVal(v)}
+            />
           </div>
           <Space direction='vertical' className={styles.componentWrap}>
             <Typography.Text type='secondary'>组件分类</Typography.Text>
             <div className={styles.componentList}>
               {searchResult.map((material) => {
                 return (
-                  <ProductCard key={material.component.displayName} schemaItem={material} />
+                  <ProductCard
+                    key={material.component.displayName}
+                    schemaItem={material}
+                  />
                 )
               })}
             </div>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import type { MaterialComponentType } from '@moyu-code/shared'
-import { Avatar } from 'antd'
+import { Image } from 'antd'
 import styles from './index.module.sass'
 
 const ComponentCard: React.FC<{
@@ -17,9 +17,7 @@ const ComponentCard: React.FC<{
       className={styles.card}
     >
       <div className={styles.cardImage}>
-        <Avatar shape='square' style={{ margin: 4 }}>
-          U
-        </Avatar>
+        <Image height={24} width={24} src={props.schemaItem.icon} />
       </div>
       <div className={styles.cardName}>{props.schemaItem.name}</div>
     </div>

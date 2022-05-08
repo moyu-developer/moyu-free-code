@@ -1,12 +1,10 @@
 import * as React from 'react'
-import { Col, Form, Collapse, Button } from 'antd'
+import { Col, Form, Collapse, Button, Typography } from 'antd'
 import { useThrottleFn } from 'ahooks'
 import { useSelector, useDispatch } from 'react-redux'
 import type { Dispatch, RootState } from 'src/common/model'
-import { IconChevronUp } from '@tabler/icons'
 import styles from './index.module.sass'
 import CardBox from 'src/common/components/CardBox'
-import Icon from 'src/common/components/AntSvg'
 
 const { Panel } = Collapse
 
@@ -21,8 +19,6 @@ const PropertyPanel = () => {
   const uid = useSelector((state: RootState) => state.common.uid)
 
   const dispatch: Dispatch = useDispatch()
-
-  console.log(schema, 'schema', materials)
 
   const currentPanels = React.useMemo(() => {
     const componentType = schema.find(
@@ -42,7 +38,6 @@ const PropertyPanel = () => {
    * @param values 配置的面板属性
    */
   const { run: handleConfigurationFormChange } = useThrottleFn((formData, allProps) => {
-    console.log(formData, allProps, 'handleConfigurationFormChange')
     dispatch.schema.setProps({ uid, props: formData })
   })
 
@@ -63,18 +58,21 @@ const PropertyPanel = () => {
         extra={
           activeKey && activeKey.length > 0
             ? (
-              <Button
-                icon={<Icon icon={IconChevronUp} />}
+              <Typography.Link
                 onClick={() => setActiveKey([])}
-                type='primary'
-              />
+              >
+                收起
+              </Typography.Link>
               )
             : null
         }
       >
-        <Form form={form} onValuesChange={handleConfigurationFormChange}>
+        <Form form={form} onValuesChange={handleConfigurationFormChange} layout='vertical'>
           <Collapse
-            ghost expandIconPosition='right'
+            ghost
+            expandIconPosition='right'
+            activeKey={activeKey}
+            onChange={(keys) => setActiveKey(keys)}
           >
             {currentPanels.map(({ key, render: RenderPanel }) => {
               return <RenderPanel key={key} />

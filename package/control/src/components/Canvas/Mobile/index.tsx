@@ -49,7 +49,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
         selected={selectedId === nodeData.uid}
         onClick={() => onFieldNodeSelectedById(nodeData.uid)}
         key={nodeData.uid}
-        data-grid={{ i: nodeData.uid, ...nodeData.gridLayout }}
+        data-grid={{ i: nodeData.uid, ...nodeData.gridLayout, resizeHandles: ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne'] }}
       >
         {element}
       </GridLayoutItem>
