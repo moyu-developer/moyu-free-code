@@ -8,6 +8,7 @@ import CN from 'antd/lib/locale-provider/zh_CN'
 import '@/styles/globals.css'
 import 'antd/dist/antd.variable.min.css'
 import '@moyu-code/control/dist/control.cjs.development.css'
+import '@moyu-code/materials/dist/materials.cjs.development.css'
 import '@/styles/theme/theme.css'
 
 const DynamicAppLayout = dynamic(() =>

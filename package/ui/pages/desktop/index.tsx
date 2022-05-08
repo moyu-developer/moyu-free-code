@@ -1,10 +1,7 @@
-import { Empty } from '@douyinfe/semi-ui'
 import Welcome from './components/Welcome/index'
-import {
-  IllustrationConstruction,
-  IllustrationConstructionDark
-} from '@douyinfe/semi-illustrations'
-import SearchTable from './components/SearchTable'
+import { Result } from 'antd'
+import SearchCard from './components/SearchCard'
+import TableList from './components/TableList'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import type { Dispatch, RootState } from '@/common/model'
 import SearchForm from './components/SearchForm'
@@ -17,6 +14,11 @@ export default () => {
   const dispatch: Dispatch = useDispatch()
   const isEmpty = useSelector(
     (state: RootState) => state.myApp.tableData.total === 0,
+    shallowEqual
+  )
+
+  const mode = useSelector(
+    (state: RootState) => state.myApp.mode,
     shallowEqual
   )
 
@@ -37,26 +39,18 @@ export default () => {
           {isEmpty
             ? (
               <div className={styles.dashboardEmpty}>
-                <Empty
-                  image={
-                    <IllustrationConstruction
-                      style={{ width: 200, height: 200 }}
-                    />
-                }
-                  darkModeImage={
-                    <IllustrationConstructionDark
-                      style={{ width: 200, height: 200 }}
-                    />
-                }
-                  title='暂无可用的微页面'
-                  description='快点击右上角的按钮，创建您的第一个微页面吧！'
+                <Result
+                  title='您的工作台空空如也～'
+                  subTitle='点击右上角快速创建一个页面。'
                 />
               </div>
               )
             : (
               <>
                 <SearchForm />
-                <SearchTable />
+                {
+                  mode === 'Card' ? <SearchCard /> : <TableList />
+                }
               </>
               )}
         </div>
