@@ -1,7 +1,7 @@
 import { Button, Input, message, Tabs } from 'antd'
 import * as React from 'react'
 import SetterModal from 'src/components/SetterModal'
-import { CustomSetterFormItemProps } from '@/types/global'
+import { CustomSetterFormItemProps } from 'src/types/setter'
 import NavigationTable from './Table'
 
 export enum NavigationTab {
