@@ -1,4 +1,4 @@
-import { CustomSetterFormItemProps } from 'src/types/global'
+import { CustomSetterFormItemProps } from 'src/types/setter'
 import React from 'react'
 
 const RadiusSetter: React.FC<CustomSetterFormItemProps> = (

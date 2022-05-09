@@ -1,5 +1,5 @@
 import { Checkbox, Form, Space } from 'antd'
-import type { CustomSetterFormItemProps } from 'src/types/global'
+import { CustomSetterFormItemProps } from 'src/types/setter'
 import React, { useCallback } from 'react'
 
 interface FontStyleSetterProps {
