@@ -1,12 +1,10 @@
-import { CustomSetterFormItemProps } from '@/types/global'
-import { Input, message, Popover } from 'antd'
-import { SketchPicker } from 'react-color'
-import React from 'react'
 
-const styles: React.CSSProperties = {
-  height: 22,
-  width: 22 * 2
-}
+import React from 'react'
+import { CustomSetterFormItemProps } from 'src/types/setter'
+import { message, Popover, Space } from 'antd'
+import { HexColorPicker, HexColorInput } from 'react-colorful'
+import { throttle } from 'lodash'
+import styles from './index.module.sass'
 
 interface ColorSetterProps {
   initialColor?: string;
@@ -23,36 +21,37 @@ const ColorSetter: React.FC<CustomSetterFormItemProps<string> & ColorSetterProps
    * 修改颜色
    * @param hex 变化的颜色
    */
-  const onColorPickerChange = (hex: string) => {
+  const onColorPickerChange = throttle((hex: string) => {
+    console.log(hex, 'hex')
     const hexRule = /^#[0-9a-fA-F]{6}$/
     if (hex.match(hexRule)) {
       props.onChange(hex)
     } else {
       message.warn(`${hex}看起来不是一个合法的色值。`)
     }
-  }
+  }, 600)
 
   return (
     <Popover
       placement='bottom'
       content={
-        <SketchPicker
-          color={color}
-          onChangeComplete={(e) => onColorPickerChange(e.hex)}
-        />
+        <HexColorPicker color={color} onChange={onColorPickerChange} />
       }
     >
-      <Input
-        value={color}
-        suffix={<div style={{ ...styles, background: color }} />}
-        onChange={(e) => onColorPickerChange(e.target.value)}
-      />
+      <Space align='start'>
+        <HexColorInput prefix='#' color={color} onChange={onColorPickerChange} className={styles.input} />
+        <div
+          className={styles.block} style={{
+            background: color
+          }}
+        />
+      </Space>
     </Popover>
   )
 }
 
 ColorSetter.defaultProps = {
-  initialColor: '#333'
+  initialColor: ''
 }
 
 export default React.memo(ColorSetter)
