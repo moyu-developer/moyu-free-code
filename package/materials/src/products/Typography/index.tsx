@@ -11,7 +11,7 @@ const TypographyProduct: MaterialComponentType = {
     minH: 4,
     h: 10
   },
-  icon: '',
+  icon: 'https://s2.loli.net/2022/05/07/IeXfB21i3HW6yJE.png',
   panel: [FontPanel, TypographyPanel],
   component: {
     displayName: 'Typography',
