@@ -22,9 +22,14 @@ export default () => {
     shallowEqual
   )
 
+  const requestParams = useSelector(
+    (state: RootState) => state.myApp.searchParams,
+    shallowEqual
+  )
+
   useEffect(() => {
-    dispatch.myApp.getDashViewList({ size: 40, current: 1 })
-  }, [])
+    dispatch.myApp.getDashViewList(requestParams)
+  }, [requestParams])
 
   return (
     <div className={styles.dashboard}>
@@ -36,6 +41,7 @@ export default () => {
       <Welcome />
       <div className={styles.dashboardMain}>
         <div className={styles.dashboardList}>
+          <SearchForm />
           {isEmpty
             ? (
               <div className={styles.dashboardEmpty}>
@@ -46,12 +52,11 @@ export default () => {
               </div>
               )
             : (
-              <>
-                <SearchForm />
+              <div className={styles.dashboardContent}>
                 {
                   mode === 'Card' ? <SearchCard /> : <TableList />
                 }
-              </>
+              </div>
               )}
         </div>
       </div>

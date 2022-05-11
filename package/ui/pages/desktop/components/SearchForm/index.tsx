@@ -1,10 +1,10 @@
-import { Button, Col, Form, Row, Select, notification } from 'antd'
+import { Button, Col, Form, Row, Select } from 'antd'
 import { IconLayoutGrid, IconLayoutList } from '@tabler/icons'
 import { MaterialIcon } from '@moyu-code/control'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import { SearchFormApplicationType, SearchFormStatus } from './constant'
 import styles from './index.module.sass'
-import { Dispatch, RootState } from '@/common/model'
+import type { Dispatch, RootState } from '@/common/model'
 
 const SearchForm = () => {
   const mode = useSelector(
@@ -14,8 +14,12 @@ const SearchForm = () => {
 
   const dispatch: Dispatch = useDispatch()
 
+  const onSaveRequestParams = (change: any) => {
+    dispatch.myApp.setSearchParams(change)
+  }
+
   return (
-    <Form>
+    <Form onValuesChange={onSaveRequestParams} className={styles.search}>
       <Row>
         <Col span={3}>
           <Form.Item name='status'>

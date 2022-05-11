@@ -6,7 +6,13 @@ import getViewListApi, { QueryViewListRequestDto, QueryViewListResponseDto } fro
 
 interface MyAppModelState {
   tableData: QueryViewListResponseDto['data'],
-  mode: 'Card' | 'Table'
+  mode: 'Card' | 'Table',
+  searchParams: {
+    size: number;
+    current: number;
+    type?: number;
+    status?: number
+  }
 }
 
 const state: MyAppModelState = {
@@ -14,14 +20,19 @@ const state: MyAppModelState = {
     total: 0,
     list: []
   },
+  searchParams: {
+    size: 10,
+    current: 1
+  },
   mode: 'Table'
 }
 
 const myAppModel = createModel<RootModel>()({
   state,
   effects: (dispatch) => ({
-    async getDashViewList (payload: QueryViewListRequestDto) {
-      const { code, data } = await getViewListApi(payload)
+    async getDashViewList (_, state) {
+      const searchParams = state.myApp.searchParams
+      const { code, data } = await getViewListApi(searchParams)
       if (isSuccess(code)) {
         dispatch.myApp.saveList(data)
       }
@@ -51,6 +62,16 @@ const myAppModel = createModel<RootModel>()({
       return {
         ...state,
         mode
+      }
+    },
+
+    setSearchParams (state, search) {
+      return {
+        ...state,
+        searchParams: {
+          ...state.searchParams,
+          ...search
+        }
       }
     }
   }
