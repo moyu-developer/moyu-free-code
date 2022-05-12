@@ -13,12 +13,8 @@ export interface ReturnUserTypes {
  * @GetRequestUser() user: ReturnUserTypes
  */
 export const GetRequestUser = createParamDecorator(
-  (data: keyof ReturnUserTypes, ctx: ExecutionContext) => {
+  (_: keyof ReturnUserTypes, ctx: ExecutionContext) => {
     const req = ctx.switchToHttp().getRequest()
-    console.log(req.user, 'req')
-    if (data) {
-      return new User(req.user.data)
-    }
-    return new User(req.User)
+    return new User(req.user)
   }
 )

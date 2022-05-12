@@ -51,10 +51,13 @@ export class ViewsController {
   @ApiSecurity('保存页面schema')
   @UseGuards(LocalAuthGuard)
   async saveView (@Body() view: CreateViewRequestDto, @GetRequestUser() user: User) {
-    return await this.viewsService.saveRecord({
+    console.log(user, 'user')
+    const id = await this.viewsService.saveRecord({
       ...view,
       status: view?.status || 0,
       env: view?.env || 0
     }, user)
+    console.log(id, 'id')
+    return id
   }
 }

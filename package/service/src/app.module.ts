@@ -7,6 +7,8 @@ import { UserModule } from './modules/user/user.module'
 import { AuthModule } from './modules/auth/auth.module'
 import Configuration from 'src/config'
 import { View, User } from 'src/entity'
+import { RedisCacheModule } from './modules/redis-cache/redis-cache.module'
+import { UploadModule } from './modules/upload/upload.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [Configuration] }),
@@ -23,7 +25,9 @@ import { View, User } from 'src/entity'
     }),
     ViewsModule,
     UserModule,
-    AuthModule
+    AuthModule,
+    RedisCacheModule,
+    UploadModule
   ],
   controllers: [AppController]
 })

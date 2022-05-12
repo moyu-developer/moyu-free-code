@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import {
-  FastifyAdapter,
-  NestFastifyApplication
-} from '@nestjs/platform-fastify'
+  ExpressAdapter,
+  NestExpressApplication
+} from '@nestjs/platform-express'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { ValidationPipe, VersioningType } from '@nestjs/common'
 import { HttpExceptionFilter } from 'src/common/filter/httpException'
@@ -12,9 +12,10 @@ import gerConfigService from 'src/config'
 
 async function bootstrap () {
   const httpConfig = gerConfigService().dev.http
-  const app = await NestFactory.create<NestFastifyApplication>(
+  const fastifyAdapter = new ExpressAdapter()
+  const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
-    new FastifyAdapter()
+    fastifyAdapter
   )
   app.enableCors()
   app.useGlobalPipes(new ValidationPipe())

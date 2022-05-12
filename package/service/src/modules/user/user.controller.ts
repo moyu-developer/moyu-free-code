@@ -21,7 +21,6 @@ export class UserController {
   })
   async getUserInfo (@Request() request) {
     const user = request.user
-    console.log(user, 'user')
     return await this.userService.findUserInfoById(Number(user?.id))
   }
 

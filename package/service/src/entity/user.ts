@@ -4,8 +4,7 @@ import {
   Column,
   PrimaryColumn,
   PrimaryGeneratedColumn,
-  OneToMany,
-  JoinColumn
+  OneToMany
 } from 'typeorm'
 
 import { View } from 'src/entity'

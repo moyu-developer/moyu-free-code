@@ -54,14 +54,12 @@ export class UserService {
   async getUserInfo (data: LoginReqDto) {
     if (data.source === 1) {
       const res = await this.oauthService.gitee(data.code)
-      console.log(res)
       // 获取到了gitee用户信息 id唯一作为标识符
       // 验证用户是否已经在数据库中
       // 如果存在就发token  否则添加用户进数据库再发token
       return res
     } else if (data.source === 2) {
       const res = await this.oauthService.github(data.code)
-      console.log(res)
       // 获取到了github用户信息 id唯一作为标识符
       // 验证用户是否已经在数据库中
       // 如果存在就发token  否则添加用户进数据库再发token

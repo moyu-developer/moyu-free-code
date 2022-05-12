@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common'
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable
+} from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { View, User } from 'src/entity'
@@ -7,11 +12,11 @@ import { QueryViewListRequestDto } from './dto/list.dto'
 
 @Injectable()
 export class ViewsService {
-  constructor (@InjectRepository(View) private views : Repository<View>) {
+  constructor (@InjectRepository(View) private views: Repository<View>) {
     console.log()
   }
 
-  async findAll (query: QueryViewListRequestDto & {user: User}) {
+  async findAll (query: QueryViewListRequestDto & { user: User }) {
     const { size, current, ...params } = query
     const data = await this.views.findAndCount({
       where: params,
@@ -22,9 +27,20 @@ export class ViewsService {
   }
 
   async findView (id) {
-    return await this.views.findOneBy({
+    const data = await this.views.findOneBy({
       id
     })
+
+    if (!data) {
+      throw new HttpException(
+        `没有找到对应id匹配的数据，当前查询id：${id}`,
+        HttpStatus.FORBIDDEN
+      )
+    }
+
+    if (data.status === 0) { throw new HttpException('当前页面未发布', HttpStatus.SERVICE_UNAVAILABLE) }
+
+    return data
   }
 
   /**
@@ -37,6 +53,8 @@ export class ViewsService {
     const view = new View(record)
     view.user = user
 
+    console.log(view, user, 'view')
+
     /** id存在时更新当前数据，id不存在时做数据保存。 */
     if (view.id) {
       await this.views.update(view.id, view)
@@ -44,6 +62,6 @@ export class ViewsService {
     }
 
     const result = await this.views.save(view)
-    return result.id
+    return result
   }
 }
