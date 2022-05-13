@@ -8,6 +8,7 @@ export interface GridLayoutItemProps {
   style?: React.CSSProperties;
   className?: string;
   onClick?: () => void;
+  id?: string
 }
 
 const GridLayoutItem = React.forwardRef<any, GridLayoutItemProps>(
@@ -16,6 +17,7 @@ const GridLayoutItem = React.forwardRef<any, GridLayoutItemProps>(
 
     return (
       <div
+        id={props.id}
         style={{ ...style }}
         className={cs(className, {
           [styles.selected]: props.selected

@@ -62,6 +62,7 @@ const MoveHoverNode = (props: MoveHoverNodeProps) => {
         autoAdjustOverflow
         placement='right'
         trigger='custom'
+        zIndex={100}
         content={
           <Space direction='vertical' size={0}>
             <Tooltip

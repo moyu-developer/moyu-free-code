@@ -1,12 +1,11 @@
 import {
   Button,
   Space,
-  Tooltip,
   Modal,
-  InputNumber,
   Select,
   message,
-  Typography
+  Typography,
+  Popconfirm
 } from 'antd'
 import {
   IconArrowBackUp,
@@ -15,7 +14,8 @@ import {
   IconPresentationAnalytics,
   IconSend,
   IconPlus,
-  IconMinus
+  IconMinus,
+  IconClearAll
 } from '@tabler/icons'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -87,6 +87,18 @@ const Toolbar = () => {
             icon={<Icon icon={IconShare} />}
             onClick={onSharePostedPngContext}
           />
+
+          <Popconfirm
+            title='是否清楚当前内容？'
+            icon={<Icon icon={IconClearAll} />}
+            cancelButtonProps={{ type: 'text' }}
+            onConfirm={() => dispatch.schema.updated([])}
+          >
+            <Button
+              type='link'
+              icon={<Icon icon={IconClearAll} />}
+            />
+          </Popconfirm>
         </div>
 
         <div className={styles.toolbarGroup}>
@@ -96,7 +108,7 @@ const Toolbar = () => {
             icon={<Icon icon={IconMinus} />}
             onClick={() => dispatch.toolbar.narrow()}
           />
-          <Typography.Text>100%</Typography.Text>
+          <Typography.Text>{scale}%</Typography.Text>
           <Button
             type='link'
             disabled={scale >= 150}

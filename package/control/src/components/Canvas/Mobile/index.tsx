@@ -46,6 +46,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
     const { nodeData } = node
     return (
       <GridLayoutItem
+        id={nodeData.component + nodeData.uid}
         selected={selectedId === nodeData.uid}
         onClick={() => onFieldNodeSelectedById(nodeData.uid)}
         key={nodeData.uid}
