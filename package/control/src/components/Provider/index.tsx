@@ -54,7 +54,6 @@ const ContainerProvider: React.FC<MaterialContainerProviderProps> = (props) => {
 }
 
 ContainerProvider.defaultProps = {
-  id: 35
 }
 
 export default ContainerProvider

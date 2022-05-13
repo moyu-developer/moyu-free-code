@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Col, Form, Collapse, Button, Typography } from 'antd'
+import { Col, Form, Collapse, Button, Typography, Input, Card } from 'antd'
 import { useThrottleFn } from 'ahooks'
 import { useSelector, useDispatch } from 'react-redux'
 import type { Dispatch, RootState } from 'src/common/model'
@@ -37,9 +37,11 @@ const PropertyPanel = () => {
    * 属性面板修改回调
    * @param values 配置的面板属性
    */
-  const { run: handleConfigurationFormChange } = useThrottleFn((formData, allProps) => {
-    dispatch.schema.setProps({ uid, props: formData })
-  })
+  const { run: handleConfigurationFormChange } = useThrottleFn(
+    (formData, allProps) => {
+      dispatch.schema.setProps({ uid, props: formData })
+    }
+  )
 
   React.useEffect(() => {
     if (schema.length > 0) {
@@ -58,16 +60,20 @@ const PropertyPanel = () => {
         extra={
           activeKey && activeKey.length > 0
             ? (
-              <Typography.Link
-                onClick={() => setActiveKey([])}
-              >
+              <Typography.Link onClick={() => setActiveKey([])}>
                 收起
               </Typography.Link>
               )
             : null
         }
       >
-        <Form form={form} onValuesChange={handleConfigurationFormChange} layout='vertical'>
+        <Form
+          form={form}
+          onValuesChange={handleConfigurationFormChange}
+          labelAlign='left'
+          labelCol={{ span: 7 }}
+          wrapperCol={{ span: 17 }}
+        >
           <Collapse
             ghost
             expandIconPosition='right'
@@ -75,7 +81,7 @@ const PropertyPanel = () => {
             onChange={(keys) => setActiveKey(keys)}
           >
             {currentPanels.map(({ key, render: RenderPanel }) => {
-              return <RenderPanel key={key} />
+              return <RenderPanel key={key} materials={{ uid }} />
             })}
           </Collapse>
         </Form>

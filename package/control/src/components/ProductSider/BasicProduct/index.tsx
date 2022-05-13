@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Col, Input, Space, Typography } from 'antd'
+import { Col, Input, Space, Tabs, Typography } from 'antd'
 import ProductCard from './GridDragCard'
 import { IconSearch } from '@tabler/icons'
 import Icon from 'src/common/components/AntSvg'
@@ -22,27 +22,32 @@ const BasicProduct = () => {
     <Col className={styles.component}>
       <CardBox title='我的组件'>
         <div className={styles.componentContent}>
-          <div className={styles.search}>
-            <Input.Search
-              value={searchVal}
-              prefix={<Icon icon={IconSearch} />}
-              enterButton='搜索'
-              onSearch={(v) => setSearchVal(v)}
-            />
-          </div>
-          <Space direction='vertical' className={styles.componentWrap}>
-            <Typography.Text type='secondary'>组件分类</Typography.Text>
-            <div className={styles.componentList}>
-              {searchResult.map((material) => {
-                return (
-                  <ProductCard
-                    key={material.component.displayName}
-                    schemaItem={material}
-                  />
-                )
-              })}
-            </div>
-          </Space>
+          <Tabs defaultActiveKey='BaseComponents'>
+            <Tabs.TabPane tab='内置组件' key='BaseComponents'>
+              <div className={styles.search}>
+                <Input.Search
+                  prefix={<Icon icon={IconSearch} />}
+                  enterButton='搜索'
+                  onSearch={(v) => setSearchVal(v)}
+                />
+              </div>
+              <Space direction='vertical' className={styles.componentWrap}>
+                <Typography.Text type='secondary'>组件分类</Typography.Text>
+                <div className={styles.componentList}>
+                  {searchResult.map((material) => {
+                    return (
+                      <ProductCard
+                        key={material.component.displayName}
+                        schemaItem={material}
+                      />
+                    )
+                  })}
+                </div>
+              </Space>
+            </Tabs.TabPane>
+            <Tabs.TabPane tab='远程组件' key='RemoteComponents' />
+            <Tabs.TabPane tab='自定义组件' key='CustomComponents' />
+          </Tabs>
         </div>
       </CardBox>
     </Col>

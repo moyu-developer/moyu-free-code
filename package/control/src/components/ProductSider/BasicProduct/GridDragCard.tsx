@@ -17,7 +17,12 @@ const ComponentCard: React.FC<{
       className={styles.card}
     >
       <div className={styles.cardImage}>
-        <Image height={24} width={24} src={props.schemaItem.icon} />
+        <Image
+          height={24}
+          width={24}
+          src={props.schemaItem.icon}
+          preview={false}
+        />
       </div>
       <div className={styles.cardName}>{props.schemaItem.name}</div>
     </div>
