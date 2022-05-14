@@ -33,8 +33,5 @@
     "noEmit": true,
     "baseUrl": "./",
     "types": ["./src"],
-    "paths": {
-      "@/*": ["src/*"],
-    },
   }
 }
