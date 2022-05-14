@@ -20,13 +20,14 @@ const NavigationSetter: React.FC<CustomSetterFormItemProps<NavigationSetterValue
   const [collapseKey, setCollapseKey] = React.useState<React.Key>(NavigationTab.MICRO_PAGE)
   const [selectedUrl, setSelectedUrl] = React.useState<string>('')
 
-  const onSelectedChange = () => {
+  const onSelectedChange = async () => {
     if (selectedUrl) {
       props.onChange && props.onChange({
         type: collapseKey as NavigationTab,
         url: selectedUrl
       })
     }
+    return true
   }
 
   return (

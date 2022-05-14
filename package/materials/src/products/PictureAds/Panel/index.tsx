@@ -2,6 +2,7 @@ import React from 'react'
 import { Collapse, Form, Input, message } from 'antd'
 import { RenderNodeType } from '@moyu-code/shared'
 import MultiCropsSetter from './MultiCropsSetter'
+import ResourcesModal from 'src/setter/ResourcesModal'
 
 interface PictureAdsPanelProps {
   materials?: RenderNodeType
@@ -33,6 +34,9 @@ export const render = React.memo((props: PictureAdsPanelProps) => {
             </Form.Item>
           )
         }
+      </Form.Item>
+      <Form.Item>
+        <ResourcesModal />
       </Form.Item>
     </Collapse.Panel>
   )

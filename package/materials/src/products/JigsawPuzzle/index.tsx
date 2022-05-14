@@ -3,15 +3,14 @@ import RenderView from './View'
 import * as SearchPanel from './Panel'
 
 const Search: MaterialComponentType = {
-  name: '搜索栏',
+  name: '拼图',
   defaultProps: {
-    placeholder: '请输入搜索关键词'
   },
   gridLayout: {
-    minH: 4,
-    h: 10
+    minH: 20,
+    h: 375 / 5
   },
-  icon: 'https://s2.loli.net/2022/05/09/N7ljHGiLdD2ZBTb.png',
+  icon: 'https://s2.loli.net/2022/05/12/uoa1qVZ7f84mMr2.png',
   panel: [SearchPanel],
   component: {
     displayName: 'Search',
