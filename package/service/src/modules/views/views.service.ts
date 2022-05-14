@@ -17,7 +17,8 @@ export class ViewsService {
   }
 
   async findAll (query: QueryViewListRequestDto & { user: User }) {
-    const { size, current, ...params } = query
+    console.log(query, 'user')
+    const { size, current, user, ...params } = query
     const data = await this.views.findAndCount({
       where: params,
       skip: (query.current - 1) * query.size,
