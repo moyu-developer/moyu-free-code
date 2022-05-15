@@ -1,7 +1,7 @@
 import React, { createElement } from 'react'
 import type { Layout } from 'react-grid-layout'
 
-export type ReactComponent = Parameters<typeof createElement>[0]
+export type ReactComponent = string | React.FunctionComponent<any> | React.ComponentClass<any, any>
 /**
  * @interface 声明RenderNode的节点类型
  * @description 一个pattern大概的长相

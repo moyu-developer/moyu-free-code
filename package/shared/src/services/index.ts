@@ -20,3 +20,5 @@ export const fetch = new GotAxios({
 export * from './view/saveView.api'
 
 export * from './view/getViewById.api'
+
+export * from './resource/list.api'
