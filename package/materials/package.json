@@ -41,6 +41,7 @@
   "dependencies": {
     "@moyu-code/shared": "workspace:^0.1.0",
     "@types/react-color": "^3.0.6",
+    "ahooks": "^3.3.11",
     "react-color": "^2.19.3",
     "react-colorful": "^5.5.1",
     "react-multi-crops": "^0.0.10"

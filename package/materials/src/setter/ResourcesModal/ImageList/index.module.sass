@@ -1,0 +1,23 @@
+.list
+  height: 400px
+  overflow: auto
+  margin-bottom: 12px
+  display: flex
+  justify-content: flex-start
+  align-items: flex-start
+  flex-wrap: wrap
+  gap: 6px
+
+.item
+  width: 120px
+  cursor: pointer
+  position: relative
+  &Name
+    width: 120px
+    word-break: break-all
+
+  &Checked
+    position: absolute
+    bottom: 1em
+    right: 0
+    z-index: 1
