@@ -3,6 +3,7 @@ import { UploadService } from './upload.service'
 import { UploadController } from './upload.controller'
 import { HttpModule } from '@nestjs/axios'
 import { MinioModule } from 'nestjs-minio-client'
+import { ResourceModule } from 'src/modules/resource/resource.module'
 
 @Module({
   providers: [UploadService],
@@ -13,6 +14,6 @@ import { MinioModule } from 'nestjs-minio-client'
     useSSL: false,
     accessKey: 'moyu',
     secretKey: 'moyu1433223'
-  })]
+  }), ResourceModule]
 })
 export class UploadModule {}

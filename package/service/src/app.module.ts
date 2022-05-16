@@ -6,9 +6,10 @@ import { ViewsModule } from './modules/views/views.module'
 import { UserModule } from './modules/user/user.module'
 import { AuthModule } from './modules/auth/auth.module'
 import Configuration from 'src/config'
-import { View, User } from 'src/entity'
+import { View, User, Resource } from 'src/entity'
 import { RedisCacheModule } from './modules/redis-cache/redis-cache.module'
-import { UploadModule } from './modules/upload/upload.module';
+import { UploadModule } from './modules/upload/upload.module'
+import { ResourceModule } from './modules/resource/resource.module'
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [Configuration] }),
@@ -17,7 +18,7 @@ import { UploadModule } from './modules/upload/upload.module';
         const sqlite = configService.get('dev').db || {}
         return {
           type: 'postgres',
-          entities: [View, User],
+          entities: [View, User, Resource],
           ...sqlite
         }
       },
@@ -27,7 +28,8 @@ import { UploadModule } from './modules/upload/upload.module';
     UserModule,
     AuthModule,
     RedisCacheModule,
-    UploadModule
+    UploadModule,
+    ResourceModule
   ],
   controllers: [AppController]
 })
