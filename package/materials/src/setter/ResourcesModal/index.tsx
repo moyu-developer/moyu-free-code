@@ -1,11 +1,16 @@
 import React from 'react'
 import SetterModal from 'src/components/SetterModal'
-import ImageList from './ImageList'
-import { Button, Pagination, message, Upload, Tabs } from 'antd'
+import { CustomSetterFormItemProps } from 'src/types/setter'
+import ImageList, { ImageListProps } from './ImageList'
+import { Button, message, Upload, Tabs } from 'antd'
 import { IconCloudUpload } from '@tabler/icons'
 import styles from './index.module.sass'
 
-const props = {
+export interface ResourcesModalProps {
+  limit?: number
+}
+
+const uploadFileProps = {
   name: 'file',
   multiple: true,
   action: 'http://localhost:8500/api/v1/upload/image',
@@ -25,32 +30,50 @@ const props = {
   }
 }
 
-const items = [
-  { label: '菜单项一', key: 'item-1' }, // 菜单项务必填写 key
-  { label: '菜单项二', key: 'item-2' },
-  {
-    label: '子菜单',
-    key: 'submenu',
-    children: [{ label: '子菜单项', key: 'submenu-item-1' }]
-  }
-]
-
-const ResourcesModal = () => {
+const ResourcesModal = (props: ResourcesModalProps & CustomSetterFormItemProps<string[]>) => {
   const [activeKey, setActiveKey] = React.useState('history')
+  const [checkedImages, setCheckedImages] = React.useState<string[]>([])
+
+  const handleCheckedImagesChange: ImageListProps['onChange'] = (val) => {
+    if (checkedImages.includes(val)) {
+      setCheckedImages(state => {
+        return state.filter(v => v !== val)
+      })
+      return
+    }
+    if (props.limit === checkedImages.length) {
+      message.error('选择的图片已经达到上限。')
+    } else {
+      setCheckedImages(state => {
+        return [...state, val]
+      })
+    }
+  }
+
+  const handleModalOk = async () => {
+    props.onChange(checkedImages)
+    return true
+  }
 
   return (
     <SetterModal
-      title='图片管理' bodyStyle={{
+      title='图片管理'
+      okButtonProps={{
+        disabled: !(checkedImages?.length > 0)
+      }}
+      onInitial={() => setCheckedImages(props.value)}
+      onOk={handleModalOk}
+      bodyStyle={{
         paddingTop: 0
-      }} trigger={<Button>选择图片</Button>} footer={activeKey === 'upload' ? false : undefined}
+      }} trigger={<Button>选择图片{props.value.length}</Button>} footer={activeKey === 'upload' ? false : undefined}
     >
       <Tabs accessKey={activeKey} onChange={(key) => setActiveKey(key)}>
         <Tabs.TabPane key='history' tab='资源列表'>
-          <ImageList />
+          <ImageList value={checkedImages} onChange={handleCheckedImagesChange} />
         </Tabs.TabPane>
         <Tabs.TabPane key='upload' tab='上传图片'>
           <div className={styles.upload}>
-            <Upload.Dragger {...props} capture='environment' className={styles.uploadMain}>
+            <Upload.Dragger {...uploadFileProps} capture='environment' className={styles.uploadMain}>
               <p>
                 <IconCloudUpload className={styles.uploadIcon} color='#165DFF' />
               </p>

@@ -5,10 +5,15 @@ import {
   QueryResourceImageListRequest
 } from '@moyu-code/shared'
 import React, { useState, useEffect } from 'react'
-import { IconChecks } from '@tabler/icons'
+import cs from 'classnames'
 import styles from './index.module.sass'
 
-const ImageList = () => {
+export interface ImageListProps {
+  value?: string[]
+  onChange?: (val: string) => void
+}
+
+const ImageList = (props: ImageListProps) => {
   const [resourceData, setResourceData] = React.useState<
     QueryResourceImageListResponse['data']
   >({
@@ -16,7 +21,7 @@ const ImageList = () => {
     list: []
   })
   const [loading, setLoading] = useState<boolean>(false)
-  const [params] = useState<QueryResourceImageListRequest>({
+  const [params, setRequestParams] = useState<QueryResourceImageListRequest>({
     current: 1,
     size: 20
   })
@@ -45,24 +50,34 @@ const ImageList = () => {
             <Space
               size={0}
               direction='vertical'
-              className={styles.item}
+              className={cs(styles.item, {
+                [styles.itemActive]: props.value?.includes(item.link)
+              })}
               align='center'
-              key={item.id}
+              key={item.link}
+              onClick={() => props.onChange(item.link)}
             >
-              <Image width={120} height={120} src={item.link} />
+              <div className={styles.itemImage}>
+                <Image src={item.link} width={60} height={60} onClick={(e) => e.stopPropagation()} />
+              </div>
 
               <Typography.Paragraph
                 className={styles.itemName}
                 ellipsis={{ rows: 2 }}
               >
-                测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+                {item.name}
               </Typography.Paragraph>
-              <IconChecks className={styles.itemChecked} />
+              {
+                props.value?.includes(item.link) ? <span className={styles.itemChecked} /> : null
+              }
+
             </Space>
           )
         })}
       </div>
-      <Pagination showQuickJumper />
+      <Pagination
+        showQuickJumper
+      />
     </Spin>
   )
 }
