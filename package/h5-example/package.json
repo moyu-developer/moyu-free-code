@@ -3,9 +3,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 4500",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "next build -p 4500",
+    "start": "next start -p 4500",
+    "lint": "next lint",
+    "build:html": "next build && next export"
   },
   "dependencies": {
     "@moyu-code/materials": "workspace:^0.1.0",

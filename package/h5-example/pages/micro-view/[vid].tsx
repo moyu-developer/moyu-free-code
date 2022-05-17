@@ -1,8 +1,9 @@
 import * as Materials from '@moyu-code/materials'
 import { MaterialComponentType, ReactComponent } from '@moyu-code/shared'
 import { GridLayoutRender } from '@moyu-code/renders'
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 
 const renderComponents: Record<string, ReactComponent> = {}
 
@@ -15,7 +16,13 @@ Object.keys(Materials).forEach((k: string) => {
 })
 
 const MicroView: NextPage<any, any> = (props) => {
-  console.log(props, 'props')
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!props.pageData) {
+      router.replace('/404')
+    }
+  }, [])
 
   const schema = useMemo(() => {
     if (props.pageData?.schema) {
@@ -47,7 +54,7 @@ const MicroView: NextPage<any, any> = (props) => {
 }
 
 MicroView.getInitialProps = async ({ query }) => {
-  const res = await fetch(`http://localhost:8500/api/v1/views/${query?.vid}`)
+  const res = await fetch(`http://124.223.43.13:8500/api/v1/views/${query?.vid}`)
   const json = await res.json()
   if (json.code === 200) {
     return {
