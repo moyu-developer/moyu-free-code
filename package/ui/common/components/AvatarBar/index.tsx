@@ -1,5 +1,5 @@
 import type { RootState, Dispatch } from '@/common/model'
-import { IconBrandGithub, IconSun } from '@tabler/icons'
+import { IconBrandGithub, IconSun, IconBug } from '@tabler/icons'
 import { Dropdown, Menu, Avatar } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
@@ -30,7 +30,9 @@ const AvatarBar = () => {
 
   return (
     <div className={styles.avatar}>
-
+      <div className={styles.avatarIcon}>
+        <IconBug className={styles.avatarIconLarge} />
+      </div>
       <div className={styles.avatarIcon}>
         <IconSun className={styles.avatarIconLarge} />
       </div>

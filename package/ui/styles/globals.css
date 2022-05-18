@@ -16,10 +16,6 @@
   width: 3px;
   margin-right:2px
 }
-::-webkit-scrollbar-button { /* 滚动条两端的按钮 */
-  width:10px;
-  background-color: yellow;
-}
 ::-webkit-scrollbar:horizontal {
   height:10px;
   margin-bottom:2px
@@ -33,7 +29,7 @@
 }
 ::-webkit-scrollbar-thumb {  /* 滑块 */
   width:10px;border-radius: 0;
-  background: var(--semi-color-primary);
+  background: var(--ant-primary-color);
 }
 ::-webkit-scrollbar-corner { /* 边角 */
   width: 10px;

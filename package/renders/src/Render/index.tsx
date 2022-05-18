@@ -48,10 +48,12 @@ const GridLayoutRender = (props: GridLayoutRenderProps) => {
 
   return (
     <div
+      id='__grid-layout-render__'
       className={props.className}
       style={{
         height: props.height,
-        width: props.width
+        width: props.width,
+        background: '#FFF'
       }}
     >
       {

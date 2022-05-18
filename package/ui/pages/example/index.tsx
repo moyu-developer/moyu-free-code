@@ -11,6 +11,7 @@ import { MaterialComponentType, ReactComponent } from '@moyu-code/shared'
 import './model'
 
 import styles from '@/styles/layout.module.css'
+import { useRouter } from 'next/router'
 
 const materials: MaterialComponentType[] = Object.keys(Materials).map(
   (k: string) => (Materials as Record<string, MaterialComponentType>)[k]
@@ -30,6 +31,8 @@ Object.keys(Materials).forEach(
 const Example: NextPage = () => {
   /** @name dslView 页面结构 */
 
+  const router = useRouter()
+
   return (
     <div className={styles.app}>
       <Head>
@@ -38,7 +41,7 @@ const Example: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />s
       </Head>
       {/* 标准层 */}
-      <ContainerProvider materials={materials}>
+      <ContainerProvider materials={materials} id={Number(router.query?.id)}>
         {/* 物料列表区 */}
         <MaterialBasicProduct />
         {/* 渲染器 */}
