@@ -18,4 +18,8 @@ export class ResourceController {
   async getSchemaViewList (@Query() query: QueryResourceRequestDto) {
     return await this.resourceService.findAllResource(query)
   }
+
+  @Get('list')
+  @ApiSecurity('修改资源名称')
+  async changeResourceName () {}
 }

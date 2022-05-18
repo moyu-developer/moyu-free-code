@@ -188,7 +188,11 @@ const Mobile: React.FC<MobileProps> = (props) => {
   }, [schema])
 
   return (
-    <div className={styles.mobileWrapper}>
+    <div
+      className={styles.mobileWrapper} style={{
+        transform: `scale(${scale})`
+      }}
+    >
       <Screenshot gridBackground title={pageName} width={383}>
         {selectedId
           ? (

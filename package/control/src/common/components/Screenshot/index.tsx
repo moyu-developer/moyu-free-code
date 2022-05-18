@@ -11,6 +11,7 @@ export interface ScreenshotProps {
   gridBackground?: boolean
   width?: number | string
   height?: number | string
+  children?: React.ReactNode
 
 }
 
@@ -41,4 +42,4 @@ const Screenshot: React.FC<ScreenshotProps> = (props) => {
   )
 }
 
-export default Screenshot
+export default React.memo(Screenshot)
