@@ -65,7 +65,7 @@ const ResourcesModal = (props: ResourcesModalProps & CustomSetterFormItemProps<s
       onOk={handleModalOk}
       bodyStyle={{
         paddingTop: 0
-      }} trigger={<Button>选择图片{props.value.length}</Button>} footer={activeKey === 'upload' ? false : undefined}
+      }} trigger={<Button>选择图片{props.value?.length}</Button>} footer={activeKey === 'upload' ? false : undefined}
     >
       <Tabs accessKey={activeKey} onChange={(key) => setActiveKey(key)}>
         <Tabs.TabPane key='history' tab='资源列表'>
@@ -87,6 +87,10 @@ const ResourcesModal = (props: ResourcesModalProps & CustomSetterFormItemProps<s
       </Tabs>
     </SetterModal>
   )
+}
+
+ResourcesModal.defaultProps = {
+  value: []
 }
 
 export default React.memo(ResourcesModal)
