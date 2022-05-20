@@ -4,11 +4,22 @@
     "build": "umi build"
   },
   "dependencies": {
+    "@ant-design/pro-layout": "^6.38.2",
+    "@moyu-code/control": "workspace:^0.1.0",
+    "@moyu-code/materials": "workspace:^0.1.0",
+    "@moyu-code/request": "workspace:^0.1.0",
+    "@rematch/core": "^2.2.0",
+    "@rematch/loading": "^2.1.2",
+    "js-cookie": "^3.0.1",
+    "react-redux": "^8.0.1",
+    "reset-css": "^5.0.1",
     "umi": "^3.5.24"
   },
   "devDependencies": {
+    "@umijs/plugin-sass": "^1.1.1",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.5.24",
+    "sass": "^1.51.0",
     "yorkie": "^2.0.0"
   }
 }

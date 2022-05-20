@@ -1,0 +1,7 @@
+// flex 简单布局
+@mixin flex($md: flex, $jc: center, $ai: center, $d: row) {
+  display: $md;
+  flex-direction: $d;
+  align-items: $ai;
+  justify-content: $jc;
+}
