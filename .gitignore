@@ -10,6 +10,8 @@
 # ssr production
 **/dist-ssr
 **/.next
+**/.umi
+**/.umi-production
 
 # local env
 *.local
