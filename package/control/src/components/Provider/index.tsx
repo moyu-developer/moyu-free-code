@@ -5,6 +5,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import store from 'src/common/model'
 import { Provider } from 'react-redux'
 import type { MaterialComponentType, RenderNodeType } from '@moyu-code/shared'
+import 'react-resizable/css/styles.css'
+import 'react-grid-layout/css/styles.css'
 import './index.module.sass'
 
 export interface MaterialContainerProviderProps {
