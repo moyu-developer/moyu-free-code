@@ -38,7 +38,7 @@ const PropertyPanel = () => {
    * @param values 配置的面板属性
    */
   const { run: handleConfigurationFormChange } = useThrottleFn(
-    (formData, allProps) => {
+    (formData) => {
       dispatch.schema.setProps({ uid, props: formData })
     }
   )
@@ -46,7 +46,6 @@ const PropertyPanel = () => {
   React.useEffect(() => {
     if (schema.length > 0) {
       const props = schema.find((node) => node.uid === uid)?.props
-      console.log(props, 'setProps')
       form.setFieldsValue && form.setFieldsValue(props)
     }
   }, [uid, schema])
@@ -70,6 +69,10 @@ const PropertyPanel = () => {
         <Form
           form={form}
           onValuesChange={handleConfigurationFormChange}
+          onFinish={(formData) => {
+            console.log(formData, 'formData')
+            dispatch.schema.setProps({ uid, props: formData })
+          }}
           labelAlign='left'
           labelCol={{ span: 7 }}
           wrapperCol={{ span: 17 }}
