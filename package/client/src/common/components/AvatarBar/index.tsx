@@ -1,4 +1,4 @@
-import { history, Link } from 'umi'
+import { history, NavLink } from 'umi'
 import type { RootState, Dispatch } from '@/common/model'
 import { IconBrandGithub, IconSun, IconBug } from '@tabler/icons'
 import { Dropdown, Menu, Avatar } from 'antd'
@@ -35,9 +35,9 @@ const AvatarBar = () => {
         <IconSun className={styles.avatarIconLarge} />
       </div>
       <div className={styles.avatarIcon}>
-        <Link color='red' to='https://github.com/moyu-developer'>
+        <NavLink to='https://github.com/moyu-developer'>
           <IconBrandGithub className={styles.avatarIconLarge} />
-        </Link>
+        </NavLink>
       </div>
 
       <Dropdown

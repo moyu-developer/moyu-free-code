@@ -1,5 +1,5 @@
 import { GotAxios, ComposeFunction } from '@moyu-code/request'
-import { Modal } from 'antd'
+import { message, Modal } from 'antd'
 import jsCookie from 'js-cookie'
 import { throttle } from 'lodash'
 import store from '@/common/model'
@@ -19,6 +19,9 @@ const got = new GotAxios({
   version: '/v1',
   pipe: [setRequestToken],
   onSuccess: throttle((res) => {
+    if (res.status === 404) {
+      message.error('接口调用失败，请检查网络连接！')
+    }
     if (res?.data.code === 401 && jsCookie.get('signAccessToken')) {
       jsCookie.remove('signAccessToken')
       store.dispatch.common.updated({

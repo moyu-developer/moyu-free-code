@@ -1,10 +1,11 @@
+import { useParams } from 'umi'
 import { useEffect, useRef } from 'react'
 import { LoginReqDto, oauthLogin } from '@/api/auth/login'
 import type { Dispatch, RootState } from '@/common/model'
 import { Space, Button, Typography, Form, Input, Checkbox } from 'antd'
-import { GithubFilled } from '@ant-design/icons'
-import { useRouter } from 'next/router'
+import { BrandGithub } from 'tabler-icons-react'
 import { useDispatch, useSelector } from 'react-redux'
+import { MaterialIcon } from '@moyu-code/control'
 import JsCookie from 'js-cookie'
 import styles from './index.module.sass'
 import { oauthDev } from '@/common/config/oauth'
@@ -15,16 +16,13 @@ const LoginForm = () => {
   const isLogin = useSelector(
     (state: RootState) => state.loading.effects.common.loginEffect
   )
-  const router = useRouter()
+  const params = useParams<{code?: string}>()
 
   const handleLoginFormSubmit = async (formData: Record<string, any>) => {
     const { remember, ...user } = formData
     JsCookie.set('remember', remember)
-    const success = await dispatch.common.loginEffect(user as LoginReqDto)
-    success && router.replace('/')
+    await dispatch.common.loginEffect(user as LoginReqDto)
   }
-
-  console.log(rememberRef.current, 'rememberRef.current')
 
   const handleLogin = async (code: any) => {
     const res = await oauthLogin({ source: 2, code })
@@ -32,10 +30,10 @@ const LoginForm = () => {
   }
 
   useEffect(() => {
-    if (router.query.code) {
-      handleLogin(router.query.code)
+    if (params?.code) {
+      handleLogin(params?.code)
     }
-  }, [router.query])
+  }, [params?.code])
 
   return (
     <div className={styles.loginForm}>
@@ -80,7 +78,7 @@ const LoginForm = () => {
           <Button
             block
             size='large'
-            icon={<GithubFilled />}
+            icon={<MaterialIcon icon={BrandGithub} />}
             onClick={() => {
               const config = oauthDev.gitee
               window.localStorage.preventHref = window.location.href

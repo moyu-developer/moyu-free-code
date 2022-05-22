@@ -4,10 +4,10 @@
     "build": "umi build"
   },
   "dependencies": {
-    "@ant-design/pro-layout": "^6.38.2",
     "@moyu-code/control": "workspace:^0.1.0",
     "@moyu-code/materials": "workspace:^0.1.0",
     "@moyu-code/request": "workspace:^0.1.0",
+    "@moyu-code/shared": "workspace:^0.1.0",
     "@rematch/core": "^2.2.0",
     "@rematch/loading": "^2.1.2",
     "js-cookie": "^3.0.1",

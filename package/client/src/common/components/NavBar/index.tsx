@@ -1,4 +1,4 @@
-import { Link } from 'umi'
+import { NavLink } from 'umi'
 import React from 'react'
 import { Space } from 'antd'
 import NavBarMenu from './Menu'
@@ -12,7 +12,7 @@ export interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = (props) => {
   return (
     <div className={styles.navbar}>
-      <Link to='/'>
+      <NavLink to='/'>
         <Space align='center'>
           <img
             className={styles.navbarLogo}
@@ -20,7 +20,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
           />
           <div className={styles.navbarName}>Moyu Free</div>
         </Space>
-      </Link>
+      </NavLink>
       <div className={styles.navbarMenu}>
         {
           props.hiddenMenu ? null : <NavBarMenu />

@@ -1,3 +1,4 @@
+import { history } from 'umi'
 import { createModel } from '@rematch/core'
 import { RootModel } from './connect'
 import LoginAPI, { LoginReqDto } from '@/api/auth/login'
@@ -28,10 +29,10 @@ export default createModel<RootModel>()({
           token: data.token
         })
         Message.success('登录成功：很高兴您能够访问我们的程序')
+        history.replace('/desktop')
       } else {
         Message.error(`登录失败：${message}`)
       }
-      return isSuccess(code)
     },
 
     /** 获取用户信息 */

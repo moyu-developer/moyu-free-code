@@ -4,6 +4,14 @@
 // @import '@moyu-code/control/dist/control.cjs.development.css';
 // @import '@moyu-code/materials/dist/materials.cjs.development.css';
 
+a {
+  color: #333;
+
+  &:hover {
+    color: #333;
+  }
+}
+
 #__next {
   height: 100vh;
   overflow: hidden;
