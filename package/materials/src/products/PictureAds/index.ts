@@ -7,7 +7,7 @@ const PictureAds: MaterialComponentType = {
   panel: [PictureAdsPanel],
   defaultProps: {
     imageProps: {
-      src: 'https://img.yzcdn.cn/vant/cat.jpeg'
+      src: 'http://175.178.14.116:9000/avatars/01G330D6A7H9HDTAYG5ZWJT8W1.png'
     }
   },
   gridLayout: {
