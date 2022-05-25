@@ -1,4 +1,4 @@
-import { Space, Typography, Image, Spin, Pagination } from 'antd'
+import { Space, Typography, Image, Spin, Pagination, PaginationProps } from 'antd'
 import {
   queryImageResourceList,
   QueryResourceImageListResponse,
@@ -23,8 +23,20 @@ const ImageList = (props: ImageListProps) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [params, setRequestParams] = useState<QueryResourceImageListRequest>({
     current: 1,
-    size: 20
+    size: 15
   })
+
+  const paginationProps: any = {
+    pageSize: params.size,
+    current: params.current,
+    showQuickJumper: true,
+    defaultCurrent: 1,
+    total: resourceData.total,
+    onChange: (page: number, pageSize: number) => setRequestParams({
+      current: page,
+      size: pageSize
+    })
+  }
 
   const runQueryImageResourceList = async () => {
     try {
@@ -76,7 +88,7 @@ const ImageList = (props: ImageListProps) => {
         })}
       </div>
       <Pagination
-        showQuickJumper
+        {...paginationProps}
       />
     </Spin>
   )

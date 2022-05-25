@@ -7,7 +7,10 @@ import { IconCloudUpload } from '@tabler/icons'
 import styles from './index.module.sass'
 
 export interface ResourcesModalProps {
-  limit?: number
+  limit?: number;
+  children?: React.ReactNode,
+  type?: 'radio' | 'checkbox',
+  format?: (value?: string[]) => any
 }
 
 const uploadFileProps = {
@@ -30,28 +33,31 @@ const uploadFileProps = {
   }
 }
 
-const ResourcesModal = (props: ResourcesModalProps & CustomSetterFormItemProps<string[]>) => {
+const ResourcesModal: React.FC<ResourcesModalProps & CustomSetterFormItemProps<string[]>> = (props) => {
   const [activeKey, setActiveKey] = React.useState('history')
   const [checkedImages, setCheckedImages] = React.useState<string[]>([])
 
+  /**
+   * 处理选中图片地址的状态切换
+   * @param val 当前图片地址
+   */
   const handleCheckedImagesChange: ImageListProps['onChange'] = (val) => {
-    if (checkedImages.includes(val)) {
-      setCheckedImages(state => {
-        return state.filter(v => v !== val)
-      })
-      return
-    }
-    if (props.limit === checkedImages.length) {
-      message.error('选择的图片已经达到上限。')
+    if (props.type === 'radio') {
+      setCheckedImages([val])
     } else {
-      setCheckedImages(state => {
+      setCheckedImages((state) => {
+        if (state.includes(val)) return state.filter(v => v !== val)
         return [...state, val]
       })
     }
   }
 
   const handleModalOk = async () => {
-    props.onChange(checkedImages)
+    let values = checkedImages
+    if (props.format) {
+      values = props.format(checkedImages)
+    }
+    props.onChange && props.onChange(values)
     return true
   }
 
@@ -65,7 +71,8 @@ const ResourcesModal = (props: ResourcesModalProps & CustomSetterFormItemProps<s
       onOk={handleModalOk}
       bodyStyle={{
         paddingTop: 0
-      }} trigger={<Button>选择图片{props.value?.length}</Button>} footer={activeKey === 'upload' ? false : undefined}
+      }} trigger={props.children}
+      footer={activeKey === 'upload' ? false : undefined}
     >
       <Tabs accessKey={activeKey} onChange={(key) => setActiveKey(key)}>
         <Tabs.TabPane key='history' tab='资源列表'>
