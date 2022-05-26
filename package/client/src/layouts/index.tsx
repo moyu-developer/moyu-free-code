@@ -22,19 +22,6 @@ const AppLayout: React.FC = (props) => {
     }
   }, [token, userInfo])
 
-  // if (token && router.route === '/login') {
-  //   Router.router?.replace('/')
-  //   return null
-  // } else if (!token && !whiteHideLayoutPage.includes(router.route)) {
-  //   console.log('tokens')
-  //   Router.router?.replace('/login')
-  //   return null
-  // }
-
-  // if (whiteHideLayoutPage.includes(router.route)) {
-  //   return props.children as ReactElement
-  // }
-
   return (
     <>
       <NavBar footer={<AvatarBar />} />

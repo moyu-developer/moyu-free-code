@@ -8,15 +8,15 @@ import {
   Popconfirm
 } from 'antd'
 import {
-  IconArrowBackUp,
-  IconArrowForwardUp,
-  IconShare,
-  IconPresentationAnalytics,
-  IconSend,
-  IconPlus,
-  IconMinus,
-  IconClearAll
-} from '@tabler/icons'
+  ArrowBackUp,
+  ArrowForwardUp,
+  Share,
+  PresentationAnalytics,
+  Send,
+  Plus,
+  Minus,
+  ClearAll
+} from 'tabler-icons-react'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './index.module.sass'
@@ -74,29 +74,29 @@ const Toolbar = () => {
         <div className={styles.toolbarGroup}>
           <Button
             type='link'
-            icon={<Icon icon={IconArrowBackUp} />}
+            icon={<Icon icon={ArrowBackUp} />}
             onClick={() => dispatch({ type: 'SCHEMA_UNDO' })}
           />
           <Button
             type='link'
-            icon={<Icon icon={IconArrowForwardUp} />}
+            icon={<Icon icon={ArrowForwardUp} />}
             onClick={() => dispatch({ type: 'SCHEMA_REDO' })}
           />
           <Button
             type='link'
-            icon={<Icon icon={IconShare} />}
+            icon={<Icon icon={Share} />}
             onClick={onSharePostedPngContext}
           />
 
           <Popconfirm
             title='是否清楚当前内容？'
-            icon={<Icon icon={IconClearAll} />}
+            icon={<Icon icon={ClearAll} />}
             cancelButtonProps={{ type: 'text' }}
             onConfirm={() => dispatch.schema.updated([])}
           >
             <Button
               type='link'
-              icon={<Icon icon={IconClearAll} />}
+              icon={<Icon icon={ClearAll} />}
             />
           </Popconfirm>
         </div>
@@ -105,14 +105,14 @@ const Toolbar = () => {
           <Button
             type='link'
             disabled={scale <= 50}
-            icon={<Icon icon={IconMinus} />}
+            icon={<Icon icon={Minus} />}
             onClick={() => dispatch.toolbar.narrow()}
           />
           <Typography.Text>{scale}%</Typography.Text>
           <Button
             type='link'
             disabled={scale >= 150}
-            icon={<Icon icon={IconPlus} />}
+            icon={<Icon icon={Plus} />}
             onClick={() => dispatch.toolbar.amplify()}
           />
         </div>
@@ -122,13 +122,13 @@ const Toolbar = () => {
           <Button
             type='link'
             size='small'
-            icon={<Icon icon={IconPresentationAnalytics} />}
+            icon={<Icon icon={PresentationAnalytics} />}
           />
         </PreviewFrameModal>
         <Button
           type='primary'
           onClick={handleSchemaPublish}
-          icon={<Icon icon={IconSend} />}
+          icon={<Icon icon={Send} />}
         >
           发布
         </Button>

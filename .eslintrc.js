@@ -8,6 +8,9 @@ module.exports = {
     'standard',
     'standard-jsx'
   ],
+  globals: {
+    System: true
+  },
   parser: '@typescript-eslint/parser',
   rules: {
     'no-unused-vars': 'off',

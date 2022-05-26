@@ -193,7 +193,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
         transform: `scale(${scale})`
       }}
     >
-      <Screenshot gridBackground title={pageName} width={383}>
+      <Screenshot gridBackground title={pageName}>
         {selectedId
           ? (
             <MoveHoverNode
