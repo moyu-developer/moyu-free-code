@@ -40,8 +40,11 @@
     }
   ],
   "dependencies": {
+    "@babel/standalone": "^7.18.1",
     "@moyu-code/shared": "workspace:^0.1.0",
+    "@types/systemjs": "^6.1.1",
     "big.js": "^6.1.1",
-    "bignumber.js": "^9.0.2"
+    "bignumber.js": "^9.0.2",
+    "systemjs": "^6.12.1"
   }
 }
