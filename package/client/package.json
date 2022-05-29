@@ -4,6 +4,7 @@
     "build": "umi build"
   },
   "dependencies": {
+    "@ant-design/pro-components": "^1.1.3",
     "@moyu-code/control": "workspace:^0.1.0",
     "@moyu-code/materials": "workspace:^0.1.0",
     "@moyu-code/renders": "workspace:^0.1.0",

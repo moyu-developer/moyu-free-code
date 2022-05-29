@@ -1,6 +1,5 @@
 import { QueryViewListResponseDto } from '@/api/view/list'
 import { Card, Avatar, Typography, Tag, Dropdown, Menu, Button, Space } from 'antd'
-import { EllipsisOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 import styles from './index.module.sass'
@@ -47,7 +46,7 @@ const MicroCard: FC<QueryViewListResponseDto['data']['list'][0]> = (props) => {
               </Menu>
             }
           >
-            <Button type='text' icon={<EllipsisOutlined />} />
+            <Button type='text'/>
           </Dropdown>
         </div>
       </div>

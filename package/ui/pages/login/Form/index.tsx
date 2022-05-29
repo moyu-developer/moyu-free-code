@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { LoginReqDto, oauthLogin } from '@/api/auth/login'
 import type { Dispatch, RootState } from '@/common/model'
 import { Space, Button, Typography, Form, Input, Checkbox } from 'antd'
-import { GithubFilled } from '@ant-design/icons'
+import { BrandGithub } from 'tabler-icons-react'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import JsCookie from 'js-cookie'
@@ -80,7 +80,7 @@ const LoginForm = () => {
           <Button
             block
             size='large'
-            icon={<GithubFilled />}
+            icon={<BrandGithub />}
             onClick={() => {
               const config = oauthDev.gitee
               window.localStorage.preventHref = window.location.href

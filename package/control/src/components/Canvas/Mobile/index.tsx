@@ -1,7 +1,6 @@
 import * as React from 'react'
 import ReactGridLayout from 'react-grid-layout'
 import {
-  MobileRenderProps,
   GridLayoutRender,
   GridLayoutRenderProps
 } from '@moyu-code/renders'
@@ -18,7 +17,7 @@ import { ulid } from 'ulid'
 import styles from './index.module.sass'
 
 interface MobileProps {
-  materialComponents: MobileRenderProps['materialComponents'];
+  materialComponents: GridLayoutRenderProps['components'];
 }
 
 const Mobile: React.FC<MobileProps> = (props) => {
