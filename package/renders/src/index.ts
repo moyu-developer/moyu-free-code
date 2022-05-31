@@ -1,2 +1,4 @@
-export { default as MobileRender, MobileRenderProps } from './MobileRender'
-export { default as GridLayoutRender, GridLayoutRenderProps } from './Render'
+export { default as GridLayoutRender } from './Render'
+export type { GridLayoutRenderProps } from './Render'
+export { default as RemoteComponent } from './Remote/DynamicHook'
+export * from './Remote/DynamicHook/memo'
