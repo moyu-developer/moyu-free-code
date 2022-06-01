@@ -9,19 +9,26 @@ export type RemoteLoaderEntriesResult = Array<{
 }>
 
 export class RemoteLoader {
-  constructor (private resolve: RemoteOptions['resolve']) {}
+  private resolve?: RemoteOptions['resolve']
+  private SystemJS?: typeof System = System
+
   /**
    * 注册Module
    */
-  async register (url) {
-    const module = await System.import(url)
+  async register (resolve: RemoteOptions['resolve']) {
+    this.resolve = resolve
+    const pipeLine: Promise<any>[] = []
+    Object.values(resolve).forEach(async (url: string) => {
+      await this.SystemJS?.import(url)
+    })
+    // await Promise.all(pipeLine)
   }
 
-  entries () {
+  entries (resolve: RemoteOptions['resolve']) {
     const result: RemoteLoaderEntriesResult = []
-    for (const [id, ns] of System.entries()) {
-      const name = Object.keys(this.resolve).find((key: string) => {
-        if (this.resolve?.[key] === id) return true
+    for (const [id, ns] of this.SystemJS.entries()) {
+      const name = Object.keys(resolve).find((key: string) => {
+        if (resolve?.[key] === id) return true
         return false
       })
       result.push({
@@ -30,5 +37,6 @@ export class RemoteLoader {
         module: ns
       })
     };
+    return result
   }
 }
