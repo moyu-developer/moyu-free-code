@@ -2,6 +2,7 @@ import { createModel } from '@rematch/core'
 import { RootModel } from './connect'
 import type { MaterialComponentType, RenderNodeType } from '@moyu-code/shared'
 import { getViewByIdService } from '@moyu-code/shared'
+import type { RemoteOptions } from '@moyu-code/renders'
 import { parseSchemaJSON } from 'src/utils'
 
 interface CommonState {
@@ -23,6 +24,8 @@ interface CommonState {
     env?: 0 | 1 | 2,
     status?: 0 | 1 | 2
   }
+
+  depends?: RemoteOptions
 
 }
 

@@ -1,6 +1,5 @@
 import { init } from '@rematch/core'
 import { globalModels } from './connect'
-import immerPlugin from '@rematch/immer'
 import undoPlugin from './undo'
 import type { RematchDispatch, RematchRootState } from '@rematch/core'
 import type { RootModel } from './connect'

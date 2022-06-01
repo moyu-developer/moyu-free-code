@@ -22,7 +22,7 @@ const undoPlugin = <
   ): Plugin<TModels, TExtraModels> => {
   return {
     onReducer (reducer, modelName) {
-      if (!config) return
+      if (!config) return null
 
       const base: UndoableOptions = {
         undoType: `${modelName.toUpperCase()}_UNDO`,
@@ -43,12 +43,14 @@ const undoPlugin = <
 
       const mc = (<ModelConfig<TModels>>config)[modelName]
       if (mc) return undoable(reducer, { ...base, ...mc })
+      return null
     },
     onRootReducer (rootReducer) {
       if (!config) return undoable(rootReducer)
 
       const c = (<RootConfig>config).root
       if (c) return undoable(rootReducer, c)
+      return null
     }
   }
 }

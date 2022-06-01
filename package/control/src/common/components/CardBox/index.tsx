@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Result, Typography } from 'antd'
-import { SmileOutlined } from '@ant-design/icons'
+import { Result } from 'antd'
+import { MoodEmpty } from 'tabler-icons-react'
 import styles from './index.module.sass'
 
 export interface CardBoxProps {
@@ -27,7 +27,7 @@ const CardBox: React.FC<CardBoxProps> = (props) => {
           : (
             <div className={styles.boxEmpty}>
               <Result
-                icon={<SmileOutlined />}
+                icon={<MoodEmpty />}
                 title='当前区域空空如也'
                 subTitle={props.emptyText}
               />,

@@ -5,6 +5,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import store from 'src/common/model'
 import { Provider } from 'react-redux'
 import type { MaterialComponentType, RenderNodeType } from '@moyu-code/shared'
+import { RemoteOptions, RemoteComponent, RemoteLoader } from '@moyu-code/renders'
 import 'react-resizable/css/styles.css'
 import 'react-grid-layout/css/styles.css'
 import './index.module.sass'
@@ -21,6 +22,9 @@ export interface MaterialContainerProviderProps {
 
   /** @name Schema修改的Filter */
   onBeforeSchema?: (schema?: RenderNodeType[]) => RenderNodeType[]
+
+  /** @name 远程依赖 */
+  depends?: RemoteOptions
 }
 
 const ContainerProvider: React.FC<MaterialContainerProviderProps> = (props) => {
@@ -43,6 +47,18 @@ const ContainerProvider: React.FC<MaterialContainerProviderProps> = (props) => {
       store.dispatch.common.applyGetViewDetailById(props?.id)
     }
   }, [props?.id])
+
+  React.useEffect(() => {
+    if (props.depends?.resolve) {
+      const resolve = props.depends?.resolve
+      Object.values(resolve).forEach(async (url) => {
+        await (window as any)?.System.import(url)
+      })
+    }
+    store.dispatch.common.updated({
+      depends: props.depends
+    })
+  }, [props.depends])
 
   return (
     <Provider store={store}>

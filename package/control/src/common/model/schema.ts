@@ -3,8 +3,7 @@ import { RootModel } from './connect'
 import type { Layout } from 'react-grid-layout'
 import type { RenderNodeType } from '@moyu-code/shared'
 import { ulid } from 'ulid'
-import { Key } from 'react'
-import { findDepSchema } from 'src/utils'
+import type { Key } from 'react'
 import updated from 'immutability-helper'
 
 const state: RenderNodeType[] = []

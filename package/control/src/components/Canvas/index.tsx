@@ -1,13 +1,12 @@
 import React from 'react'
 import { Col } from 'antd'
 import Mobile from './Mobile'
-import { MobileRenderProps } from '@moyu-code/renders'
 import Toolbar from './Toolbar'
 import cs from 'classnames'
 import styles from './index.module.sass'
 
 interface MaterialRenderCanvasProps {
-  materialComponents?: MobileRenderProps['materialComponents']
+  materialComponents?: any
 }
 
 const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {

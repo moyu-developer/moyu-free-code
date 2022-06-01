@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { Col, Form, Collapse, Button, Typography, Input, Card } from 'antd'
+import { Col, Form, Collapse, Tabs } from 'antd'
 import { useThrottleFn } from 'ahooks'
 import { useSelector, useDispatch } from 'react-redux'
 import type { Dispatch, RootState } from 'src/common/model'
+import ProjectSetup from './ProjectSetup'
+import Empty from 'src/common/components/Empty'
+import Dependencies from './Dependencies'
 import styles from './index.module.sass'
-import CardBox from 'src/common/components/CardBox'
-
-const { Panel } = Collapse
 
 const PropertyPanel = () => {
   const [form]: any = Form.useForm()
@@ -39,12 +39,14 @@ const PropertyPanel = () => {
    */
   const { run: handleConfigurationFormChange } = useThrottleFn(
     (formData) => {
-      dispatch.schema.setProps({ uid, props: formData })
+      if (uid) {
+        dispatch.schema.setProps({ uid, props: formData })
+      }
     }
   )
 
   React.useEffect(() => {
-    if (schema.length > 0) {
+    if (schema.length > 0 && uid) {
       const props = schema.find((node) => node.uid === uid)?.props
       form.setFieldsValue && form.setFieldsValue(props)
     }
@@ -52,10 +54,44 @@ const PropertyPanel = () => {
 
   return (
     <Col className={styles.configuration}>
-      <CardBox
+      <Tabs>
+        <Tabs.TabPane key='setter' tab='属性面板'>
+          {
+            currentPanels.length === 0 ? <Empty /> : null
+          }
+          <Form
+            form={form}
+            onValuesChange={handleConfigurationFormChange}
+            onFinish={(formData) => {
+              console.log(formData, 'formData')
+              dispatch.schema.setProps({ uid, props: formData })
+            }}
+            labelAlign='left'
+            labelCol={{ span: 7 }}
+            wrapperCol={{ span: 17 }}
+          >
+            <Collapse
+              ghost
+              expandIconPosition='right'
+              activeKey={activeKey}
+              onChange={(keys) => setActiveKey(keys)}
+            >
+              {currentPanels.map(({ key, render: RenderPanel }) => {
+                return <RenderPanel key={key} materials={{ uid }} />
+              })}
+            </Collapse>
+          </Form>
+        </Tabs.TabPane>
+        <Tabs.TabPane key='project' tab='页面设置'>
+          <ProjectSetup />
+        </Tabs.TabPane>
+        <Tabs.TabPane key='dependencies' tab='依赖关系'>
+          <Dependencies />
+        </Tabs.TabPane>
+      </Tabs>
+      {/* <CardBox
         title='属性面板'
         emptyText='快去搭建新的页面吧'
-        hasEmpty={currentPanels.length === 0}
         extra={
           activeKey && activeKey.length > 0
             ? (
@@ -88,7 +124,17 @@ const PropertyPanel = () => {
             })}
           </Collapse>
         </Form>
-      </CardBox>
+        <div style={{ padding: '0 12px' }}>
+          <Tabs>
+            <Tabs.TabPane key='setter' tab='设置'>
+
+            </Tabs.TabPane>
+            <Tabs.TabPane key='project' tab='页面设置'>
+              111
+            </Tabs.TabPane>
+          </Tabs>
+        </div>
+      </CardBox> */}
     </Col>
   )
 }
