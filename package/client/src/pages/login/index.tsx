@@ -10,9 +10,7 @@ export default function Login () {
     <div className={styles.login}>
       <NavBar hiddenMenu />
       <div className={styles.message}>
-        <Alert description='Hello， 欢迎你👏'>
-          在此声明，本系统为Demo演示，尽量避免上传非法内容和私密数据，如发生外泄，作者不担负任何责任，一切风险由使用者承担。
-        </Alert>
+        <Alert description='本系统为Demo演示，尽量避免上传非法内容和私密数据，避免发生不必要的资料泄漏。' message='Hello， 欢迎你👏 ' />
       </div>
 
       <Row>

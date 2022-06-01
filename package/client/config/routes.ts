@@ -9,7 +9,16 @@ export default [
     component: '@/layouts/index',
     routes: [
       { path: '/desktop', component: '@/pages/desktop' },
-      { path: '/example', component: '@/pages/example' }
+      { path: '/example', component: '@/pages/example' },
+      {
+        path: '/data',
+        routes: [
+          {
+            path: '/data/navigation',
+            component: '@/pages/data/navigation'
+          }
+        ]
+      }
     ]
   }
 ]
