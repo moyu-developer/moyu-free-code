@@ -25,9 +25,6 @@
   "name": "@moyu-code/materials",
   "author": "wangly19",
   "module": "dist/materials.esm.js",
-  "devDependencies": {
-    "@moyu-code/schema": "workspace:^0.1.0"
-  },
   "size-limit": [
     {
       "path": "dist/materials.cjs.production.min.js",

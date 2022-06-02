@@ -12,6 +12,7 @@ import './model'
 
 import styles from '@/styles/layout.module.css'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 const materials: MaterialComponentType[] = Object.keys(Materials).map(
   (k: string) => (Materials as Record<string, MaterialComponentType>)[k]
