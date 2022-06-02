@@ -89,52 +89,6 @@ const PropertyPanel = () => {
           <Dependencies />
         </Tabs.TabPane>
       </Tabs>
-      {/* <CardBox
-        title='属性面板'
-        emptyText='快去搭建新的页面吧'
-        extra={
-          activeKey && activeKey.length > 0
-            ? (
-              <Typography.Link onClick={() => setActiveKey([])}>
-                收起
-              </Typography.Link>
-              )
-            : null
-        }
-      >
-        <Form
-          form={form}
-          onValuesChange={handleConfigurationFormChange}
-          onFinish={(formData) => {
-            console.log(formData, 'formData')
-            dispatch.schema.setProps({ uid, props: formData })
-          }}
-          labelAlign='left'
-          labelCol={{ span: 7 }}
-          wrapperCol={{ span: 17 }}
-        >
-          <Collapse
-            ghost
-            expandIconPosition='right'
-            activeKey={activeKey}
-            onChange={(keys) => setActiveKey(keys)}
-          >
-            {currentPanels.map(({ key, render: RenderPanel }) => {
-              return <RenderPanel key={key} materials={{ uid }} />
-            })}
-          </Collapse>
-        </Form>
-        <div style={{ padding: '0 12px' }}>
-          <Tabs>
-            <Tabs.TabPane key='setter' tab='设置'>
-
-            </Tabs.TabPane>
-            <Tabs.TabPane key='project' tab='页面设置'>
-              111
-            </Tabs.TabPane>
-          </Tabs>
-        </div>
-      </CardBox> */}
     </Col>
   )
 }

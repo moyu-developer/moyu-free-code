@@ -74,10 +74,13 @@ export default createModel<RootModel>()({
     },
 
     /** 更新common store 数据 */
-    setPageInfo (state, data: Partial<CommonState>) {
+    setPageInfo (state, data: Partial<CommonState>['pageInfo']) {
       return {
         ...state,
-        ...data
+        pageInfo: {
+          ...state.pageInfo,
+          ...data
+        }
       }
     }
 
