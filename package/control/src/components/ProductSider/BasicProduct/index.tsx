@@ -4,9 +4,9 @@ import ProductCard from './GridDragCard'
 import { IconSearch } from '@tabler/icons'
 import Icon from 'src/common/components/AntSvg'
 import CardBox from 'src/common/components/CardBox'
-import styles from './index.module.sass'
 import { useSelector } from 'react-redux'
 import type { RootState } from 'src/common/model'
+import styles from './index.module.sass'
 
 const BasicProduct = () => {
   const [searchVal, setSearchVal] = React.useState('')
@@ -46,7 +46,6 @@ const BasicProduct = () => {
               </Space>
             </Tabs.TabPane>
             <Tabs.TabPane tab='远程组件' key='RemoteComponents' />
-            <Tabs.TabPane tab='自定义组件' key='CustomComponents' />
           </Tabs>
         </div>
       </CardBox>
