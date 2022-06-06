@@ -56,7 +56,7 @@ const Example = () => {
   }, [])
 
   return (
-    <div className={styles.app}>
+    <div className={styles.app} id='MoyuControl'>
       <Prompt message='你确定要离开么？' />
       {/* 标准层 */}
       <ContainerProvider

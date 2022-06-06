@@ -210,6 +210,9 @@ const Mobile: React.FC<MobileProps> = (props) => {
           onItemRender={handleRenderFieldNode}
           onRender={(element) => (
             <ReactGridLayout
+              style={{
+                height: 850
+              }}
               className={styles.mobileLayout}
               layout={layouts}
               allowOverlap

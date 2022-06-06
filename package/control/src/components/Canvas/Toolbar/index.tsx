@@ -22,6 +22,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import styles from './index.module.sass'
 import type { Dispatch, RootState } from 'src/common/model'
 import PreviewFrameModal from '../PreviewFrameModal'
+import CodeOpenEditor from '../CodeOpenEditor'
 import Icon from 'src/common/components/AntSvg'
 import { LayoutOptions } from 'src/common/constant'
 import domtoimage from 'dom-to-image'
@@ -87,6 +88,8 @@ const Toolbar = () => {
             icon={<Icon icon={Share} />}
             onClick={onSharePostedPngContext}
           />
+
+          <CodeOpenEditor />
 
           <Popconfirm
             title='是否清楚当前内容？'
