@@ -1,5 +1,6 @@
 import { Button, Popover, Space, message, Tooltip } from 'antd'
 import { IconCopy, IconTrash, IconArrowNarrowUp, IconArrowNarrowDown } from '@tabler/icons'
+import { Eye } from 'tabler-icons-react'
 import * as React from 'react'
 import styles from './index.module.sass'
 import { RootState } from 'src/common/model'
@@ -93,6 +94,14 @@ const MoveHoverNode = (props: MoveHoverNodeProps) => {
               <Button
                 type='link'
                 icon={<Icon icon={IconCopy} />}
+                onClick={() =>
+                  handleSelectedSchemaTrigger(HoverNodeAction.COPY)}
+              />
+            </Tooltip>
+            <Tooltip title='显示 / 隐藏' placement='right'>
+              <Button
+                type='link'
+                icon={<Icon icon={Eye} />}
                 onClick={() =>
                   handleSelectedSchemaTrigger(HoverNodeAction.COPY)}
               />

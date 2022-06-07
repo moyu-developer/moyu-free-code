@@ -46,6 +46,7 @@ const BasicProduct = () => {
               </Space>
             </Tabs.TabPane>
             <Tabs.TabPane tab='远程组件' key='RemoteComponents' />
+            <Tabs.TabPane tab='我的页面' key='MicroViewList' />
           </Tabs>
         </div>
       </CardBox>

@@ -42,9 +42,34 @@ const CodeOpenEditor = (props) => {
         onClose={onBeforeClose}
         visible={drawProps.visible}
         getContainer={() => document.querySelector<HTMLElement>('#MoyuControl')}
-        width={600}
+        width={500}
       >
         <AceEditor
+          value={
+            `
+            import RenderView from './View'
+import * as VideoPanel from './Panel'
+
+const Video = {
+  name: '分割线',
+  defaultProps: {
+  },
+  gridLayout: {
+    minH: 4,
+    h: 10
+  },
+  icon: 'https://s2.loli.net/2022/05/07/MJfW2PmFqiw7Rn1.png',
+  panel: [VideoPanel],
+  component: {
+    displayName: 'Divider',
+    render: RenderView
+  }
+}
+
+export default Video
+
+            `
+          }
           mode='typescript'
           theme='tomorrow'
           onChange={handleAceEditorCodeChange}

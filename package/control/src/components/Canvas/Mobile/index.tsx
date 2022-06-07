@@ -26,13 +26,14 @@ const Mobile: React.FC<MobileProps> = (props) => {
     (state: RootState) => (state.schema as any)?.present
   )
   const scale = useSelector((state: RootState) => state.toolbar.scale / 100)
+  const background = useSelector((state: RootState) => state.common.pageInfo.background)
   const pageName = useSelector(
     (state: RootState) => state.common.pageInfo.name
   )
   const selectedId = useSelector((state: RootState) => state.common?.uid)
 
   /**
-   *
+   * 处理Render子节点
    * @param element 当前渲染的children
    * @param renderCell 渲染的schema
    * @param componentIndex 层级
@@ -211,7 +212,8 @@ const Mobile: React.FC<MobileProps> = (props) => {
           onRender={(element) => (
             <ReactGridLayout
               style={{
-                height: 850
+                height: 850,
+                background
               }}
               className={styles.mobileLayout}
               layout={layouts}
