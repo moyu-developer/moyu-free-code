@@ -14,7 +14,7 @@ export const render = React.memo((props) => (
     </Form.Item>
 
     <Form.Item name={['__request', 'method']} label='请求方式'>
-      <Radio.Group options={RequestOptions} optionType='button' size='small' />
+      <Radio.Group options={RequestOptions} optionType='button' size='small' defaultValue='GET' />
     </Form.Item>
 
     <Form.List name={['__request', 'payload']}>

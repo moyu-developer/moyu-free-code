@@ -1,21 +1,23 @@
 import { MaterialComponentType } from '@moyu-code/shared'
-import GoodsList from './View'
+import GoodsListView from './View'
+import * as GoodsListPanel from './Panel'
+import * as RequestPanel from 'src/panels/RequestPanel'
 
-const NoticeBarProduct: MaterialComponentType = {
+const GoodsList: MaterialComponentType = {
   name: '商品列表',
   defaultProps: {
   },
   gridLayout: {
-    minH: 4,
-    h: 4
+    minH: 80,
+    h: 100
   },
   icon: 'https://s2.loli.net/2022/05/07/GZTxnQFpBmKd2i6.png',
 
-  panel: [],
+  panel: [GoodsListPanel, RequestPanel],
   component: {
     displayName: 'GoodsList',
-    render: GoodsList
+    render: GoodsListView
   }
 }
 
-export default NoticeBarProduct
+export default GoodsList
