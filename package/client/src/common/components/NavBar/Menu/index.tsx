@@ -1,16 +1,16 @@
 import { Menu, MenuProps, Space, Typography } from 'antd'
-import { IconDeviceDesktopAnalytics } from '@tabler/icons'
-import { MaterialIcon } from '@moyu-code/control'
+import routes from './routes'
 
 const NavMenu = () => {
   return (
     <Menu
       mode='horizontal'
+      items={routes}
       style={{
         lineHeight: '60px'
       }}
     >
-      <Menu.Item icon={<MaterialIcon icon={IconDeviceDesktopAnalytics} />}>
+      {/* <Menu.Item icon={<MaterialIcon icon={IconDeviceDesktopAnalytics} />}>
         工作台
       </Menu.Item>
       <Menu.Item>模板市场</Menu.Item>
@@ -19,7 +19,7 @@ const NavMenu = () => {
         <Menu.Item>接口数据</Menu.Item>
         <Menu.Item>商品中心</Menu.Item>
         <Menu.Item>活动设置</Menu.Item>
-      </Menu.SubMenu>
+      </Menu.SubMenu> */}
     </Menu>
   )
 }

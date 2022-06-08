@@ -67,7 +67,8 @@ const Example = () => {
             react: 'https://unpkg.com/react@16.7.0/umd/react.production.min.js',
             'react-dom':
               'https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js',
-            lodash: 'https://unpkg.com/lodash@4.17.21/lodash.js'
+            lodash: 'https://unpkg.com/lodash@4.17.21/lodash.js',
+            antd: 'https://unpkg.com/antd@4.21.0/dist/antd.min.js'
           }
         }}
       >

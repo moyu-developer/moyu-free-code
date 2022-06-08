@@ -8,13 +8,20 @@ export default [
     path: '/',
     component: '@/layouts/index',
     routes: [
-      { path: '/desktop', component: '@/pages/desktop' },
+      { path: '/', component: '@/pages/desktop', title: '工作台' },
       { path: '/example', component: '@/pages/example' },
       {
+        path: '/component/center',
+        title: '组件中心',
+        component: '@/pages/component-center'
+      },
+      {
         path: '/data',
+        title: '数据源',
         routes: [
           {
             path: '/data/navigation',
+            title: '导航数据',
             component: '@/pages/data/navigation'
           }
         ]
