@@ -25,13 +25,16 @@ const PropertyPanel = () => {
       (record) => record.uid === uid
     )?.component
     if (componentType) {
+      console.log(materials, componentType)
       const material = materials.find(
         (item) => item.component.displayName === componentType
       )
-      return material?.panel || []
+
+      console.log(material, 'material')
+      return []
     }
     return []
-  }, [uid])
+  }, [uid, materials])
 
   /**
    * 属性面板修改回调
@@ -51,6 +54,8 @@ const PropertyPanel = () => {
       form.setFieldsValue && form.setFieldsValue(props)
     }
   }, [uid, schema])
+
+  console.log(currentPanels, 'currentPanels')
 
   return (
     <Col className={styles.configuration}>

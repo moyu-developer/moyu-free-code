@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Prompt, useLocation } from 'umi'
 import {
   MaterialBasicProduct,
@@ -11,6 +11,7 @@ import { MaterialComponentType, ReactComponent } from '@moyu-code/shared'
 import './model'
 
 import styles from '@/styles/layout.module.css'
+import { Collapse } from 'antd'
 
 const url = 'https://unpkg.com/react@16.7.0/umd/react.production.min.js'
 
@@ -43,24 +44,40 @@ const Example = () => {
 
   const location = useLocation()
 
+  const [remoteMaterials, setRemoteMaterials] = useState<MaterialComponentType[]>([])
+  const [remotesComponents, setRenderComponents] = useState<Record<string, ReactComponent>>({})
+
   const load = async () => {
     await (window as any).System.import(url)
     const data = await (window as any).System.import(
-      'http://minio.moyu-developers.cn/avatars/moyuremotevideo.umd.production.min.js'
+      'http://175.178.14.116:9000/avatars/video.min.js'
     )
-    console.log(data, 'data')
+    console.log(data?.default?.default, 'data')
+    setRenderComponents({
+      [data?.default?.default?.component?.displayName]: data?.default?.default?.component?.render
+    })
+    setRenderComponents({})
+    setRemoteMaterials([...remoteMaterials, {
+      ...data?.default?.default,
+      panel: [() => 1]
+    }])
   }
 
   useEffect(() => {
     load()
   }, [])
 
+  const testData = remoteMaterials?.[0]
+
   return (
     <div className={styles.app} id='MoyuControl'>
+      {
+        testData ? <Collapse>{React.createElement(testData?.panel?.[0].render)}</Collapse> : null
+      }
       <Prompt message='你确定要离开么？' />
       {/* 标准层 */}
       <ContainerProvider
-        materials={materials as MaterialComponentType[]}
+        materials={[...materials, ...remoteMaterials]}
         id={Number(location?.query.id)}
         depends={{
           resolve: {
@@ -75,7 +92,7 @@ const Example = () => {
         {/* 物料列表区 */}
         <MaterialBasicProduct />
         {/* 渲染器 */}
-        <MaterialRenderCanvas materialComponents={renderComponents} />
+        <MaterialRenderCanvas materialComponents={{ ...renderComponents, Iframe: testData?.component.render }} />
         {/* 属性编辑器 */}
         <PropertyPanel />
       </ContainerProvider>
