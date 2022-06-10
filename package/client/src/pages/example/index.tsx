@@ -50,7 +50,7 @@ const Example = () => {
   const load = async () => {
     await (window as any).System.import(url)
     const data = await (window as any).System.import(
-      'http://175.178.14.116:9000/avatars/video.min.js'
+      'http://175.178.14.116:9000/avatars/moyuremotevideo.umd.development.js'
     )
     console.log(data?.default?.default, 'data')
     setRenderComponents({
@@ -58,8 +58,7 @@ const Example = () => {
     })
     setRenderComponents({})
     setRemoteMaterials([...remoteMaterials, {
-      ...data?.default?.default,
-      panel: [() => 1]
+      ...data?.default?.default
     }])
   }
 
@@ -71,9 +70,6 @@ const Example = () => {
 
   return (
     <div className={styles.app} id='MoyuControl'>
-      {
-        testData ? <Collapse>{React.createElement(testData?.panel?.[0].render)}</Collapse> : null
-      }
       <Prompt message='你确定要离开么？' />
       {/* 标准层 */}
       <ContainerProvider
@@ -85,6 +81,7 @@ const Example = () => {
             'react-dom':
               'https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js',
             lodash: 'https://unpkg.com/lodash@4.17.21/lodash.js',
+            moment: 'https://unpkg.com/moment@2.29.3/moment.js',
             antd: 'https://unpkg.com/antd@4.21.0/dist/antd.min.js'
           }
         }}

@@ -14,7 +14,7 @@ export default defineConfig({
   },
   antd: {
   },
-  headScripts: ['https://unpkg.com/systemjs@6.12.1/dist/system.js'],
+  scripts: ['https://unpkg.com/systemjs@6.12.1/dist/system.js'],
   sass: {},
   theme: {
     '@primary-color': '#165DFF',
@@ -23,5 +23,7 @@ export default defineConfig({
     '@warning-color': '#f5a623',
     '@processing-color': '#165DFF',
     '@border-color-base': '#EDEDED'
+  },
+  externals: {
   }
 })

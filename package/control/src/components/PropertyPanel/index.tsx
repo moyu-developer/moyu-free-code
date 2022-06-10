@@ -31,7 +31,7 @@ const PropertyPanel = () => {
       )
 
       console.log(material, 'material')
-      return []
+      return material?.panel || []
     }
     return []
   }, [uid, materials])
@@ -82,7 +82,10 @@ const PropertyPanel = () => {
               onChange={(keys) => setActiveKey(keys)}
             >
               {currentPanels.map(({ key, render: RenderPanel }) => {
-                return <RenderPanel key={key} materials={{ uid }} />
+                return React.createElement(RenderPanel, {
+                  key,
+                  materials: { uid }
+                })
               })}
             </Collapse>
           </Form>
