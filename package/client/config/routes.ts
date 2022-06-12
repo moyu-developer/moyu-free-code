@@ -4,12 +4,12 @@ export default [
     component: '@/pages/login'
   },
   { path: '/error', component: '@/pages/404' },
+  { path: '/example', component: '@/pages/example' },
   {
     path: '/',
     component: '@/layouts/index',
     routes: [
       { path: '/', component: '@/pages/desktop', title: '工作台' },
-      { path: '/example', component: '@/pages/example' },
       {
         path: '/component/center',
         title: '组件中心',

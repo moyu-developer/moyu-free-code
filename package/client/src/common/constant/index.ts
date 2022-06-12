@@ -1,3 +1,6 @@
+export const LogoUrl: string = 'https://s2.loli.net/2022/03/16/f6AbT7nGh8OQt9y.png'
+export const GithubUrl: string = 'https://github.com/moyu-developer'
+
 export enum DropNames {
   Component = 'drop_component_symbol',
   Field = 'drop_field_symbol'

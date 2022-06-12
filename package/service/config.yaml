@@ -28,7 +28,7 @@ dev:
       clientSecret: "474d5b65d0a9348213c4c5f43185a555ab01871d7afaae2f955861522f9f983c"
 
 
-  redis:
-    host: 124.223.43.13
-    port: 6379
-    password: wangly19redis
+  # redis:
+  #   host: 124.223.43.13
+  #   port: 6379
+  #   password: wangly19redis

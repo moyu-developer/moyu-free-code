@@ -7,7 +7,7 @@ import { UserModule } from './modules/user/user.module'
 import { AuthModule } from './modules/auth/auth.module'
 import Configuration from 'src/config'
 import { View, User, Resource } from 'src/entity'
-import { RedisCacheModule } from './modules/redis-cache/redis-cache.module'
+// import { RedisCacheModule } from './modules/redis-cache/redis-cache.module'
 import { UploadModule } from './modules/upload/upload.module'
 import { ResourceModule } from './modules/resource/resource.module'
 @Module({
@@ -27,7 +27,7 @@ import { ResourceModule } from './modules/resource/resource.module'
     ViewsModule,
     UserModule,
     AuthModule,
-    RedisCacheModule,
+    // RedisCacheModule,
     UploadModule,
     ResourceModule
   ],
