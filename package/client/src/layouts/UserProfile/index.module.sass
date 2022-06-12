@@ -1,0 +1,41 @@
+@import '@/styles/mixins.scss'
+
+.title
+  font-size: 14px
+
+
+.logout
+  @include flex()
+  height: 48px
+  background: #165DFF
+  width: 100%
+  border-radius: 12px
+  color: #fff
+  margin-top: 16px
+  cursor: pointer
+
+.profile
+  @include flex($jc: flex-start)
+  gap: 12px
+  // background: rgb(248, 249, 252)
+  border-radius: 12px
+
+  &Warp
+    @include flex($d: column, $jc: space-between, $ai: flex-start)
+    width: calc(100% - 32px)
+    margin: 16px
+    gap: 12px
+    
+
+  &Info
+    flex: 1
+    @include flex($d: column, $jc: space-around, $ai: flex-start)
+    height: 42px
+    
+    &Name
+      font-weight: bold
+      color: #333
+      font-size: 14px
+
+    &Time
+      font-size: 12px

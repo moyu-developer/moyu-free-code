@@ -2,6 +2,7 @@ import { history } from 'umi'
 import { Layout } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import React, { ReactElement, useEffect } from 'react'
+import LayoutContainer from './Container'
 import { Dispatch, RootState } from '@/common/model'
 import NavBar from '@/common/components/NavBar'
 import AvatarBar from '@/common/components/AvatarBar'
@@ -24,8 +25,9 @@ const AppLayout: React.FC = (props) => {
 
   return (
     <>
-      <NavBar footer={<AvatarBar />} />
-      <Content className={styles.content}>{props.children}</Content>
+      <LayoutContainer>{props.children}</LayoutContainer>
+      {/* <NavBar footer={<AvatarBar />} />
+      <Content className={styles.content}>{props.children}</Content> */}
     </>
   )
 }
