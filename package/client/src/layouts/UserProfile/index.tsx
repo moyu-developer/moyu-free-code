@@ -1,6 +1,5 @@
-import * as React from 'react'
 import { history } from 'umi'
-import { Avatar, Typography, Modal } from 'antd'
+import { Avatar, Typography, Modal, Badge, Button } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState, Dispatch } from '@/common/model'
 import Moment from 'moment'
@@ -31,15 +30,18 @@ const UserProfile = () => {
         用户信息
       </Typography.Text>
       <div className={styles.profile}>
-        <Avatar size={46} src={userInfo?.avatar} />
+        <Badge>
+          <Avatar shape='square' size={46} src={userInfo?.avatar} />
+        </Badge>
+
         <div className={styles.profileInfo}>
           <span className={styles.profileInfoName}>{userInfo?.name}</span>
           <span className={styles.profileInfoTime}>{Moment().format('YYYY-MM-DD')}</span>
         </div>
       </div>
-      <div className={styles.logout} onClick={onSystemExit}>
+      <Button size='large' type='primary' block onClick={onSystemExit}>
         退出登录
-      </div>
+      </Button>
     </div>
   )
 }

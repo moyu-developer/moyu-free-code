@@ -1,14 +1,17 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
+import { Link } from 'umi'
 import {
   ProLayout,
   SettingDrawer,
   ProSettings
 } from '@ant-design/pro-components'
-import complexMenu from './pm'
+import { menuRoutes } from '../../../config/routes'
 import { LogoUrl, GithubUrl } from '@/common/constant'
 import styles from './index.module.sass'
-import { Space, Typography } from 'antd'
+import { Space } from 'antd'
 import UserProfile from '../UserProfile'
+
+console.log(menuRoutes, 'menuRoutes')
 
 const LayoutContainer: React.FunctionComponent<{
   children?: ReactNode;
@@ -17,6 +20,8 @@ const LayoutContainer: React.FunctionComponent<{
     fixSiderbar: true,
     navTheme: 'light'
   })
+
+  const pathname = window.location.pathname || '/desktop'
 
   return (
     <div
@@ -42,21 +47,26 @@ const LayoutContainer: React.FunctionComponent<{
         menuFooterRender={() => <UserProfile />}
         navTheme='light'
         location={{
-          pathname: '/data_hui/data_hui2'
+          pathname
         }}
+        menuItemRender={(item, dom) => (
+          <Link to={item.path}>
+            {dom}
+          </Link>
+        )}
         route={{
-          routes: complexMenu
+          routes: menuRoutes
         }}
-        menu={{ defaultOpenAll: true }}
         {...settings}
         headerHeight={0}
+        siderWidth={250}
       >
         <div className={styles.container}>
           {props.children}
         </div>
       </ProLayout>
       <SettingDrawer
-        pathname='/'
+        pathname={pathname}
         enableDarkTheme
         getContainer={() => document.getElementById('root')}
         settings={settings}
