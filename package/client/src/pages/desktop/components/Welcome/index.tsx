@@ -1,11 +1,12 @@
 
 import { Space, Button, Typography } from 'antd'
-import { PageViewSettingModal, MaterialIcon } from '@moyu-code/control'
 import { IconPlus } from '@tabler/icons'
 import styles from './index.module.sass'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/common/model'
+import CreateProjectViewModal from '../CreateProjectViewModal'
+import { MaterialIcon } from '@moyu-code/control'
 
 const Welcome = () => {
   const username = useSelector((state: RootState) => state.common.userInfo?.name)
@@ -34,7 +35,7 @@ const Welcome = () => {
           </Typography.Text>
         </Space>
         <div className={styles.welcomeRight}>
-          <PageViewSettingModal>
+          <CreateProjectViewModal>
             <Button
               type='primary'
               size='large'
@@ -43,8 +44,7 @@ const Welcome = () => {
             >
               创建微页面
             </Button>
-          </PageViewSettingModal>
-
+          </CreateProjectViewModal>
         </div>
       </div>
     </div>

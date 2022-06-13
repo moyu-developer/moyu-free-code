@@ -2,14 +2,16 @@
 
 .wrap
   height: 200px
-  width: 100%
+  width: calc( 100% +  48px)
   background: #F8F9FC
+  margin-left: -24px
+  box-sizing: content-box
 
 .welcome
   position: relative
   height: 200px
-  width: 1200px
-  margin: auto
+  width: 100%
+  padding: 24px
   @include flex($jc: space-between)
 
   &Left
