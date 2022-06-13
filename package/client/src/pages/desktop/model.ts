@@ -24,7 +24,7 @@ const state: MyAppModelState = {
     size: 10,
     current: 1
   },
-  mode: 'Table'
+  mode: 'Card'
 }
 
 const myAppModel = createModel<RootModel>()({
