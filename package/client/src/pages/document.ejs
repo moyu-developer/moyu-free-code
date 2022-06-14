@@ -39,87 +39,166 @@
     </noscript>
     <div id="root">
       <style>
-        html, body {
+        @import url(https://fonts.googleapis.com/css?family=Quicksand:400,300,700);
+
+.container {
+  width: 50%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #05b0b3;
 }
-
-body {
-  align-items: center;
-  background-color: #1D1F20;
-  display: flex;
-  justify-content: center;
+.container.right {
+  right: 0;
+  left:auto;
+  background-color: #eee;
 }
-
-.loader  {
-  animation: rotate 1s infinite;  
-  height: 50px;
-  width: 50px;
+.spring {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: visible;
 }
-
-.loader:before,
-.loader:after {   
-  border-radius: 50%;
-  content: '';
+.logo{
+    width: 100px;
+    margin-top: 16px;    
+  margin-left: -50px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  text-align: center;
+  color: #05b0b3;
+}
+.logo svg{
+  max-width: 56px;
+}
+.bubble {
+  background: rgba(255, 255, 255, .4);
+  width: 24px;
+  height: 24px;
+  position: absolute;
   display: block;
-  height: 20px;  
-  width: 20px;
+  left: 0;
+  margin-left:-12px;
+  bottom: 0;
+  opacity: 0;
+  border-radius: 50%;
+  animation: bubbleUp 1s infinite ease-in-out;
+  -webkit-animation: bubbleUp 1s infinite ease-in-out;
+  -o-animation: bubbleUp 1s infinite ease-in-out;
+  -moz-animation: bubbleUp 1s infinite ease-in-out;
 }
-.loader:before {
-  animation: ball1 1s infinite;  
-  background-color: #cb2025;
-  box-shadow: 30px 0 0 #f8b334;
-  margin-bottom: 10px;
-}
-.loader:after {
-  animation: ball2 1s infinite; 
-  background-color: #00a096;
-  box-shadow: 30px 0 0 #97bf0d;
-}
-
-@keyframes rotate {
-  0% { 
-    -webkit-transform: rotate(0deg) scale(0.8); 
-    -moz-transform: rotate(0deg) scale(0.8);
-  }
-  50% { 
-    -webkit-transform: rotate(360deg) scale(1.2); 
-    -moz-transform: rotate(360deg) scale(1.2);
-  }
-  100% { 
-    -webkit-transform: rotate(720deg) scale(0.8); 
-    -moz-transform: rotate(720deg) scale(0.8);
-  }
+.container.right .bubble {
+  background: rgba(5, 176, 179,.6);
 }
 
-@keyframes ball1 {
+.bubble1 {
+  left: 0px;
+  top: 0px;
+  -webkit-animation-delay: 0;
+  /* Chrome, Safari, Opera */
+  
+  animation-delay: 0;
+}
+
+.bubble2 {
+    width: 12px;
+  height: 12px;
+  left: 0px;
+  -webkit-animation-delay: 300ms;
+  /* Chrome, Safari, Opera */
+  
+  animation-delay: 300ms;
+}
+
+.bubble3 {
+  left: -10px;
+  top: -10px;
+  -webkit-animation-delay: 600ms;
+  /* Chrome, Safari, Opera */
+  
+  animation-delay: 600ms;
+}
+
+.bubble4 {
+  width: 28px;
+  height: 28px;
+  left: 5px;
+  -webkit-animation-delay: 900ms;
+  /* Chrome, Safari, Opera */
+  
+  animation-delay: 900ms;
+  -webkit-animation-duration: 1.5s;
+  /* Chrome, Safari, Opera */
+  
+  animation-duration: 1.5s;
+}
+
+.bubble5 {
+  width: 16px;
+  height: 16px;
+  left: 0px;
+  top: 0px;
+  -webkit-animation-delay: 1200ms;
+  /* Chrome, Safari, Opera */
+  
+  animation-delay: 1200ms;
+  -webkit-animation-duration: 1.2s;
+  /* Chrome, Safari, Opera */
+  
+  animation-duration: 1.2s;
+}
+
+@keyframes bubbleUp3d {
   0% {
-    box-shadow: 30px 0 0 #f8b334;
+    -webkit-transform: translateY(0px) scale3d(0.5, 0.5, 0.5);
+    opacity: 0
   }
-  50% {
-    box-shadow: 0 0 0 #f8b334;
-    margin-bottom: 0;
-    -webkit-transform: translate(15px,15px);
-    -moz-transform: translate(15px, 15px);
+  30% {
+    -webkit-transform: translateY(0px) scale3d(0.8, 0.8, 0.8);
+    opacity: 1
+  }
+  90% {
+    -webkit-transform: translateY(-20px) scale3d(1, 1, 1);
+    opacity: 1
+  }
+  99% {
+    -webkit-transform: translateY(-30px) scale3d(2, 2, 2);
+    opacity: 0
   }
   100% {
-    box-shadow: 30px 0 0 #f8b334;
-    margin-bottom: 10px;
+    -webkit-transform: translateY(0px) scale3d(1, 1, 1);
+    opacity: 0
   }
 }
 
-@keyframes ball2 {
+@keyframes bubbleUp {
   0% {
-    box-shadow: 30px 0 0 #97bf0d;
+    top: 0px;
+    -webkit-transform: scale(0.5);
+    opacity: 0
   }
-  50% {
-    box-shadow: 0 0 0 #97bf0d;
-    margin-top: -20px;
-    -webkit-transform: translate(15px,15px);
-    -moz-transform: translate(15px, 15px);
+  20% {
+    top: 0px;
+    -webkit-transform: scale(.7);
+    opacity: 1
+  }
+  93% {
+    top: -30px;
+    -webkit-transform: scale(1);
+    opacity: 1
+  }
+  99% {
+    top: -36px;
+    -webkit-transform: scale(2);
+    opacity: 0
   }
   100% {
-    box-shadow: 30px 0 0 #97bf0d;
-    margin-top: 0;
+    top: 0px;
+    -webkit-transform: scale(1);
+    opacity: 0
   }
 }
       </style>
@@ -132,8 +211,16 @@ body {
           height: 100%;
           min-height: 420px;
         "
-      >
-      <div class="loader"></div>
+      ><div class="container">
+        <div class="spring">
+          <span class="bubble bubble1"></span>
+          <span class="bubble bubble2"></span>
+          <span class="bubble bubble3"></span>
+          <span class="bubble bubble4"></span>
+          <span class="bubble bubble5"></span>
+        </div>
+        
+      </div>
       </div>
     </div>
   </body>
