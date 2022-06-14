@@ -1,3 +1,4 @@
+import { history } from 'umi'
 import { GotAxios, ComposeFunction } from '@moyu-code/request'
 import { message, Modal } from 'antd'
 import jsCookie from 'js-cookie'
@@ -32,7 +33,7 @@ const got = new GotAxios({
         content: '',
         okText: '去登录',
         onOk: async () => {
-          // history.replace('/login')
+          history.replace('/login')
         }
       })
     }

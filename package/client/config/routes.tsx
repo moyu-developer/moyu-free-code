@@ -1,6 +1,6 @@
 import React from 'react'
 import { BasicLayoutProps } from '@ant-design/pro-components'
-import { SmartHome, DatabaseImport, Gps, Components } from 'tabler-icons-react'
+import { SmartHome, DatabaseImport, Gps, Components, Photo } from 'tabler-icons-react'
 
 type Route = BasicLayoutProps['route'];
 
@@ -25,13 +25,17 @@ export const menuRoutes = [
   },
   {
     path: '/data',
-    name: '数据源',
+    name: '资源管理',
     icon: <MaterialIcon icon={DatabaseImport} />,
     routes: [
       {
         path: '/data/navigation',
-        name: '导航数据',
-        icon: <MaterialIcon icon={Gps} />,
+        name: '导航路径',
+        component: '@/pages/data/navigation'
+      },
+      {
+        path: '/data/oss',
+        name: 'OSS资源',
         component: '@/pages/data/navigation'
       }
     ]
