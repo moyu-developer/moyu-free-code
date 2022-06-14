@@ -53,9 +53,6 @@ export class ViewsService {
   async saveRecord (record: CreateViewRequestDto, user: User) {
     const view = new View(record)
     view.user = user
-
-    console.log(view, user, 'view')
-
     /** id存在时更新当前数据，id不存在时做数据保存。 */
     if (view.id) {
       await this.views.update(view.id, view)
@@ -63,6 +60,6 @@ export class ViewsService {
     }
 
     const result = await this.views.save(view)
-    return result
+    return result.id
   }
 }
