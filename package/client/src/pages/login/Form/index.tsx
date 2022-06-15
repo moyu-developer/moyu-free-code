@@ -3,12 +3,12 @@ import { useEffect, useRef } from 'react'
 import { LoginReqDto, oauthLogin } from '@/api/auth/login'
 import type { Dispatch, RootState } from '@/common/model'
 import { Space, Button, Typography, Form, Input, Checkbox } from 'antd'
-import { BrandGithub } from 'tabler-icons-react'
+import { BrandGithub, User, Eye } from 'tabler-icons-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { MaterialIcon } from '@moyu-code/control'
 import JsCookie from 'js-cookie'
-import styles from './index.module.sass'
 import { oauthDev } from '@/common/config/oauth'
+import styles from './index.module.sass'
 
 const LoginForm = () => {
   const rememberRef = useRef<Boolean>(Boolean(JsCookie.get('remember')))
@@ -16,7 +16,7 @@ const LoginForm = () => {
   const isLogin = useSelector(
     (state: RootState) => state.loading.effects.common.loginEffect
   )
-  const params = useParams<{code?: string}>()
+  const params = useParams<{ code?: string }>()
 
   const handleLoginFormSubmit = async (formData: Record<string, any>) => {
     const { remember, ...user } = formData
@@ -50,14 +50,22 @@ const LoginForm = () => {
           label='账号'
           rules={[{ required: true, message: '请输入账号名称???' }]}
         >
-          <Input placeholder='请输入账号名称' size='large' />
+          <Input
+            placeholder='请输入账号名称?'
+            size='large'
+            prefix={<MaterialIcon icon={User} />}
+          />
         </Form.Item>
         <Form.Item
           name='password'
           label='密码'
           rules={[{ required: true, message: '请输入当前密码???' }]}
         >
-          <Input.Password placeholder='请输入当前密码' size='large' />
+          <Input.Password
+            placeholder='请输入当前密码?'
+            size='large'
+            prefix={<MaterialIcon icon={Eye} />}
+          />
         </Form.Item>
         <div className={styles.loginFormRemember}>
           <Form.Item name='remember' valuePropName='checked' noStyle>
