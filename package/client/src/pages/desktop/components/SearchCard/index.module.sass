@@ -1,0 +1,19 @@
+@import '@/styles/mixins.scss'
+
+.table
+  display: grid
+  grid-gap: 18px
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr))
+  list-style: none
+
+  &Item
+    width: 100% !important
+    
+  
+  &Tool
+    @include flex($jc: space-betwwen)
+    &Search
+      width: 280px
+    &Params
+      @include flex($jc: flex-end)
+      flex: 1
