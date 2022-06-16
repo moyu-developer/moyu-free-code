@@ -1,5 +1,5 @@
 import Welcome from './components/Welcome/index'
-import { Result } from 'antd'
+import { Result, Spin, Modal } from 'antd'
 import SearchCard from './components/SearchCard'
 import TableList from './components/TableList'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
@@ -10,6 +10,7 @@ import styles from './index.module.sass'
 import './model'
 
 export default () => {
+  const loading = useSelector((state: RootState) => state.loading.effects.myApp.getDashViewList)
   const dispatch: Dispatch = useDispatch()
   const isEmpty = useSelector(
     (state: RootState) => state.myApp.tableData.total === 0,
@@ -32,11 +33,6 @@ export default () => {
 
   return (
     <div className={styles.dashboard}>
-      {/* <Head>
-        <title>仪表板 - 首页</title>
-        <meta name='description' content='仪表板内容，在这里创建你的页面' />
-        <link rel='icon' href='/favicon.ico' />
-      </Head> */}
       <Welcome />
       <div className={styles.dashboardMain}>
         <div className={styles.dashboardList}>
@@ -52,9 +48,11 @@ export default () => {
               )
             : (
               <div className={styles.dashboardContent}>
-                {
+                <Spin spinning={loading}>
+                  {
                   mode === 'Card' ? <SearchCard /> : <TableList />
                 }
+                </Spin>
               </div>
               )}
         </div>

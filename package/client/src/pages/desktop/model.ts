@@ -1,8 +1,12 @@
+import React from 'react'
 import { createModel } from '@rematch/core'
 import type { RootModel } from '@/common/model/connect'
 import store from '@/common/model'
 import { isSuccess } from '@moyu-code/request'
-import getViewListApi, { QueryViewListRequestDto, QueryViewListResponseDto } from '@/api/view/list'
+import getViewListApi, { QueryViewListResponseDto } from '@/api/view/list'
+import { MaterialIcon } from '@moyu-code/control'
+import { Trash } from 'tabler-icons-react'
+import { Modal } from 'antd'
 
 interface MyAppModelState {
   tableData: QueryViewListResponseDto['data'],
@@ -30,12 +34,39 @@ const state: MyAppModelState = {
 const myAppModel = createModel<RootModel>()({
   state,
   effects: (dispatch) => ({
-    async getDashViewList (_, state) {
+    async getDashViewList (_, state): Promise<{
+      data: MyAppModelState['tableData']['list'],
+      total: number;
+      success: boolean
+    }> {
       const searchParams = state.myApp.searchParams
       const { code, data } = await getViewListApi(searchParams)
       if (isSuccess(code)) {
         dispatch.myApp.saveList(data)
+        return {
+          success: true,
+          data: data.list,
+          total: data.total
+        }
       }
+      return {
+        total: 0,
+        data: [],
+        success: false
+      }
+    },
+
+    async deleteDashViewById (id: number) {
+      Modal.confirm({
+        icon: React.createElement(MaterialIcon, { icon: Trash }),
+        title: '确认删除',
+        content: '页面删除后会放入回收站，可以在回收站信息中找回它。超过100天后将会自动清除，请谨慎操作。',
+        okText: '我要删除',
+        okType: 'primary',
+        okButtonProps: {
+          danger: true
+        }
+      })
     }
   }),
   reducers: {
