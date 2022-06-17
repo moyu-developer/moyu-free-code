@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "umi dev",
-    "build": "umi build"
+    "build": "umi build",
+    "analyze": "ANALYZE=1 umi build"
   },
   "dependencies": {
     "@ant-design/pro-components": "^1.1.3",

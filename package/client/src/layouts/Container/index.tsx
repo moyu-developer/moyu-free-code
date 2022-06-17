@@ -3,7 +3,8 @@ import { Link } from 'umi'
 import {
   ProLayout,
   SettingDrawer,
-  ProSettings
+  ProSettings,
+  PageContainer
 } from '@ant-design/pro-components'
 import { menuRoutes } from '../../../config/routes'
 import { LogoUrl, GithubUrl } from '@/common/constant'
@@ -61,9 +62,11 @@ const LayoutContainer: React.FunctionComponent<{
         headerHeight={0}
         siderWidth={250}
       >
+
         <div className={styles.container}>
           {props.children}
         </div>
+
       </ProLayout>
       <SettingDrawer
         pathname={pathname}

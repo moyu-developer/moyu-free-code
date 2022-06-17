@@ -2,19 +2,16 @@ export default [
   {
     path: '/home',
     name: '首页',
-    locale: 'menu.home',
     routes: [
       {
         path: '/home/overview',
         name: '概述',
-        hideInMenu: true,
-        locale: 'menu.home.overview'
+        hideInMenu: true
       },
       {
         path: '/home/search',
         name: '搜索',
-        hideInMenu: true,
-        locale: 'menu.home.search'
+        hideInMenu: true
       }
     ]
   },

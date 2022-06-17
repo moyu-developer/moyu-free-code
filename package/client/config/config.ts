@@ -22,7 +22,7 @@ export default defineConfig({
     '@success-color': '#17C964',
     '@error-color': '#F31260',
     '@warning-color': '#F5A524',
-    '@processing-color': 'linear-gradient(112deg, #06B7DB -63.59%, #FF4ECD -20.3%, #0072F5 70.46%)',
+    '@processing-color': '#0072F5',
     '@border-color-base': '#ECEDEE'
   },
   analyze: {
