@@ -4,8 +4,7 @@ import {
   Post,
   UploadedFile,
   UseInterceptors,
-  Req,
-  Inject
+  Req
 } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiConsumes, ApiBody } from '@nestjs/swagger'
 import { Express } from 'express'

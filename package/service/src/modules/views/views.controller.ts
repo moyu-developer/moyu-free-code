@@ -58,4 +58,6 @@ export class ViewsController {
     }, user)
     return id
   }
+
+  async deleteView () {}
 }
