@@ -66,14 +66,13 @@ const PropertyPanel = () => {
           }
           <Form
             form={form}
+            layout='vertical'
             onValuesChange={handleConfigurationFormChange}
             onFinish={(formData) => {
               console.log(formData, 'formData')
               dispatch.schema.setProps({ uid, props: formData })
             }}
             labelAlign='left'
-            labelCol={{ span: 7 }}
-            wrapperCol={{ span: 17 }}
           >
             <Collapse
               ghost
