@@ -5,6 +5,7 @@ import styles from './index.module.sass'
 console.log(styles, 'styles')
 
 interface PictureAdsProps {
+  style?: React.CSSProperties,
   imageProps?: ImageProps;
   children?: ReactNode;
   coordinates?: Array<{
@@ -20,7 +21,7 @@ const PictureAds: React.FunctionComponent<PictureAdsProps> = (props) => {
   console.log(props, 'props')
 
   return (
-    <div className={styles.image}>
+    <div className={styles.image} style={props.style}>
       {
         props.coordinates?.map((item) => (
           <div

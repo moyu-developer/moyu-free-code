@@ -42,7 +42,7 @@ export const render = React.memo((props) => (
       </div>
       <div className={styles.div5}>
 
-        <Form.Item noStyle name={['style', 'paddingTop']}>
+        <Form.Item noStyle name={['style', 'marginTop']}>
           <InputNumber {...defaultInputProps} />
         </Form.Item>
       </div>

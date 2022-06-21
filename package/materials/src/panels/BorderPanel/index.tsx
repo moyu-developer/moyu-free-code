@@ -11,22 +11,22 @@ export const key = 'BorderPanel'
 
 export const render = React.memo((props) => (
   <Collapse.Panel {...props} header='边框设置' key={key}>
-    <Row>
+    <Row gutter={[20, 0]}>
       <Col span={12}>
 
-        <Form.Item name={['styles', 'border-width']} label='宽度'>
-          <InputNumber prefix={<Tag color='blue'>px</Tag>} />
+        <Form.Item name={['style', 'borderWidth']} label='宽度'>
+          <InputNumber prefix={<Tag color='cyan'>px</Tag>} style={{ width: '100%' }} />
         </Form.Item>
       </Col>
 
       <Col span={12}>
-        <Form.Item name={['styles', 'border-size']} label='样式'>
+        <Form.Item name={['style', 'borderStyle']} label='样式'>
           <Select options={BorderStyleOptions} placeholder='none' />
         </Form.Item>
       </Col>
 
       <Col span={12}>
-        <Form.Item name={['styles', 'border-color']} label='颜色'>
+        <Form.Item name={['style', 'borderColor']} label='颜色'>
           <ColorSetter />
         </Form.Item>
       </Col>
