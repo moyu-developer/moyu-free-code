@@ -26,6 +26,7 @@ import CodeOpenEditor from '../CodeOpenEditor'
 import Icon from 'src/common/components/AntSvg'
 import { LayoutOptions } from 'src/common/constant'
 import domtoimage from 'dom-to-image'
+import Device from './Device'
 import { ulid } from 'ulid'
 
 const Toolbar = () => {
@@ -72,6 +73,9 @@ const Toolbar = () => {
         <Select defaultValue='grid' options={LayoutOptions} />
       </Space>
       <Space size={5}>
+        <div className={styles.toolbarGroup}>
+          <Device />
+        </div>
         <div className={styles.toolbarGroup}>
           <Button
             type='link'
