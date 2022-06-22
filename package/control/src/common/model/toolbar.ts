@@ -5,10 +5,12 @@ import { message } from 'antd'
 
 interface ToolBarState {
   scale: number,
+  isShare: boolean;
 }
 
 const state: ToolBarState = {
-  scale: 100
+  scale: 100,
+  isShare: false
 }
 
 export default createModel<RootModel>()({
@@ -53,6 +55,14 @@ export default createModel<RootModel>()({
       return {
         ...state,
         scale: size
+      }
+    },
+
+    /** 分享 */
+    setShare (state, bool: boolean) {
+      return {
+        ...state,
+        isShare: bool
       }
     }
   }

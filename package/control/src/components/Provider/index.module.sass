@@ -1,3 +1,5 @@
-@import url('https://css.gg/css')
-*
-  box-sizing: border-box
+@import 'src/common/styles/mixins.scss'
+
+.page
+  @include flex($jc: flex-start, $ai: flex-start)
+  height: 100vh

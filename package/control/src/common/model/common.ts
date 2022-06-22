@@ -25,7 +25,7 @@ interface CommonState {
     status?: 0 | 1 | 2
   }
 
-  depends?: RemoteOptions
+  depends?: RemoteOptions,
 
 }
 

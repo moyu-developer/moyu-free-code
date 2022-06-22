@@ -6,7 +6,6 @@ import { LocalAuthGuard } from '../auth/auth.guard'
 import { CreateViewRequestDto } from './dto/create.dto'
 import { QueryViewListRequestDto, QueryViewListResponseDto } from './dto/list.dto'
 import { ViewsService } from './views.service'
-import { AuthGuard } from '@nestjs/passport'
 
 @Controller({
   version: '1',

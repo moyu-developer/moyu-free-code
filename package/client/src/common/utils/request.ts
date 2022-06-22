@@ -2,7 +2,6 @@ import { history } from 'umi'
 import { GotAxios, ComposeFunction } from '@moyu-code/request'
 import { message, Modal } from 'antd'
 import jsCookie from 'js-cookie'
-import { throttle } from 'lodash'
 import store from '@/common/model'
 
 const setRequestToken: ComposeFunction = (config) => {
@@ -19,7 +18,7 @@ const got = new GotAxios({
 }, {
   version: '/v1',
   pipe: [setRequestToken],
-  onSuccess: throttle((res) => {
+  onSuccess: (res) => {
     if (res.status === 404) {
       message.error('接口调用失败，请检查网络连接！')
     }
@@ -37,7 +36,7 @@ const got = new GotAxios({
         }
       })
     }
-  }, 1000)
+  }
 })
 
 export default got

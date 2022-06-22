@@ -1,14 +1,11 @@
-import { Row } from 'antd'
 import * as React from 'react'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
 import store from 'src/common/model'
 import { Provider } from 'react-redux'
 import type { MaterialComponentType, RenderNodeType } from '@moyu-code/shared'
 import { RemoteOptions, RemoteComponent, RemoteLoader } from '@moyu-code/renders'
 import 'react-resizable/css/styles.css'
 import 'react-grid-layout/css/styles.css'
-import './index.module.sass'
+import styles from './index.module.sass'
 
 export interface MaterialContainerProviderProps {
   /** 装修组件 */
@@ -62,11 +59,9 @@ const ContainerProvider: React.FC<MaterialContainerProviderProps> = (props) => {
 
   return (
     <Provider store={store}>
-      <DndProvider backend={HTML5Backend}>
-        <Row>
-          {props.children}
-        </Row>
-      </DndProvider>
+      <div className={styles.page}>
+        {props.children}
+      </div>
     </Provider>
   )
 }
