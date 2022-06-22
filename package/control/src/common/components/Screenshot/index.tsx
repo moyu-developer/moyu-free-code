@@ -7,36 +7,29 @@ import styles from './index.module.sass'
 export interface ScreenshotProps {
   title: string;
   className?: string;
-  style?: React.CSSProperties
-  gridBackground?: boolean
-  width?: number | string
-  height?: number | string
-  children?: React.ReactNode
-
+  style?: React.CSSProperties;
+  gridBackground?: boolean;
+  width?: number | string;
+  height?: number | string;
+  children?: React.ReactNode;
 }
 
 const Screenshot: React.FC<ScreenshotProps> = (props) => {
   return (
-    <div
-      className={cs(styles.Mobile, props.className)} style={{
-        ...props.style,
-        width: props.width,
-        height: props.height
-      }}
-    >
+    <div className={cs(styles.Mobile, props.className)}>
       <div className={styles.MobileTitle}>
-        <div className={styles.MobileContentName}>
-          {props.title}
-        </div>
+        <div className={styles.MobileContentName}>{props.title}</div>
         <div className={styles.MobilePill}>
           <IconSmartHome />
           <IconX />
         </div>
       </div>
-      <div className={cs(styles.MobileContent, {
-        [styles.MobileGridBg]: props.gridBackground
-      })}
-      >{props.children}
+      <div
+        className={cs(styles.MobileContent, {
+          [styles.MobileGridBg]: props.gridBackground
+        })}
+      >
+        {props.children}
       </div>
     </div>
   )
