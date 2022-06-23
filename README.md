@@ -21,13 +21,9 @@
   </p>
 </div>
 
-### Light Theme
+### Preview
 
-
-![Light Theme.png](https://s2.loli.net/2022/03/24/PFquQlbdMgvcaAX.png)
-
-### DarkTheme
-![image.png](https://s2.loli.net/2022/03/27/kG9zIhyguLqbQoY.png)
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5457321c0eef4a60a2e9f0bc39e4b020~tplv-k3u1fbpfcp-watermark.image?)
 
 ## 目录
 
