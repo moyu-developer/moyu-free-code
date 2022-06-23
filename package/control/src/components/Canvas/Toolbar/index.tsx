@@ -125,13 +125,7 @@ const Toolbar = () => {
         </div>
       </Space>
       <Space>
-        <PreviewFrameModal>
-          <Button
-            type='link'
-            size='small'
-            icon={<Icon icon={PresentationAnalytics} />}
-          />
-        </PreviewFrameModal>
+        <PreviewFrameModal />
         <Button
           type='primary'
           onClick={handleSchemaPublish}

@@ -49,6 +49,7 @@
     "dom-to-image": "^2.6.0",
     "immer": "^9.0.12",
     "mustache": "^4.2.0",
+    "qrcode.react": "^3.0.2",
     "react-ace": "^10.1.0",
     "react-dnd": "^15.1.0",
     "react-dnd-html5-backend": "^15.1.1",

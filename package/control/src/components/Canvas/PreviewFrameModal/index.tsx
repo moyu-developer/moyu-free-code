@@ -1,51 +1,36 @@
-import { Badge, Col, Descriptions, Modal, Row, Button, Tag } from 'antd'
-import { IconBrandChrome } from '@tabler/icons'
-import Screenshot from 'src/common/components/Screenshot'
+import { Popover, Col, Descriptions, Modal, Row, Button, Tag, Typography, Form } from 'antd'
+import { PresentationAnalytics } from 'tabler-icons-react'
+import { QRCodeSVG } from 'qrcode.react'
 import React, { useState } from 'react'
 import Icon from 'src/common/components/AntSvg'
 
-const PreviewFrameModal: React.FC = (props) => {
-  const [visible, setVisible] = useState(false)
-  const onClose = () => {
-    setVisible(false)
-  }
+function FrameContent () {
   return (
-    <>
-      <div onClick={() => setVisible(true)}>
-        {props.children}
-      </div>
-      <Modal
-        width={950}
-        title='页面预览'
-        visible={visible}
-        onOk={onClose}
-        zIndex={2030}
-        footer={false}
-        onCancel={onClose}
-      >
-        <Row gutter={30}>
-          <Col span={12}>
-            <Screenshot title='第一个微页面' width={375}>
-              <iframe width={375} height={700} src='http://localhost:4500/micro-view/35' allowFullScreen />
-            </Screenshot>
+    <div style={{ width: '250px' }}>
+      <Form layout='vertical'>
+        <Form.Item label='页面地址'>
+          <Typography.Link copyable>
+            https://moyu-developer.cn/full-preview/629f6512fedca4001e32acf7/page/629f6512fedca4001e32acff
+          </Typography.Link>
+        </Form.Item>
+        <Form.Item label='二维码'>
+          <QRCodeSVG size={250} value='https://moyu-developer.cn/full-preview/629f6512fedca4001e32acf7/page/629f6512fedca4001e32acff' />
+        </Form.Item>
+      </Form>
+    </div>
+  )
+}
 
-          </Col>
-          <Col span={12}>
-            <Descriptions title='页面信息' column={1}>
-              <Descriptions.Item label='页面版本'>
-                <Tag color='geekblue'>v1.0.0</Tag>
-              </Descriptions.Item>
-              <Descriptions.Item label='当前环境'>
-                <Button icon={<Icon icon={IconBrandChrome} />} type='link' />
-              </Descriptions.Item>
-              <Descriptions.Item label='发布状态'>
-                <Badge status='success' text='未发布' />
-              </Descriptions.Item>
-            </Descriptions>
-          </Col>
-        </Row>
-      </Modal>
-    </>
+const PreviewFrameModal: React.FC = () => {
+  return (
+    <Popover placement='bottom' title='分享预览' content={<FrameContent />} trigger='click'>
+      <Button
+        type='link'
+        size='small'
+        icon={<Icon icon={PresentationAnalytics} />}
+      />
+    </Popover>
+
   )
 }
 
