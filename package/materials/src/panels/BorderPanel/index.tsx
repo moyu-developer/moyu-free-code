@@ -30,6 +30,12 @@ export const render = React.memo((props) => (
           <ColorSetter />
         </Form.Item>
       </Col>
+
+      <Col span={12}>
+        <Form.Item name={['style', 'borderRadius']} label='圆角'>
+          <InputNumber prefix={<Tag color='cyan'>px</Tag>} style={{ width: '100%' }} />
+        </Form.Item>
+      </Col>
     </Row>
   </Collapse.Panel>
 ))

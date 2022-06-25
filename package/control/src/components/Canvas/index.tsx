@@ -13,6 +13,7 @@ import { ulid } from 'ulid'
 import { MaterialComponentType } from '@moyu-code/shared'
 import Screenshot from 'src/common/components/Screenshot'
 import styles from './index.module.sass'
+import { Skeleton } from 'antd'
 
 interface MaterialRenderCanvasProps {
   materialComponents?: any
@@ -134,41 +135,43 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
 
   return (
     <div className={cs(styles.canvas, '__control_canvas__')}>
-      <Toolbar />
-      <div className={styles.window}>
-        <Screenshot title='测试标题'>
-          <GridLayoutRender
-            height='100%'
-            width={375}
-            sourceData={schema}
-            components={props.materialComponents}
-            onItemRender={handleRenderFieldNode}
-            onRender={(element) => (
-              <ReactGridLayout
-                style={{
-                  height: '100%',
-                  background
-                }}
-                className={styles.mobileLayout}
-                layout={layouts}
-                allowOverlap
-                isDroppable
-                useCSSTransforms
-                cols={24}
-                margin={[0, 0]}
-                rowHeight={5}
-                width={375}
-                onDropDragOver={() => ({ w: 24 })}
-                onDrop={onComponentDropCallback}
-                onDragStop={onComponentViewResizeChange}
-                onResizeStop={onComponentViewResizeChange}
-              >
-                {element}
-              </ReactGridLayout>
-            )}
-          />
-        </Screenshot>
-      </div>
+      <Skeleton active loading={!schema}>
+        <Toolbar />
+        <div className={styles.window}>
+          <Screenshot title='测试标题'>
+            <GridLayoutRender
+              height='100%'
+              width={375}
+              sourceData={schema}
+              components={props.materialComponents}
+              onItemRender={handleRenderFieldNode}
+              onRender={(element) => (
+                <ReactGridLayout
+                  style={{
+                    height: '100%',
+                    background
+                  }}
+                  className={styles.mobileLayout}
+                  layout={layouts}
+                  allowOverlap
+                  isDroppable
+                  useCSSTransforms
+                  cols={24}
+                  margin={[0, 0]}
+                  rowHeight={5}
+                  width={375}
+                  onDropDragOver={() => ({ w: 24 })}
+                  onDrop={onComponentDropCallback}
+                  onDragStop={onComponentViewResizeChange}
+                  onResizeStop={onComponentViewResizeChange}
+                >
+                  {element}
+                </ReactGridLayout>
+              )}
+            />
+          </Screenshot>
+        </div>
+      </Skeleton>
     </div>
   )
 }
