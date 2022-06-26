@@ -21,7 +21,7 @@
   </p>
 </div>
 
-### Preview
+### 项目预览
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5457321c0eef4a60a2e9f0bc39e4b020~tplv-k3u1fbpfcp-watermark.image?)
 
@@ -34,12 +34,64 @@
 
 ## 介绍
 
-可视化搭建一直是一个比较热门的话题，Moyu Free是一个简单的搭建项目实例。具备可扩展性的插拔式组件，可以在任意React项目中接入页面部件。使用`taro.js`来实现多端组件的渲染。同时，支持使用`Cdn Chunk` 的方式来加载`React Component`并实现渲染。
-使用monorepo来组织项目的结构管理，提供从创建到出料等一系列流程的代码实践。
-它是一个非常好的学习类项目，所有的源码都开源在[moyu-developer](https://github.com/moyu-developer)当中。
+可视化搭建一直是一个比较热门的话题，Moyu Free是一个简单的搭建项目实例。具备可扩展性的插拔式组件，可以在任意React项目中接入页面部件。开发时采用Monorepo的组织方式管理代码，最大程度解决了项目中代码的耦合和复用关系。
+
+- :tangerine: Monorepo组织，目录结构更清晰。
+
+- 🎉从零到一简单易懂的搭建体系出码出料教程。
+
+- 😊掌握搭建平台的核心要素秘籍。
+
+- 完整的组件开发构建流程。
+
+- TypeScript协议内容规范。
+
 
 
 <p align="right">(<a href="#top">回到顶部</a>)</p>
+
+
+## 运行
+
+想要在本地跑起来？耐心看完下面的内容。
+
+### 此存储库中包含的包
+
+- `@moyu-code/shared`
+- `@moyu-code/control`
+- `@moyu-code/render`
+- `@moyu-code/material`
+- `@moyu-code/request`
+
+### 此存储库中包含的应用
+
+- `基于umi3构建的moyu-free-code`
+
+- `基于nestjs构建的moyu-free-service`
+
+<p align="right">(<a href="#top">回到顶部</a>)</p>
+
+
+### install
+
+```shell
+
+# 安装依赖
+
+pnpm install
+```
+
+### start
+
+```shell
+# 启动所有包
+
+pnpm start
+
+# 启动单个包
+
+pnpm run start --filter @moyu-code/[package] [options]
+```
 
 
 ## 感谢
