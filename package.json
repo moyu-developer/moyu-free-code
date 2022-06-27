@@ -6,8 +6,8 @@
   "scripts": {
     "start": "pnpm -C ./package/service start:dev & pnpm -C ./package/control start & pnpm -C ./package/materials start & pnpm -C ./package/renders start & pnpm -C ./package/schema start & pnpm -C ./package/ui dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx ./package",
-    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx ./package"
+    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx ./",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx ./"
   },
   "repository": {
     "type": "git",
