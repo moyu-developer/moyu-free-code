@@ -3,7 +3,6 @@ import React from 'react'
 import { CustomSetterFormItemProps } from 'src/types/setter'
 import { message, Popover, Space } from 'antd'
 import { HexColorPicker, HexColorInput } from 'react-colorful'
-import { throttle } from 'lodash'
 import styles from './index.module.sass'
 
 interface ColorSetterProps {
@@ -21,7 +20,7 @@ const ColorSetter: React.FC<CustomSetterFormItemProps<string> & ColorSetterProps
    * 修改颜色
    * @param hex 变化的颜色
    */
-  const onColorPickerChange = throttle((hex: string) => {
+  const onColorPickerChange = (hex: string) => {
     console.log(hex, 'hex')
     const hexRule = /^#[0-9a-fA-F]{6}$/
     if (hex.match(hexRule)) {
@@ -29,7 +28,7 @@ const ColorSetter: React.FC<CustomSetterFormItemProps<string> & ColorSetterProps
     } else {
       message.warn(`${hex}看起来不是一个合法的色值。`)
     }
-  }, 600)
+  }
 
   return (
     <Popover

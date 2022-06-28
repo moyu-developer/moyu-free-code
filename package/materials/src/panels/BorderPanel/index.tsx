@@ -15,7 +15,7 @@ export const render = React.memo((props) => (
       <Col span={12}>
 
         <Form.Item name={['style', 'borderWidth']} label='宽度'>
-          <InputNumber prefix={<Tag color='cyan'>px</Tag>} style={{ width: '100%' }} />
+          <InputNumber prefix="px" style={{ width: '100%' }} />
         </Form.Item>
       </Col>
 
