@@ -35,6 +35,8 @@ const Toolbar = () => {
   const dispatch: Dispatch = useDispatch()
 
   const onSharePostedPngContext = async () => {
+   try {
+    dispatch.toolbar.setShare(true)
     const src = await domtoimage.toPng(
       document.querySelector('#__grid-layout-render__')
     )
@@ -53,6 +55,12 @@ const Toolbar = () => {
     } else {
       message.error('Posted Share Image Error...')
     }
+   } catch (error) {
+    message.error('Posted Share Image Error...')
+    
+   } finally {
+    dispatch.toolbar.setShare(false)
+   }
   }
 
   /** 处理当前Schema的发布 */

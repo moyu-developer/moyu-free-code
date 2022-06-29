@@ -26,8 +26,8 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
   )
   const scale = useSelector((state: RootState) => state.toolbar.scale / 100)
   const background = useSelector((state: RootState) => state.common.pageInfo.background)
-  const pageName = useSelector(
-    (state: RootState) => state.common.pageInfo.name
+  const isShare = useSelector(
+    (state: RootState) => state.toolbar.isShare
   )
   const selectedId = useSelector((state: RootState) => state.common?.uid)
 
@@ -118,7 +118,6 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
   const onComponentViewResizeChange =
    React.useCallback<ReactGridLayout.ItemCallback>(
      (...args) => {
-       console.log(args, '组件发生改变了')
        const record = args[2]
        dispatch.schema.setGridLayout(record)
      },
@@ -129,9 +128,9 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
     return schema.map((data) => ({
       i: data.uid,
       ...data.gridLayout,
-      static: true
+      static: isShare
     }))
-  }, [schema])
+  }, [schema, isShare])
 
   return (
     <div className={cs(styles.canvas, '__control_canvas__')}>

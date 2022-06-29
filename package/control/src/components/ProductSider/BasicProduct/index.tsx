@@ -6,6 +6,8 @@ import Icon from 'src/common/components/AntSvg'
 import CardBox from 'src/common/components/CardBox'
 import { useSelector } from 'react-redux'
 import type { RootState } from 'src/common/model'
+import RemoteComponent from '../RemoteComponent'
+import PageGroups from '../PageGroups'
 import styles from './index.module.sass'
 
 const BasicProduct = () => {
@@ -45,8 +47,12 @@ const BasicProduct = () => {
                 </div>
               </Space>
             </Tabs.TabPane>
-            <Tabs.TabPane tab='远程组件' key='RemoteComponents' />
-            <Tabs.TabPane tab='我的页面' key='MicroViewList' />
+            <Tabs.TabPane tab='远程组件' key='RemoteComponents' >
+              <RemoteComponent/>
+            </Tabs.TabPane>
+            <Tabs.TabPane tab='我的页面' key='MicroViewList' >
+              <PageGroups/>
+            </Tabs.TabPane>
           </Tabs>
         </div>
       </CardBox>
