@@ -1,9 +1,10 @@
 import React from 'react'
+import Empty from 'src/common/components/Empty'
 
 const RemoteComponent = () => {
   return (
     <div>
-      1111
+      <Empty/>
     </div>
   )
 }
