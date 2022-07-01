@@ -1,19 +1,19 @@
-import React from "react";
-import { Empty } from "antd";
+import React from 'react'
+import { Empty } from 'antd'
 
 const CustomEmpty = () => {
   return (
     <div
       style={{
-        display: "flex",
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh'
+        height: 'calc(100vh - 60px)'
       }}
     >
-      <Empty description="还没有内容哦，快去动手添加吧！" />
+      <Empty description='还没有内容哦，快去动手添加吧！' />
     </div>
-  );
-};
+  )
+}
 
-export default React.memo(CustomEmpty);
+export default React.memo(CustomEmpty)

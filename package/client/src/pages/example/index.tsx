@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Prompt, useLocation } from 'umi'
 import {
   MaterialBasicProduct,
@@ -8,10 +8,8 @@ import {
 } from '@moyu-code/control'
 import * as Materials from '@moyu-code/materials'
 import { MaterialComponentType, ReactComponent } from '@moyu-code/shared'
-import './model'
-
+import { LoadRemoteComponentSync } from '@moyu-code/renders'
 import styles from '@/styles/layout.module.css'
-import { Collapse } from 'antd'
 
 const url = 'https://unpkg.com/react@16.7.0/umd/react.production.min.js'
 
@@ -52,14 +50,26 @@ const Example = () => {
     const data = await (window as any).System.import(
       'http://175.178.14.116:9000/avatars/moyuremotevideo.umd.development.js'
     )
-    console.log(data?.default?.default, 'data')
-    setRenderComponents({
-      [data?.default?.default?.component?.displayName]: data?.default?.default?.component?.render
+    const res: MaterialComponentType = await LoadRemoteComponentSync('http://175.178.14.116:9000/avatars/moyuremotevideo.umd.development.js', {
+      antd: require('antd')
     })
-    setRenderComponents({})
-    setRemoteMaterials([...remoteMaterials, {
-      ...data?.default?.default
-    }])
+    console.log(res, 'res')
+    if (res) {
+      setRenderComponents((components: any) => ({
+        ...components,
+        [res.component.displayName]: res.component.render
+      }))
+      setRemoteMaterials([...remoteMaterials, {
+        ...res
+      }])
+    }
+    // setRenderComponents({
+    //   [res?.component?.displayName]: data?.default?.default?.component?.render
+    // })
+    // setRenderComponents({})
+    // setRemoteMaterials([...remoteMaterials, {
+    //   ...data?.default?.default
+    // }])
   }
 
   useEffect(() => {
@@ -77,12 +87,12 @@ const Example = () => {
         id={Number(location?.query.id)}
         depends={{
           resolve: {
-            react: 'https://unpkg.com/react@16.7.0/umd/react.production.min.js',
-            'react-dom':
-              'https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js',
-            lodash: 'https://unpkg.com/lodash@4.17.21/lodash.js',
-            moment: 'https://unpkg.com/moment@2.29.3/moment.js',
-            antd: 'https://unpkg.com/antd@4.21.0/dist/antd.min.js'
+            // react: 'https://unpkg.com/react@16.7.0/umd/react.production.min.js',
+            // 'react-dom':
+            //   'https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js',
+            // lodash: 'https://unpkg.com/lodash@4.17.21/lodash.js',
+            // moment: 'https://unpkg.com/moment@2.29.3/moment.js',
+            // antd: 'https://unpkg.com/antd@4.21.0/dist/antd.min.js'
           }
         }}
       >
