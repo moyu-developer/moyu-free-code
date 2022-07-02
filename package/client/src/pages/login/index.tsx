@@ -15,12 +15,12 @@ export default function Login () {
       </div>
 
       <Row className={styles.loginRow}>
-        <Col span={12}>
+        <Col span={12} className={styles.loginCol}>
           <div className={styles.loginBody}>
             <img className={styles.loginBodyImage} src={Logo} />
           </div>
         </Col>
-        <Col span={12}>
+        <Col span={12} className={styles.loginCol}>
           <div className={styles.loginBody}>
             <div className={styles.loginBodyWelcome}>
               <Text>欢迎您，Moyu boys and girls 😊</Text>

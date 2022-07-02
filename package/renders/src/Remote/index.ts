@@ -4,7 +4,7 @@ const defaultImports: Record<string, any> = {
   react: React
 }
 
-export const LoadRemoteComponentSync = async (url, resolve?: any) => {
+export const LoadRemoteComponentSync = async (url, resolve?: Record<string, any>) => {
   const imports = {
     ...defaultImports,
     ...resolve
@@ -23,7 +23,12 @@ export const LoadRemoteComponentSync = async (url, resolve?: any) => {
     // eslint-disable-next-line no-new-func
     Function('require, exports, module', data)(require, module.exports, module)
 
-    console.log(module, 'module')
-    return module?.exports?.default || null
+    const defaultUMDModule = module?.exports?.default
+
+    if (defaultUMDModule) {
+      return defaultUMDModule
+    }
+
+    return null
   }
 }

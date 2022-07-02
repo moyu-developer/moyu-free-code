@@ -92,7 +92,7 @@ const Example = () => {
             //   'https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js',
             // lodash: 'https://unpkg.com/lodash@4.17.21/lodash.js',
             // moment: 'https://unpkg.com/moment@2.29.3/moment.js',
-            // antd: 'https://unpkg.com/antd@4.21.0/dist/antd.min.js'
+            // anta: 'https://unpkg.com/antd@4.21.0/dist/antd.min.js'
           }
         }}
       >
