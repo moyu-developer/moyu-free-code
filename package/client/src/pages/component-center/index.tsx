@@ -1,6 +1,6 @@
 import type { ProColumns } from '@ant-design/pro-components'
 import { ProTable, PageContainer } from '@ant-design/pro-components'
-import { Button, Tooltip } from 'antd'
+import ImportChunkModal from './components/ImportChunkModal'
 
 export default () => {
   const columns: ProColumns[] = [
@@ -33,9 +33,7 @@ export default () => {
         dateFormatter='string'
         headerTitle='表格标题'
         toolBarRender={() => [
-          <Button type='primary' key='primary'>
-            添加组件
-          </Button>
+          <ImportChunkModal/>
         ]}
       />
     </div>
