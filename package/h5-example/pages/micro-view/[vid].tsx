@@ -54,7 +54,7 @@ const MicroView: NextPage<any, any> = (props) => {
 }
 
 MicroView.getInitialProps = async ({ query }) => {
-  const res = await fetch(`http://124.223.43.13:8500/api/v1/views/${query?.vid}`)
+  const res = await fetch(`http://localhost:8500/api/v1/views/${query?.vid}`)
   const json = await res.json()
   if (json.code === 200) {
     return {

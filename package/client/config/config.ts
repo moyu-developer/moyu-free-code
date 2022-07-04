@@ -13,6 +13,8 @@ export default defineConfig({
   alias: {
     config: 'config'
   },
+  antd: {
+  },
   scripts: ['https://unpkg.com/systemjs@6.12.1/dist/system.js'],
   sass: {},
   theme: {

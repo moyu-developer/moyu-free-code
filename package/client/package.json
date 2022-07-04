@@ -17,7 +17,7 @@
     "moment": "^2.29.3",
     "react-redux": "^8.0.1",
     "reset-css": "^5.0.1",
-    "umi": "^3.5.24"
+    "umi": "3.5.24"
   },
   "devDependencies": {
     "@umijs/plugin-sass": "^1.1.1",

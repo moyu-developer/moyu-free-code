@@ -5,9 +5,26 @@ import ImportChunkModal from './components/ImportChunkModal'
 export default () => {
   const columns: ProColumns[] = [
     {
-      dataIndex: '1',
-      title: '测试标题'
-    }
+      dataIndex: 'name',
+      title: '名称'
+    },
+    {
+      dataIndex: 'packageName',
+      title: '包名'
+    },
+
+    {
+      dataIndex: 'version',
+      title: '版本'
+    },
+
+
+    {
+      dataIndex: 'version',
+      title: '操作',
+      hideInSearch: true
+    },
+
   ]
 
   return (
@@ -31,7 +48,7 @@ export default () => {
           collapsed: false
         }}
         dateFormatter='string'
-        headerTitle='表格标题'
+        headerTitle='组件列表'
         toolBarRender={() => [
           <ImportChunkModal/>
         ]}

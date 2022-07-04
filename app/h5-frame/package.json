@@ -1,4 +1,5 @@
 {
+  "name": "@mou-code/h5-preview",
   "private": true,
   "scripts": {
     "dev": "umi dev",
@@ -6,6 +7,9 @@
     "start": "npm run dev"
   },
   "dependencies": {
+    "@moyu-code/materials": "workspace:^0.1.0",
+    "@moyu-code/shared": "workspace:^0.1.0",
+    "react-vant": "^1.4.18",
     "umi": "^4.0.2"
   },
   "devDependencies": {
