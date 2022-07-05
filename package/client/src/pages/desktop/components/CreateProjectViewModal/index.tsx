@@ -1,10 +1,78 @@
 import { history } from 'umi'
-import { Space, Modal, Form, Row, Col, Input, Upload, message } from 'antd'
-import { saveViewSchemaService, SaveViewSchemaRequest } from '@moyu-code/shared'
+import { Space, Modal, Form, Row, Col, Input, Upload, message, Badge, Tabs, Tree, TreeProps, Button } from 'antd'
+import type { DataNode } from 'antd/lib/tree';
+import { saveViewSchemaService } from '@moyu-code/shared'
 import * as React from 'react'
 import { isSuccess } from '@moyu-code/request'
 
+const treeData: DataNode[] = [
+  {
+    title: 'parent 1',
+    key: '0-0',
+    children: [
+      {
+        title: 'parent 1-0',
+        key: '0-0-0',
+        children: [
+          {
+            title: 'leaf',
+            key: '0-0-0-0',
+          },
+          {
+            title: 'leaf',
+            key: '0-0-0-1',
+          },
+          {
+            title: 'leaf',
+            key: '0-0-0-2',
+          },
+        ],
+      },
+      {
+        title: 'parent 1-1',
+        key: '0-0-1',
+        children: [
+          {
+            title: 'leaf',
+            key: '0-0-1-0',
+          },
+        ],
+      },
+      {
+        title: 'parent 1-2',
+        key: '0-0-2',
+        children: [
+          {
+            title: 'leaf',
+            key: '0-0-2-0',
+          },
+          {
+            title: 'leaf',
+            key: '0-0-2-1',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const renderBadge = (count: number, active = false) => {
+  return (
+    <Badge
+      count={count}
+      style={{
+        marginTop: -2,
+        marginLeft: 4,
+        color: active ? '#1890FF' : '#999',
+        backgroundColor: active ? '#E6F7FF' : '#eee',
+      }}
+    />
+  );
+};
+
+
 const CreateProjectViewModal: React.FC<{}> = (props) => {
+  const [activeKey, setActiveKey] = React.useState<React.Key | undefined>('tab1');
   const [visible, setVisible] = React.useState(false)
   const [form] = Form.useForm()
 
@@ -56,8 +124,23 @@ const CreateProjectViewModal: React.FC<{}> = (props) => {
         visible={visible}
         onCancel={() => setVisible(false)}
         onOk={onFinish}
+        width={720}
       >
-        <Form form={form} layout='vertical' onValuesChange={(v) => console.log(v, 'v')}>
+        <Row gutter={50}>
+          <Col span={8}>
+            <Button block type='primary' disabled>使用此模版</Button>
+            <Tabs defaultActiveKey="template">
+              <Tabs.TabPane tab="模板中心" key="template">
+              <Tree
+      showLine
+      defaultExpandedKeys={['0-0-0']}
+      treeData={treeData}
+    />
+              </Tabs.TabPane>
+            </Tabs>
+          </Col>
+          <Col span={16}>
+          <Form form={form} layout='vertical' onValuesChange={(v) => console.log(v, 'v')}>
           <Form.Item
             name='name'
             label='请页面名称'
@@ -82,7 +165,8 @@ const CreateProjectViewModal: React.FC<{}> = (props) => {
               <p className='ant-upload-hint'>仅限上传单张图片用于页面显示图</p>
             </Upload.Dragger>
           </Form.Item>
-        </Form>
+        </Form></Col>
+        </Row>
       </Modal>
     </Space>
   )
