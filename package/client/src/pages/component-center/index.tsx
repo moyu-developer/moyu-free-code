@@ -1,6 +1,8 @@
-import type { ProColumns } from '@ant-design/pro-components'
-import { ProTable, PageContainer } from '@ant-design/pro-components'
+import type { ProColumns } from '@ant-design/pro-components';
+import { ProCard, ProTable } from '@ant-design/pro-components';
+import DependList from './components/DependList'
 import ImportChunkModal from './components/ImportChunkModal'
+import styles from './index.module.sass'
 
 export default () => {
   const columns: ProColumns[] = [
@@ -28,31 +30,38 @@ export default () => {
   ]
 
   return (
-    <div>
-      <ProTable<any>
-        columns={columns}
-        request={(params, sorter, filter) => {
-        // 表单搜索项会从 params 传入，传递给后端接口。
-          console.log(params, sorter, filter)
-          return Promise.resolve({
-            data: [],
-            success: true
-          })
-        }}
-        rowKey='key'
-        pagination={{
-          showQuickJumper: true
-        }}
-        search={{
-          optionRender: false,
-          collapsed: false
-        }}
-        dateFormatter='string'
-        headerTitle='组件列表'
-        toolBarRender={() => [
-          <ImportChunkModal/>
-        ]}
-      />
+    <div className={styles.component}>
+       <ProCard split="vertical">
+      <ProCard title="依赖管理" colSpan="20%">
+        <DependList/>
+      </ProCard>
+      <ProCard title="左右分栏子卡片带标题" headerBordered>
+        <ProTable<any>
+          columns={columns}
+          request={(params, sorter, filter) => {
+          // 表单搜索项会从 params 传入，传递给后端接口。
+            console.log(params, sorter, filter)
+            return Promise.resolve({
+              data: [],
+              success: true
+            })
+          }}
+          rowKey='key'
+          pagination={{
+            showQuickJumper: true
+          }}
+          search={{
+            optionRender: false,
+            collapsed: false
+          }}
+          dateFormatter='string'
+          headerTitle='远程组件'
+          toolBarRender={() => [
+            <ImportChunkModal/>
+          ]}
+          />
+      </ProCard>
+    </ProCard>
     </div>
   )
 }
