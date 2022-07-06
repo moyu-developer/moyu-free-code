@@ -35,7 +35,7 @@ export default () => {
       <ProCard title="依赖管理" colSpan="20%">
         <DependList/>
       </ProCard>
-      <ProCard title="左右分栏子卡片带标题" headerBordered>
+      <ProCard title="组件列表" headerBordered>
         <ProTable<any>
           columns={columns}
           request={(params, sorter, filter) => {

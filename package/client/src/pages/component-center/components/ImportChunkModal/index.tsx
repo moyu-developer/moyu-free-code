@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { CustomModalSetter } from "@moyu-code/materials"
-import { Button, Col, Form, Input, Row } from 'antd';
+import { Button, Col, Form, Input, Row, Typography } from 'antd';
 import styles from './index.module.sass'
 
 
 export default () => {
   return (
-    <CustomModalSetter title="注册组件" trigger={<Button type='primary'>添加组件</Button>} width={720} >
+    <CustomModalSetter okText="注册" title="注册组件" trigger={<Button type='primary'>添加组件</Button>} width={720} >
       <Row gutter={24}>
         <Col span={12} >
           <Form layout="vertical" >
@@ -21,6 +21,7 @@ export default () => {
           </Form>
         </Col>
         <Col span={12}>
+          <Typography.Title level={5}>预览窗口</Typography.Title>
           <iframe className={styles.preview} src='https://nextui.org/'  />
         </Col>
       </Row>

@@ -8,7 +8,7 @@ const CustomEmpty = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 'calc(100vh - 60px)'
+        paddingTop: '200px'
       }}
     >
       <Empty description='还没有内容哦，快去动手添加吧！' />

@@ -2,7 +2,6 @@ import * as React from 'react'
 import store from 'src/common/model'
 import { Provider } from 'react-redux'
 import type { MaterialComponentType, RenderNodeType } from '@moyu-code/shared'
-import { RemoteOptions, RemoteComponent, RemoteLoader } from '@moyu-code/renders'
 import 'react-resizable/css/styles.css'
 import 'react-grid-layout/css/styles.css'
 import styles from './index.module.sass'
@@ -21,7 +20,7 @@ export interface MaterialContainerProviderProps {
   onBeforeSchema?: (schema?: RenderNodeType[]) => RenderNodeType[]
 
   /** @name 远程依赖 */
-  depends?: RemoteOptions
+  depends?: any
 }
 
 const ContainerProvider: React.FC<MaterialContainerProviderProps> = (props) => {
