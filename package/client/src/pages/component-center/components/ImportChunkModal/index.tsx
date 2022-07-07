@@ -18,6 +18,10 @@ export default () => {
             <Form.Item label="渲染Key" tooltip="用于Schema工作识别组件的唯一标识，避免重复" name="displayName" rules={[{ required: true, message: '请输入渲染Key' }]} >
               <Input placeholder='请输入渲染Key' />
             </Form.Item>
+
+            <Form.Item label="组件地址" tooltip="打包好的UMD组件地址" name="module" rules={[{ required: true, message: '请输入组件渲染地址' }]} >
+              <Input placeholder='请输入组件渲染地址' />
+            </Form.Item>
           </Form>
         </Col>
         <Col span={12}>
