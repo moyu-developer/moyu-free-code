@@ -58,9 +58,10 @@ const PropertyPanel = () => {
   console.log(currentPanels, 'currentPanels')
 
   return (
-    <Col className={styles.configuration}>
+    <div className={styles.configuration}>
       <Tabs>
         <Tabs.TabPane key='setter' tab='属性面板'>
+          <div className={styles.body}>
           {
             currentPanels.length === 0 ? <Empty /> : null
           }
@@ -88,6 +89,7 @@ const PropertyPanel = () => {
               })}
             </Collapse>
           </Form>
+          </div>
         </Tabs.TabPane>
         <Tabs.TabPane key='project' tab='页面设置'>
           <ProjectSetup />
@@ -96,7 +98,7 @@ const PropertyPanel = () => {
           <Dependencies />
         </Tabs.TabPane>
       </Tabs>
-    </Col>
+    </div>
   )
 }
 
