@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { Select } from 'antd'
+import { Button, Badge } from 'antd'
+import Icon from 'src/common/components/AntSvg'
+import { DeviceMobile, DevicesPc } from 'tabler-icons-react'
 
 const options = [
   {
@@ -11,7 +13,16 @@ const options = [
 const Device = () => {
   return (
     <>
-      <Select style={{ width: 80 }} placeholder='移动端' options={options} bordered={false} />
+    
+      <Button
+            type='link'
+            icon={<Badge dot><Icon icon={DeviceMobile} /></Badge>}
+          />
+          <Button
+            type='link'
+            icon={<Icon icon={DevicesPc} />}
+          />
+          
     </>
   )
 }

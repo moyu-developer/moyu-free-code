@@ -3,6 +3,7 @@ import type { Layout } from 'react-grid-layout'
 
 export type ReactComponent = string | React.FunctionComponent<any> | React.ComponentClass<any, any>
 /**
+ * 渲染器VNode模型
  * @interface 声明RenderNode的节点类型
  * @description 一个pattern大概的长相
  */
@@ -27,6 +28,7 @@ export interface RenderNodeType {
 }
 
 /**
+ * 素材库组件模型
  * @interface 素材组件的类型
  */
 export interface MaterialComponentType {
