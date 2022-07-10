@@ -1,5 +1,5 @@
 {
-  "name": "react-vant-nextjs-template",
+  "name": "@moyu-code/full-preview",
   "private": true,
   "scripts": {
     "dev": "next dev -p 4500",
