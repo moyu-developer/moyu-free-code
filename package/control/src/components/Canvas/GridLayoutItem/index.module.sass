@@ -1,3 +1,12 @@
 .selected
   border: 2px solid blue
   overflow: hidden
+  position: relative
+  &::before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    z-index: 1

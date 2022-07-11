@@ -14,6 +14,10 @@ import { MaterialComponentType } from '@moyu-code/shared'
 import Screenshot from 'src/common/components/Screenshot'
 import styles from './index.module.sass'
 import { Skeleton } from 'antd'
+import MoveHoverNode, {
+  HoverNodeAction,
+  MoveHoverNodeProps
+} from './MoveHoverNode'
 
 interface MaterialRenderCanvasProps {
   materialComponents?: any
@@ -124,6 +128,54 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
      [dispatch]
    )
 
+     /**
+   * 操作面板回调
+   * @action { HoverNodeAction.MOVE_UP } 上移
+   * @action { HoverNodeAction.MOVE_DOWN } 下移
+   * @action { HoverNodeAction.COPY }复制
+   * @action { HoverNodeAction.DELETE } 删除
+   */
+  const onTriggerFieldNodeAction: MoveHoverNodeProps['onTrigger'] =
+  React.useCallback(
+    async (type) => {
+      const selectedIndex: number = schema.findIndex(
+        (v) => v.uid === selectedId
+      )
+      if (selectedIndex >= 0) {
+        switch (type) {
+          case HoverNodeAction.MOVE_UP:
+            dispatch.schema.up(selectedIndex)
+
+            break
+          case HoverNodeAction.MOVE_DOWN:
+            dispatch.schema.down(selectedIndex)
+            break
+
+          case HoverNodeAction.COPY:
+            dispatch.schema.copy(selectedIndex)
+            break
+          case HoverNodeAction.DELETE: {
+            dispatch.schema.delete(selectedIndex)
+            const sliceItem = schema?.[selectedIndex - 1]
+            dispatch.common.updated({
+              uid: sliceItem ? sliceItem.uid : undefined
+            })
+          }
+            break
+
+          default:
+            break
+        }
+        return true
+      }
+      console.warn(
+        `onTriggerFieldNodeAction params [selected] position ${selectedId}...`
+      )
+      return false
+    },
+    [selectedId, schema]
+  )
+
   const layouts = React.useMemo(() => {
     return schema.map((data) => ({
       i: data.uid,
@@ -138,6 +190,15 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
         <Toolbar />
         <div className={styles.window}>
           <Screenshot title='测试标题'>
+          {selectedId
+          ? (
+            <MoveHoverNode
+              uid={selectedId}
+              schema={schema}
+              onTrigger={onTriggerFieldNodeAction}
+            />
+            )
+          : null}
             <GridLayoutRender
               height='100%'
               width={375}

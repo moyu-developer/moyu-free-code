@@ -39,3 +39,15 @@ export const LayoutOptions = [
     disabled: true
   }
 ]
+
+
+export const DeviceMode = [
+  {
+    label: 'mobile',
+    value: 375
+  },
+  {
+    label: 'pc',
+    value: '80%'
+  }
+]

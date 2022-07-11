@@ -229,7 +229,7 @@ const Mobile: React.FC<MobileProps> = (props) => {
               onDragStop={onComponentViewResizeChange}
               onResizeStop={onComponentViewResizeChange}
             >
-              {element}
+              {element as any}
             </ReactGridLayout>
           )}
         />
