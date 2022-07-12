@@ -34,7 +34,8 @@ const initializeCommonState: CommonState = {
   pageInfo: {
     name: '默认标题',
     background: '#FFF',
-    description: ''
+    description: '',
+    env: 0
   }
 }
 
@@ -73,7 +74,7 @@ export default createModel<RootModel>()({
     },
 
     /** 更新common store 数据 */
-    setPageInfo (state, data: Partial<CommonState>['pageInfo']) {
+    setPageInfo (state, data: Partial<CommonState['pageInfo']>) {
       return {
         ...state,
         pageInfo: {

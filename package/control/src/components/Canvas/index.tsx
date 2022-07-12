@@ -18,6 +18,7 @@ import MoveHoverNode, {
   HoverNodeAction,
   MoveHoverNodeProps
 } from './MoveHoverNode'
+import { DeviceMode } from 'src/common/constant'
 
 interface MaterialRenderCanvasProps {
   materialComponents?: any
@@ -30,6 +31,7 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
   )
   const scale = useSelector((state: RootState) => state.toolbar.scale / 100)
   const background = useSelector((state: RootState) => state.common.pageInfo.background)
+  const env = useSelector((state: RootState) => state.common.pageInfo.env)
   const isShare = useSelector(
     (state: RootState) => state.toolbar.isShare
   )
@@ -201,7 +203,7 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
           : null}
             <GridLayoutRender
               height='100%'
-              width={375}
+              width={DeviceMode.find((option) => option.value === env)?.size}
               sourceData={schema}
               components={props.materialComponents}
               onItemRender={handleRenderFieldNode}

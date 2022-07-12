@@ -44,10 +44,12 @@ export const LayoutOptions = [
 export const DeviceMode = [
   {
     label: 'mobile',
-    value: 375
+    value: 0,
+    size: 375,
   },
   {
     label: 'pc',
-    value: '80%'
+    value: 1,
+    size: 960
   }
 ]
