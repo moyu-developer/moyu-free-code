@@ -11,7 +11,6 @@ import {
   ArrowBackUp,
   ArrowForwardUp,
   Share,
-  PresentationAnalytics,
   Send,
   Plus,
   Minus,
@@ -78,7 +77,7 @@ const Toolbar = () => {
   return (
     <div className={styles.toolbar}>
       <Space>
-        <Select defaultValue='grid' options={LayoutOptions} />
+        <Typography.Link onClick={} >返回</Typography.Link>
       </Space>
       <Space size={5}>
         <div className={styles.toolbarGroup}>

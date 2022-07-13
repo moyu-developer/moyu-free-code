@@ -21,7 +21,7 @@ const BasicProduct = () => {
   }, [searchVal, materials])
 
   return (
-    <Col className={styles.component}>
+    <div className={styles.component}>
       <CardBox title='我的组件'>
         <div className={styles.componentContent}>
           <Tabs defaultActiveKey='BaseComponents'>
@@ -56,7 +56,7 @@ const BasicProduct = () => {
           </Tabs>
         </div>
       </CardBox>
-    </Col>
+    </div>
   )
 }
 
