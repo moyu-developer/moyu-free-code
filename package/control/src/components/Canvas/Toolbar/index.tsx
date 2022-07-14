@@ -2,7 +2,6 @@ import {
   Button,
   Space,
   Modal,
-  Select,
   message,
   Typography,
   Popconfirm
@@ -23,10 +22,10 @@ import type { Dispatch, RootState } from 'src/common/model'
 import PreviewFrameModal from '../PreviewFrameModal'
 import CodeOpenEditor from '../CodeOpenEditor'
 import Icon from 'src/common/components/AntSvg'
-import { LayoutOptions } from 'src/common/constant'
 import domtoimage from 'dom-to-image'
 import Device from './Device'
 import { ulid } from 'ulid'
+import PublishModal from './PublishModal'
 
 const Toolbar = () => {
   const scale = useSelector((state: RootState) => state.toolbar.scale)
@@ -133,13 +132,15 @@ const Toolbar = () => {
       </Space>
       <Space>
         <PreviewFrameModal />
-        <Button
-          type='primary'
-          onClick={handleSchemaPublish}
-          icon={<Icon icon={Send} />}
-        >
-          发布
-        </Button>
+        <PublishModal>
+          <Button
+            type='primary'
+            // onClick={handleSchemaPublish}
+            icon={<Icon icon={Send} />}
+          >
+            发布
+          </Button>
+        </PublishModal>
       </Space>
     </div>
   )
