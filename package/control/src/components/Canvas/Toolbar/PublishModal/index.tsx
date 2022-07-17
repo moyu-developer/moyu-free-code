@@ -1,26 +1,36 @@
 import React from "react";
 import { CustomModalSetter } from "@moyu-code/materials";
-import { Col, Row, Descriptions, Space, Button, Modal, Image, Input, Typography, Tag } from "antd";
+import {
+  Col,
+  Row,
+  Descriptions,
+  Space,
+  Button,
+  Modal,
+  Image,
+  Input,
+  Typography,
+  Tag,
+} from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { Dispatch, RootState } from "src/common/model";
-import { DeviceMode } from 'src/common/constant'
+import { DeviceMode } from "src/common/constant";
 
 const PublishModal: React.FC = (props) => {
   const pageInfo = useSelector((state: RootState) => state.common.pageInfo);
-  const dispatch: Dispatch = useDispatch()
-
+  const dispatch: Dispatch = useDispatch();
 
   /** 处理当前Schema的发布 */
   const handleSchemaPublish = () => {
     Modal.confirm({
-      title: '是否发布？',
-      content: '是否要发布当前页面，发布页面后会立即同步并且生效，请谨慎操作。',
+      title: "是否发布？",
+      content: "是否要发布当前页面，发布页面后会立即同步并且生效，请谨慎操作。",
       onOk: async () => {
-        await dispatch.toolbar.save(1)
-        return true
-      }
-    })
-  }
+        await dispatch.toolbar.save(1);
+        return true;
+      },
+    });
+  };
 
   return (
     <CustomModalSetter title="发布管理" footer={null} trigger={props.children}>
@@ -31,18 +41,28 @@ const PublishModal: React.FC = (props) => {
         </Col>
         <Col span={12}>
           <Descriptions title={pageInfo?.name} layout="horizontal" column={1}>
-            <Descriptions.Item label="页面描述">{pageInfo.description}</Descriptions.Item>
+            <Descriptions.Item label="页面描述">
+              {pageInfo.description}
+            </Descriptions.Item>
             <Descriptions.Item label="环境">
-              <Tag color="purple">{DeviceMode.find(item => item.value === pageInfo.env)?.label}</Tag>
+              <Tag color="purple">
+                {DeviceMode.find((item) => item.value === pageInfo.env)?.label}
+              </Tag>
             </Descriptions.Item>
 
             <Descriptions.Item>
-            <Input.Search enterButton="打开" value="www.baidu.com" />
+              <Input.Search
+                enterButton="打开"
+                value="www.baidu.com"
+                onSearch={() => window.open("https://www.baidu.com")}
+              />
             </Descriptions.Item>
           </Descriptions>
-          
+
           <Space>
-            <Button type="primary" onClick={handleSchemaPublish}>发布页面</Button>
+            <Button type="primary" onClick={handleSchemaPublish}>
+              发布页面
+            </Button>
             <Button>发布为模板</Button>
           </Space>
         </Col>

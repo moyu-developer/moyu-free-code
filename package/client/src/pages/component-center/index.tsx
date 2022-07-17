@@ -3,8 +3,14 @@ import { ProCard, ProTable } from '@ant-design/pro-components';
 import DependList from './components/DependList'
 import ImportChunkModal from './components/ImportChunkModal'
 import styles from './index.module.sass'
+import './model'
 
 export default () => {
+
+  const getRemoteComponents = async () => {
+    
+  }
+
   const columns: ProColumns[] = [
     {
       dataIndex: 'name',
