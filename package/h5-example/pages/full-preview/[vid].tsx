@@ -3,12 +3,13 @@ import { MaterialComponentType, ReactComponent } from '@moyu-code/shared'
 import { GridLayoutRender } from '@moyu-code/renders'
 import { useMemo, useEffect } from 'react'
 import type { NextPage } from 'next'
+import useMessage from '../../hooks/useMessage'
 import { useRouter } from 'next/router'
 
 const renderComponents: Record<string, ReactComponent> = {}
 
 Object.keys(Materials).forEach((k: string) => {
-  const material = (Materials as Record<string, MaterialComponentType>)[k]
+  const material = (Materials as unknown as Record<string, MaterialComponentType>)[k]
   if (material.component?.displayName && material.component?.render) {
     renderComponents[material.component?.displayName] =
       material.component?.render
@@ -17,12 +18,13 @@ Object.keys(Materials).forEach((k: string) => {
 
 const MicroView: NextPage<any, any> = (props) => {
   const router = useRouter()
+  const data = useMessage()
 
   useEffect(() => {
     if (!props.pageData) {
       router.replace('/404')
     }
-  }, [])
+  }, [props.pageData])
 
   const schema = useMemo(() => {
     if (props.pageData?.schema) {
@@ -30,8 +32,6 @@ const MicroView: NextPage<any, any> = (props) => {
     }
     return []
   }, [props?.pageData])
-
-  console.log(schema, 'schema')
 
   return (
     <GridLayoutRender
