@@ -6,7 +6,7 @@ import { ulid } from 'ulid'
 import type { Key } from 'react'
 import updated from 'immutability-helper'
 
-const state: RenderNodeType[] = []
+const state: any = []
 
 export default createModel<RootModel>()({
   name: 'schema',
