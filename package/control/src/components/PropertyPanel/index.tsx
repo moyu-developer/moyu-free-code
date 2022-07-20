@@ -55,8 +55,6 @@ const PropertyPanel = () => {
     }
   }, [uid, schema])
 
-  console.log(currentPanels, 'currentPanels')
-
   return (
     <div className={styles.configuration}>
       <Tabs>

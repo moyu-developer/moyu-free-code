@@ -64,7 +64,7 @@ const Toolbar = () => {
   return (
     <div className={styles.toolbar}>
       <Space>
-        <Typography.Link onClick={} >返回</Typography.Link>
+        <Typography.Link >返回</Typography.Link>
       </Space>
       <Space size={5}>
         <div className={styles.toolbarGroup}>

@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import Empty from 'src/common/components/Empty'
 import { useSelector, useDispatch } from 'react-redux'
-import GridLayout from "react-grid-layout";
+import GridLayout, { ReactGridLayoutProps } from "react-grid-layout";
 import { Dispatch, RootState } from 'src/common/model';
-import { Eye } from 'tabler-icons-react'
+import { Eye, EyeOff } from 'tabler-icons-react'
 import type { RenderNodeType } from '@moyu-code/shared'
 import styles from './index.module.sass'
 
@@ -11,17 +11,32 @@ import styles from './index.module.sass'
 const PageGroups = () => {
 
   const schema = useSelector((state: RootState) => state.schema?.present)
-
   const dispatch: Dispatch = useDispatch()
 
-  const layout = [
-    { i: "a", x:0, y: 1, w: 12, h: 1 },
+  const handleLevelDragStop: ReactGridLayoutProps['onDragStop'] = (layouts) => {
+    const ids = layouts.map(item => item.i)
+    const newSchema = ids.map((uid: string) => {
+      const findSchemaItem = schema.find(data => data.uid === uid)
+      return findSchemaItem
+    })
+    dispatch.schema.updated(newSchema)
+  }
 
-    { i: "b", x: 0, y: 2, w: 12, h: 1 },
-    { i: "c", x: 0, y: 3, w: 12, h: 1 }
-  ];
+  const handleLevelHiddenView = (uid: string, isSHow: boolean) => {
+    dispatch.schema.setProps({
+      uid,
+      props: {
+        style: {
+          display: isSHow ? 'none' : undefined
+        }
+      }
+    })
+  }
 
-  const renderLayout = useMemo(() => {
+  const renderLayout: Array<ReactGridLayoutProps['layout'][0] & {
+    name: string;
+    isShow: boolean
+  }> = useMemo(() => {
     if (schema) {
       return schema.map((item: RenderNodeType, index) => {
         return {
@@ -31,6 +46,7 @@ const PageGroups = () => {
           w: 12,
           h: 1,
           name: item.component,
+          isShow: item.props?.style?.display !== 'none'
         }
       })
     }
@@ -47,12 +63,15 @@ const PageGroups = () => {
         rowHeight={30}
         width={276}
         resizeHandles={[]}
+        onDragStop={handleLevelDragStop}
       >
         {
           renderLayout.map((layout) => (
-            <div key={layout.i} className={styles.level}>
+            <div key={layout.i} className={styles.treeItem}>
               <span>{layout.name}</span>
-              <Eye/>
+              <div onClick={() => handleLevelHiddenView(layout.i, layout.isShow)} className={styles.treeItemIcon}>
+                {layout.isShow ? <EyeOff/> :<Eye/>}
+              </div>
             </div>
           ))
         }
