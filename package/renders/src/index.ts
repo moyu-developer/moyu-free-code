@@ -1,5 +1,6 @@
 export { default as GridLayoutRender } from './Render'
 export type { GridLayoutRenderProps } from './Render'
 export { default as RemoteComponent } from './Remote/DynamicHook'
-export { GridLayoutRenders } from './GridLayoutRender'
+export { MobileRender } from './MobileRender'
+export { EditorLayoutRender, EditorLayoutRenderProps } from './EditorRender'
 export * from './Remote'
