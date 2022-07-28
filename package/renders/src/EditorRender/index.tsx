@@ -20,9 +20,14 @@ export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => 
     <div id='__grid-layout-render__' style={props.style} className={props.className}>
       <ReactsGridLayout
         className="layout"
-        cols={12}
-        rowHeight={30}
+        cols={24}
+        rowHeight={5}
         margin={[0, 0]}
+        width={375}
+        onDropDragOver={() => ({ w: 24 })}
+        useCSSTransforms
+        isDroppable
+        allowOverlap
         {...props.gridLayoutProps}
       >
         {
@@ -30,7 +35,7 @@ export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => 
             /** 获取当前component */
             const Component = componentsRef.current?.[schema.component]
             const { children, ...componentProps } = schema.props
-            return props.renderItem(schema, React.createElement(Component, componentProps, children))
+            return props.renderItem(schema, <Component {...componentProps} >{children}</Component>)
           })
         }
       </ReactsGridLayout>
