@@ -37,14 +37,14 @@ const ColorSetter: React.FC<CustomSetterFormItemProps<string> & ColorSetterProps
         <HexColorPicker color={color} onChange={onColorPickerChange} />
       }
     >
-      <Space align='start'>
+      <div className={styles.colorPicker}>
         <HexColorInput prefix='#' color={color} onChange={onColorPickerChange} className={styles.input} />
-        <div
-          className={styles.block} style={{
-            background: color
-          }}
-        />
-      </Space>
+          <div
+            className={styles.block} style={{
+              background: color
+            }}
+          />
+      </div>
     </Popover>
   )
 }
