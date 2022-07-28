@@ -33,7 +33,7 @@ export const render = React.memo((props) => (
 
       <Col span={12}>
         <Form.Item name={['style', 'borderRadius']} label='圆角'>
-          <InputNumber prefix="px"/>
+          <InputNumber prefix="px" style={{ width: '100%' }} />
         </Form.Item>
       </Col>
     </Row>

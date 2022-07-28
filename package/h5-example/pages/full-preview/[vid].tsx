@@ -1,3 +1,4 @@
+import * as React from 'react'
 import * as Materials from '@moyu-code/materials'
 import { MaterialComponentType, ReactComponent } from '@moyu-code/shared'
 import { GridLayoutRender } from '@moyu-code/renders'

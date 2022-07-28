@@ -3,7 +3,9 @@ import Toolbar from './Toolbar'
 import cs from 'classnames'
 import {
   GridLayoutRender,
-  GridLayoutRenderProps
+  EditorLayoutRender,
+  GridLayoutRenderProps,
+  EditorLayoutRenderProps
 } from '@moyu-code/renders'
 import GridLayoutItem from './GridLayoutItem'
 import { useSelector, useDispatch } from 'react-redux'
@@ -12,13 +14,13 @@ import ReactGridLayout from 'react-grid-layout'
 import { ulid } from 'ulid'
 import { MaterialComponentType } from '@moyu-code/shared'
 import Screenshot from 'src/common/components/Screenshot'
-import styles from './index.module.sass'
 import { Skeleton } from 'antd'
 import MoveHoverNode, {
   HoverNodeAction,
   MoveHoverNodeProps
 } from './MoveHoverNode'
 import { DeviceMode } from 'src/common/constant'
+import styles from './index.module.sass'
 
 interface MaterialRenderCanvasProps {
   materialComponents?: any
@@ -64,18 +66,20 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
    * @param componentIndex 层级
    * @returns 组件
    */
-  const handleRenderFieldNode: GridLayoutRenderProps['onItemRender'] = (
+  const handleRenderFieldNode: EditorLayoutRenderProps['renderItem'] = (
+    node,
     element,
-    node
   ) => {
-    const { nodeData } = node
     return (
+      // <div key={node.uid} data-grid={{i: node.uid, ...node.gridLayout}}>
+      //   {element}
+      // </div>
       <GridLayoutItem
-        id={nodeData.component + nodeData.uid}
-        selected={selectedId === nodeData.uid}
-        onClick={() => onFieldNodeSelectedById(nodeData.uid)}
-        key={nodeData.uid}
-        data-grid={{ i: nodeData.uid, ...nodeData.gridLayout, resizeHandles: ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne'] }}
+        id={node.component + node.uid}
+        selected={selectedId === node.uid}
+        onClick={() => onFieldNodeSelectedById(node.uid)}
+        key={node.uid}
+        data-grid={{ i: node.uid, ...node.gridLayout, resizeHandles: ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne'] }}
       >
         {element}
       </GridLayoutItem>
@@ -201,7 +205,28 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
             />
             )
           : null}
-            <GridLayoutRender
+          <EditorLayoutRender sourceData={schema} components={props.materialComponents} 
+            gridLayoutProps={{
+              style: {
+                height: '100%',
+                width: DeviceMode.find((option) => option.value === env)?.size
+              },
+              className:styles.mobileLayout,
+              // allowOverlap: true,
+              isDroppable: true,
+              useCSSTransforms: true,
+              cols: 24,
+              margin: [0, 0],
+              rowHeight: 5,
+              width: 375,
+              onDropDragOver: () => ({ w: 24 }),
+              onDrop: onComponentDropCallback,
+              onDragStop: onComponentViewResizeChange,
+              onResizeStop: onComponentViewResizeChange,
+            }}
+          renderItem={handleRenderFieldNode}
+           />
+            {/* <GridLayoutRender
               height='100%'
               width={DeviceMode.find((option) => option.value === env)?.size}
               sourceData={schema}
@@ -230,7 +255,7 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
                   {element}
                 </ReactGridLayout>
               )}
-            />
+            /> */}
           </Screenshot>
         </div>
       </Skeleton>
