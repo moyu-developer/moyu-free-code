@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography } from 'react-vant'
+import { Button } from 'antd-mobile'
 import { TypographyProps } from 'react-vant/es/typography'
 
 export interface ExtraTypographyProps extends TypographyProps {
@@ -9,9 +9,11 @@ export interface ExtraTypographyProps extends TypographyProps {
 export default (props: ExtraTypographyProps) => {
   const { componentType = 'Text', children, ...otherProps } = props
 
-  const Component = Typography[componentType]
-
   return (
-    <Component {...otherProps}>{children}</Component>
+    <div>
+      <Button color='primary' fill='solid'>
+            Solid
+          </Button>
+    </div>
   )
 }

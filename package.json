@@ -27,6 +27,7 @@
     "@types/redux": "^3.6.0",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
+    "antd-mobile": "^5.20.0",
     "autoprefixer": "^10.4.5",
     "babel-plugin-module-resolver": "^4.1.0",
     "cssnano": "^5.1.7",

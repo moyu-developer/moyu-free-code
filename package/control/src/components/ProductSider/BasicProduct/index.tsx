@@ -7,7 +7,7 @@ import CardBox from 'src/common/components/CardBox'
 import { useSelector } from 'react-redux'
 import type { RootState } from 'src/common/model'
 import RemoteComponent from '../RemoteComponent'
-import PageGroups from '../PageGroups'
+import LayerManage from '../LayerManage'
 import styles from './index.module.sass'
 
 const BasicProduct = () => {
@@ -51,7 +51,7 @@ const BasicProduct = () => {
               <RemoteComponent/>
             </Tabs.TabPane>
             <Tabs.TabPane tab='我的页面' key='MicroViewList' >
-              <PageGroups/>
+              <LayerManage/>
             </Tabs.TabPane>
           </Tabs>
         </div>

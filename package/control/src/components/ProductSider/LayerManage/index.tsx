@@ -6,11 +6,13 @@ import { Dispatch, RootState } from 'src/common/model';
 import { Eye, EyeOff } from 'tabler-icons-react'
 import type { RenderNodeType } from '@moyu-code/shared'
 import styles from './index.module.sass'
+import { Tag } from 'antd';
 
 
-const PageGroups = () => {
+const LayerManage = () => {
 
   const schema = useSelector((state: RootState) => state.schema?.present)
+  const materials = useSelector((state: RootState) => state.common.materials)
   const dispatch: Dispatch = useDispatch()
 
   const handleLevelDragStop: ReactGridLayoutProps['onDragStop'] = (layouts) => {
@@ -34,18 +36,21 @@ const PageGroups = () => {
   }
 
   const renderLayout: Array<ReactGridLayoutProps['layout'][0] & {
-    name: string;
+    componentName: string;
+    componentKey: string;
     isShow: boolean
   }> = useMemo(() => {
     if (schema) {
       return schema.map((item: RenderNodeType, index) => {
+        const product = materials.find(el => el.component.displayName === item.component)
         return {
           i: item.uid,
           x: 0,
           y: index,
           w: 12,
           h: 1,
-          name: item.component,
+          componentName: product.name,
+          componentKey: item.component,
           isShow: item.props?.style?.display !== 'none'
         }
       })
@@ -68,7 +73,7 @@ const PageGroups = () => {
         {
           renderLayout.map((layout) => (
             <div key={layout.i} className={styles.treeItem}>
-              <span>{layout.name}</span>
+              <Tag color="magenta">{layout.componentName}</Tag>
               <div onClick={() => handleLevelHiddenView(layout.i, layout.isShow)} className={styles.treeItemIcon}>
                 {layout.isShow ? <EyeOff/> :<Eye/>}
               </div>
@@ -82,4 +87,4 @@ const PageGroups = () => {
   )
 }
 
-export default React.memo(PageGroups)
+export default React.memo(LayerManage)
