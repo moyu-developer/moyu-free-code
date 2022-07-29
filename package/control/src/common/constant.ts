@@ -50,6 +50,6 @@ export const DeviceMode = [
   {
     label: 'pc',
     value: 1,
-    size: 960
+    size: 750
   }
 ]

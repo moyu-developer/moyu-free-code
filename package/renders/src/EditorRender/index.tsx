@@ -23,7 +23,6 @@ export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => 
         cols={24}
         rowHeight={5}
         margin={[0, 0]}
-        width={375}
         onDropDragOver={() => ({ w: 24 })}
         useCSSTransforms
         isDroppable
