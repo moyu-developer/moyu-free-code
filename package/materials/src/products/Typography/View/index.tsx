@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button } from 'antd-mobile'
+import { Typography } from 'react-vant'
 import { TypographyProps } from 'react-vant/es/typography'
+import { Ellipsis } from 'antd-mobile'
 
 export interface ExtraTypographyProps extends TypographyProps {
   componentType?: 'Title' | 'Link' | 'Text'
@@ -9,11 +10,9 @@ export interface ExtraTypographyProps extends TypographyProps {
 export default (props: ExtraTypographyProps) => {
   const { componentType = 'Text', children, ...otherProps } = props
 
+  const Component = Typography[componentType]
+
   return (
-    <div>
-      <Button color='primary' fill='solid'>
-            Solid
-          </Button>
-    </div>
+    <Component {...otherProps}>{children}</Component>
   )
 }

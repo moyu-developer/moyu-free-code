@@ -1,4 +1,3 @@
-import 'antd-mobile/dist/antd-mobile.css'
 export { default as NoticeBar } from './products/NoticeBar'
 export { default as PictureAds } from './products/PictureAds'
 export { default as GoodsList } from './products/GoodsList'
