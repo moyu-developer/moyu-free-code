@@ -1,11 +1,10 @@
 import React, { useRef } from 'react'
 import ReactsGridLayout, { ReactGridLayoutProps } from 'react-grid-layout'
+import type { SchemaRenderProps } from 'src/types/index'
 import type { RenderNodeType, ReactComponent } from '@moyu-code/shared';
 
 
-export interface EditorLayoutRenderProps {
-  components: Record<string, ReactComponent>;
-  sourceData: RenderNodeType[];
+export interface EditorLayoutRenderProps extends SchemaRenderProps {
   className?: string;
   style?: React.CSSProperties;
   renderItem?: (node: RenderNodeType, element: JSX.Element) => JSX.Element
