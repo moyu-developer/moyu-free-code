@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import * as React from 'react'
 import ReactsGridLayout, { ReactGridLayoutProps } from 'react-grid-layout'
-import type { SchemaRenderProps } from 'src/types/index'
+import type { SchemaRenderProps } from '../../typings'
 import type { RenderNodeType, ReactComponent } from '@moyu-code/shared';
 
 
@@ -13,7 +13,7 @@ export interface EditorLayoutRenderProps extends SchemaRenderProps {
 
 export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => {
 
-  const componentsRef = useRef(props.components)
+  const componentsRef = React.useRef(props.components)
 
   return (
     <div id='__grid-layout-render__' style={{ ...props.style, height: '100%' }} className={props.className}>

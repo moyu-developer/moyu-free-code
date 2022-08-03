@@ -1,10 +1,5 @@
-import React, { ReactNode } from 'react'
-import ReactsGridLayout from 'react-grid-layout'
-import type { SchemaRenderProps } from '../types'
-
-const layout = [
-  { i: "a", x: 1, y: 1, w: 5, h: 5},
-];
+import * as  React from 'react'
+import type { SchemaRenderProps } from '../../typings'
 
 const ContainerStyle: React.CSSProperties = {
   display: 'grid',
@@ -13,25 +8,35 @@ const ContainerStyle: React.CSSProperties = {
   height: '100vh'
 }
 
-export interface GridLayoutRenderProps extends SchemaRenderProps {
-  renderItem: (element) => ReactNode
+export interface MobileRenderProps extends SchemaRenderProps {
 }
 
-export const MobileRender: React.FC<GridLayoutRenderProps> = () => {
+export const MobileRender: React.FC<MobileRenderProps> = (props) => {
 
   return (
     <div>
       <div style={ContainerStyle}>
         {
-          layout.map(item => <div key={item.i} 
-            style={{ 
-              background: 'blue', 
-              gridArea: `${item.x + 1} / ${item.y + 1} / ${item.x + item.w + 1} / ${item.y + item.h + 1}`}}
-              >a111</div>
-            )
+          props.sourceData.map((schema) => {
+            /** 获取当前component */
+            const Component = props.components?.[schema.component]
+            const { children, ...componentProps } = schema.props
+            const { gridLayout } = schema
+            console.log(gridLayout, 'gridLayout')
+
+            if (Component) {
+              return <div key={schema.uid} 
+              style={{
+                display: 'inline-block',
+                gridArea: `${gridLayout.x + 1} / ${gridLayout.y + 1} / ${gridLayout.x + gridLayout.w + 1} / ${gridLayout.y + gridLayout.h + 1}`}}
+                >
+                  <Component {...componentProps} >{children}</Component>
+                </div>
+            }
+            return <div>Error: { schema.component } is not found </div>
+          })
         }
         <div>
-          
         </div>
       </div>
     </div>
