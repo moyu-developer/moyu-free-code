@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Materials from '@moyu-code/materials'
 import { MaterialComponentType, ReactComponent } from '@moyu-code/shared'
-import { GridLayoutRender } from '@moyu-code/renders'
+import { EditorLayoutRender } from '@moyu-code/renders'
 import { useMemo, useEffect } from 'react'
 import type { NextPage } from 'next'
 import useMessage from '../../hooks/useMessage'
@@ -35,22 +35,25 @@ const MicroView: NextPage<any, any> = (props) => {
   }, [props?.pageData])
 
   return (
-    <GridLayoutRender
-      height='100vh'
-      sourceData={schema || []}
-      components={renderComponents}
-      onRender={(element) => {
-        return (
-          <div
-            style={{
-              position: 'relative'
-            }}
-          >
-            {element}
-          </div>
-        )
-      }}
-    />
+    <div>
+      <EditorLayoutRender sourceData={schema || []} components={renderComponents} />
+    </div>
+    // <GridLayoutRender
+    //   height='100vh'
+    //   sourceData={schema || []}
+    //   components={renderComponents}
+    //   onRender={(element) => {
+    //     return (
+    //       <div
+    //         style={{
+    //           position: 'relative'
+    //         }}
+    //       >
+    //         {element}
+    //       </div>
+    //     )
+    //   }}
+    // />
   )
 }
 
