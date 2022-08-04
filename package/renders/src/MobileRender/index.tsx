@@ -4,7 +4,7 @@ import type { SchemaRenderProps } from '../../typings'
 const ContainerStyle: React.CSSProperties = {
   display: 'grid',
   gridTemplateColumns: 'repeat(12, 1fr)',
-  gridAutoRows: '30px',
+  gridAutoRows: 5,
   height: '100vh'
 }
 

@@ -5,6 +5,19 @@ import type { RenderNodeType } from '@moyu-code/shared'
 import { ulid } from 'ulid'
 import type { Key } from 'react'
 import updated from 'immutability-helper'
+import { cloneDeep } from 'lodash-es'
+/**
+ * 如果target(也就是FirstOBJ[key])存在，
+ * 且是对象的话再去调用deepObjectMerge，
+ * 否则就是FirstOBJ[key]里面没这个对象，需要与SecondOBJ[key]合并
+ */
+ function deepObjectMerge(FirstOBJ, SecondOBJ) { // 深度合并对象
+  for (var key in SecondOBJ) {
+      FirstOBJ[key] = FirstOBJ[key] && FirstOBJ[key].toString() === "[object Object]" ?
+          deepObjectMerge(FirstOBJ[key], SecondOBJ[key]) : FirstOBJ[key] = SecondOBJ[key];
+  }
+  return FirstOBJ;
+}
 
 const state: any = []
 
@@ -53,7 +66,8 @@ export default createModel<RootModel>()({
         }
       } = payload
       const index = schema.findIndex(v => v.uid === uid)
-      return updated(schema, {
+      console.log(props, 'props')
+      const newSchema = updated(schema, {
         [index]: {
           props: {
             $apply: (oldProps) => ({
@@ -67,6 +81,7 @@ export default createModel<RootModel>()({
           }
         }
       })
+      return cloneDeep(newSchema)
     },
     setGridLayout: (schema, record: Layout) => {
       const { i, ...layout } = record
@@ -74,7 +89,10 @@ export default createModel<RootModel>()({
         if (item.uid === i) {
           return {
             ...item,
-            gridLayout: layout
+            gridLayout: {
+              ...item.gridLayout,
+              ...layout
+            }
           }
         }
         return item

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@moyu-code/materials": "workspace:^0.1.0",
     "@moyu-code/renders": "workspace:^0.1.0",
     "@moyu-code/shared": "workspace:^0.1.0",
     "react": "^18.2.0",

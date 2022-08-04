@@ -25,7 +25,7 @@ export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => 
         onDropDragOver={() => ({ w: 24 })}
         useCSSTransforms
         isDroppable
-        allowOverlap
+        // allowOverlap
         {...props.gridLayoutProps}
       >
         {
@@ -46,5 +46,11 @@ export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => 
 }
 
 EditorLayoutRender.defaultProps = {
-  renderItem: (_, element) => element
+  renderItem: (_, element) => {
+    const { w, h, x, y } = _.gridLayout
+    console.log( _.gridLayout, ' _.gridLayout')
+    return (
+      <div style={{display: 'inline-block'}} key={_.uid} data-grid={{i: _.uid, w, h, x, y, static: true}}>{element}</div>
+    )
+  }
 }

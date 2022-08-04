@@ -47,7 +47,6 @@
     "@tabler/icons": "^1.64.0",
     "ahooks": "^3.4.0",
     "antd": "^4.20.6",
-    "antd-mobile": "^5.20.0",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
     "immutability-helper": "^3.1.1",

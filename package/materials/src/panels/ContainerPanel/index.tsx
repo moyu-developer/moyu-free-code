@@ -18,7 +18,7 @@ const defaultInputProps: InputNumberProps = {
 export const key = 'ContainerPanel'
 
 export const render = React.memo((props) => (
-  <Collapse.Panel {...props} header='边框设置' key={key}>
+  <Collapse.Panel {...props} header='容器设置' key={key}>
     <div className={styles.container}>
       <div className={styles.indent}>
         <div className={styles.div1}>

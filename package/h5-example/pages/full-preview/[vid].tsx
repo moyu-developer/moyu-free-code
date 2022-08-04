@@ -35,25 +35,9 @@ const MicroView: NextPage<any, any> = (props) => {
   }, [props?.pageData])
 
   return (
-    <div>
-      <EditorLayoutRender sourceData={schema || []} components={renderComponents} />
+    <div style={{ height: '100vh' }}>
+      <EditorLayoutRender sourceData={schema || []} components={renderComponents} gridLayoutProps={{ width: 414 }} />
     </div>
-    // <GridLayoutRender
-    //   height='100vh'
-    //   sourceData={schema || []}
-    //   components={renderComponents}
-    //   onRender={(element) => {
-    //     return (
-    //       <div
-    //         style={{
-    //           position: 'relative'
-    //         }}
-    //       >
-    //         {element}
-    //       </div>
-    //     )
-    //   }}
-    // />
   )
 }
 
