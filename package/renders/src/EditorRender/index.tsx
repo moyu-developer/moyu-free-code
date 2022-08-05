@@ -25,7 +25,7 @@ export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => 
         onDropDragOver={() => ({ w: 24 })}
         useCSSTransforms
         isDroppable
-        // allowOverlap
+        allowOverlap
         {...props.gridLayoutProps}
       >
         {
@@ -37,6 +37,7 @@ export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => 
             if (Component) {
               return props.renderItem(schema, <Component {...componentProps} >{children}</Component>)
             }
+
             return <div>Error: { schema.component } is not found </div>
           })
         }
