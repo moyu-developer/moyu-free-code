@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Collapse, Form, Slider, Radio } from 'antd'
-import { TextAlignOptions, FontSizeMarks } from './enum'
+import { TextAlignOptions } from './enum'
 import FontStyleSetter from './StyleSetter'
 import ColorSetter from 'src/setter/ColorSetter'
 
@@ -11,7 +11,7 @@ export const key = 'FontPanel'
 export const render = React.memo((props) => (
   <Panel {...props} header='字体' key={key}>
     <Form.Item name={['style', 'fontSize']} label='字体大小'>
-      <Slider marks={FontSizeMarks} min={10} max={18} />
+      <Slider  min={10} max={99} />
     </Form.Item>
 
     <Form.Item label='对齐方式' name={['style', 'textAlign']}>
