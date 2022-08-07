@@ -4,7 +4,6 @@ import { MaterialComponentType, ReactComponent } from '@moyu-code/shared'
 import { EditorLayoutRender, MobileRender } from '@moyu-code/renders'
 import { useMemo, useEffect } from 'react'
 import type { NextPage } from 'next'
-import useMessage from '../../hooks/useMessage'
 import { useRouter } from 'next/router'
 
 const renderComponents: Record<string, ReactComponent> = {}
@@ -19,7 +18,6 @@ Object.keys(Materials).forEach((k: string) => {
 
 const MicroView: NextPage<any, any> = (props) => {
   const router = useRouter()
-  const data = useMessage()
 
   useEffect(() => {
     if (!props.pageData) {

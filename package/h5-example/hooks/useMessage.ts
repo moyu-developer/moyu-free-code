@@ -1,10 +1,17 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export default () => {
-  console.log('initial')
+
+  const [data, setData] = useState()
+
   useEffect(() => {
     window.addEventListener("message", (e) => {
-      console.log(e.data, e.data)
+      console.log(e.data)
+      setData(e?.data)
     })
+    return () => {
+    }
   }, [])
+
+  return data
 }
