@@ -14,8 +14,8 @@
     // stricter type-checking for stronger correctness. Recommended by TS
     "strict": false,
     // linter checks for common issues
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": false,
     // noUnused* overlap with @typescript-eslint/no-unused-vars, can disable if duplicative
     "noUnusedLocals": false,
     "noUnusedParameters": false,

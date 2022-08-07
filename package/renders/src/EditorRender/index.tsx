@@ -7,8 +7,9 @@ import type { RenderNodeType, ReactComponent } from '@moyu-code/shared';
 export interface EditorLayoutRenderProps extends SchemaRenderProps {
   className?: string;
   style?: React.CSSProperties;
+  mode: 'edit' | 'static';
   renderItem?: (node: RenderNodeType, element: JSX.Element) => JSX.Element
-  gridLayoutProps?: ReactGridLayoutProps
+  gridLayoutProps?: ReactGridLayoutProps,
 }
 
 export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => {
@@ -18,7 +19,6 @@ export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => 
   return (
     <div id='__grid-layout-render__' style={{ ...props.style, height: '100%' }} className={props.className}>
       <ReactsGridLayout
-        className="layout"
         cols={24}
         rowHeight={5}
         margin={[0, 0]}
@@ -47,9 +47,9 @@ export const EditorLayoutRender: React.FC<EditorLayoutRenderProps> = (props) => 
 }
 
 EditorLayoutRender.defaultProps = {
+  mode: 'edit',
   renderItem: (_, element) => {
     const { w, h, x, y } = _.gridLayout
-    console.log( _.gridLayout, ' _.gridLayout')
     return (
       <div style={{display: 'inline-block'}} key={_.uid} data-grid={{i: _.uid, w, h, x, y, static: true}}>{element}</div>
     )
