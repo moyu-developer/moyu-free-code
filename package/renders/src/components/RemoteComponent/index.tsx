@@ -4,6 +4,7 @@ import { LoadRemoteComponentSync } from '../../Remote';
 
 export interface RemoteComponentProps {
   url: string;
+  schemaProps?: Record<string, any>
 }
 
 const RemoteComponent: React.FC<RemoteComponentProps> = (props) => {
@@ -12,7 +13,7 @@ const RemoteComponent: React.FC<RemoteComponentProps> = (props) => {
 
 
   React.useEffect(() => {
-    LoadRemoteComponentSync('http://175.178.14.116:9000/avatars/moyuremotevideo.umd.development.js', {}).then(res => {
+    LoadRemoteComponentSync(props.url, {}).then(res => {
       if (res?.component?.render) {
         setComponent(res?.component?.render)
       }
@@ -23,7 +24,7 @@ const RemoteComponent: React.FC<RemoteComponentProps> = (props) => {
     return null
   }
 
-  return <Component/>
+  return <Component {...props.schemaProps} />
 }
 
 export default React.memo(RemoteComponent)

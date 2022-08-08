@@ -6,11 +6,16 @@ import styles from './index.module.sass'
 
 export default () => {
 
-  const frameRef = React.useRef<HTMLIFrameElement>(null)
-
-  const onRefreshFrameView = () => {
+  const onRefreshFrameView = async () => {
     const frameWindow = document.getElementById('componentPreview') as HTMLIFrameElement
-    frameWindow?.contentWindow?.postMessage('hello啊，在吗', '*')
+    frameWindow?.contentWindow?.postMessage({
+      schema: {
+        controls: true,
+        width: 250,
+        src:"https://www.runoob.com/try/demo_source/movie.mp4"
+      },
+      url: 'http://175.178.14.116:9000/avatars/video.js'
+    }, '*')
     
   }
 
@@ -23,11 +28,6 @@ export default () => {
               <Input placeholder='请输入组件名称' />
             </Form.Item>
 
-
-            <Form.Item label="渲染Key" tooltip="用于Schema工作识别组件的唯一标识，避免重复" name="displayName" rules={[{ required: true, message: '请输入渲染Key' }]} >
-              <Input placeholder='请输入渲染Key' />
-            </Form.Item>
-
             <Form.Item label="组件地址" tooltip="打包好的UMD组件地址" name="module" rules={[{ required: true, message: '请输入组件渲染地址' }]} >
               <Input placeholder='请输入组件渲染地址' />
             </Form.Item>
@@ -37,7 +37,7 @@ export default () => {
         </Col>
         <Col span={12}>
           <Typography.Title level={5}>预览窗口</Typography.Title>
-          <iframe id='componentPreview' allowFullScreen className={styles.preview} src='//localhost:4500/full-preview/35'  />
+          <iframe id='componentPreview' allowFullScreen className={styles.preview} src='//localhost:4500/message-preview'  />
         </Col>
       </Row>
     </CustomModalSetter>
