@@ -42,7 +42,7 @@ export const render = React.memo((props) => (
       {(fields, { add, remove }) => (
         <>
           {fields.map((field, index, array) => (
-            <Row key={field.key} gutter={[20, 0]}>
+            <Row key={index} gutter={[20, 0]}>
               <Col span={10}>
                 <Form.Item name={[field.name, "key"]}>
                   <Input placeholder={`参数${index}`} />

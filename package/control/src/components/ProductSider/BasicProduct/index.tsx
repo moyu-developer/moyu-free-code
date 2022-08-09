@@ -50,7 +50,7 @@ const BasicProduct = () => {
             <Tabs.TabPane tab='远程组件' key='RemoteComponents' >
               <RemoteComponent/>
             </Tabs.TabPane>
-            <Tabs.TabPane tab='我的页面' key='MicroViewList' >
+            <Tabs.TabPane tab='组件层级' key='MicroViewList' >
               <LayerManage/>
             </Tabs.TabPane>
           </Tabs>

@@ -79,7 +79,7 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
         selected={selectedId === node.uid}
         onClick={() => onFieldNodeSelectedById(node.uid)}
         key={node.uid}
-        data-grid={{ i: node.uid, ...node.gridLayout, resizeHandles: ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne'] }}
+        data-grid={{ i: node.uid, ...node.gridLayout}}
       >
         {element}
       </GridLayoutItem>
@@ -206,11 +206,13 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
             )
           : null}
           <EditorLayoutRender sourceData={schema} components={props.materialComponents} 
+            mode="edit"
             gridLayoutProps={{
               style: {
                 height: '100%',
                 width: DeviceMode.find((option) => option.value === env)?.size
               },
+              layout:layouts,
               width: DeviceMode.find((option) => option.value === env)?.size,
               className:styles.mobileLayout,
               onDrop: onComponentDropCallback,

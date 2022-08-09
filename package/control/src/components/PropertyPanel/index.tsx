@@ -78,9 +78,9 @@ const PropertyPanel = () => {
               activeKey={activeKey}
               onChange={(keys) => setActiveKey(keys)}
             >
-              {currentMaterials?.panel.map(({ key, render: RenderPanel }) => {
+              {currentMaterials?.panel.map(({ key, render: RenderPanel }, index) => {
                 return React.createElement(RenderPanel, {
-                  key,
+                  key: index,
                   materials: { uid }
                 })
               })}
