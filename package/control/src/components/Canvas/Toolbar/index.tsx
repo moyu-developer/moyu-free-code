@@ -24,6 +24,7 @@ import CodeOpenEditor from '../CodeOpenEditor'
 import Icon from 'src/common/components/AntSvg'
 import domtoimage from 'dom-to-image'
 import Device from './Device'
+import KeyWordBar from './KeyWordBar'
 import { ulid } from 'ulid'
 import PublishModal from './PublishModal'
 
@@ -69,6 +70,7 @@ const Toolbar = () => {
       <Space size={5}>
         <div className={styles.toolbarGroup}>
           <Device />
+          <KeyWordBar/>
         </div>
         <div className={styles.toolbarGroup}>
           <Button

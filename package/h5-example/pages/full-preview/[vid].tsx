@@ -19,6 +19,8 @@ Object.keys(Materials).forEach((k: string) => {
 const MicroView: NextPage<any, any> = (props) => {
   const router = useRouter()
 
+  console.log(JSON.stringify(props.pageData?.schema))
+
   useEffect(() => {
     if (!props.pageData) {
       router.replace('/404')
