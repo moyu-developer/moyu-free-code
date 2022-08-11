@@ -1,6 +1,7 @@
 {
   "name": "@moyu-code/client",
   "scripts": {
+    "start:dev": "turbo run start",
     "start": "umi dev",
     "build": "umi build",
     "analyze": "ANALYZE=1 umi build"
@@ -24,7 +25,6 @@
     "@umijs/plugin-sass": "^1.1.1",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.5.24",
-    "node": "link:@umijs/babel-preset-umi/node",
     "sass": "^1.51.0",
     "yorkie": "^2.0.0"
   }

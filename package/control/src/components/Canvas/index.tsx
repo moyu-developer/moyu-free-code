@@ -221,36 +221,6 @@ const MaterialRenderCanvas: React.FC<MaterialRenderCanvasProps> = (props) => {
             }}
           renderItem={handleRenderFieldNode}
            />
-            {/* <GridLayoutRender
-              height='100%'
-              width={DeviceMode.find((option) => option.value === env)?.size}
-              sourceData={schema}
-              components={props.materialComponents}
-              onItemRender={handleRenderFieldNode}
-              onRender={(element) => (
-                <ReactGridLayout
-                  style={{
-                    height: '100%',
-                    background
-                  }}
-                  className={styles.mobileLayout}
-                  layout={layouts}
-                  allowOverlap
-                  isDroppable
-                  useCSSTransforms
-                  cols={24}
-                  margin={[0, 0]}
-                  rowHeight={5}
-                  width={375}
-                  onDropDragOver={() => ({ w: 24 })}
-                  onDrop={onComponentDropCallback}
-                  onDragStop={onComponentViewResizeChange}
-                  onResizeStop={onComponentViewResizeChange}
-                >
-                  {element}
-                </ReactGridLayout>
-              )}
-            /> */}
           </Screenshot>
         </div>
       </Skeleton>

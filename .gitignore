@@ -27,3 +27,6 @@ pnpm-lock.yaml
 # eslint
 .eslintcache
 .vscode/settings.json
+
+
+**/.turbo
