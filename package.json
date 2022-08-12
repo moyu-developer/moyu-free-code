@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --filter @moyu-code/client",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx ./",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx ./"
