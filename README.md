@@ -71,6 +71,7 @@
 
 <p align="right">(<a href="#top">回到顶部</a>)</p>
 
+Install [Node.js >=14](https://nodejs.org/) and run the following command:
 
 ### install
 
@@ -102,6 +103,10 @@ pnpm run start --filter @moyu-code/[package] [options]
 - caohuiboss
 <p align="right">(<a href="#top">回到顶部</a>)</p>
 
+
+# 感谢
+
+构建
 
 ## LICENSE
 
