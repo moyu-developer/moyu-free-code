@@ -30,3 +30,5 @@ pnpm-lock.yaml
 
 
 **/.turbo
+
+**/*.env
