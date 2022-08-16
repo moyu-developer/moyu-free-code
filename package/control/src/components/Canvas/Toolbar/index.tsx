@@ -92,8 +92,7 @@ const Toolbar = () => {
           <CodeOpenEditor />
 
           <Popconfirm
-            title='是否清楚当前内容？'
-            icon={<Icon icon={ClearAll} />}
+            title='是否清空当前内容？'
             cancelButtonProps={{ type: 'text' }}
             onConfirm={() => dispatch.schema.updated([])}
           >

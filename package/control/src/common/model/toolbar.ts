@@ -16,7 +16,7 @@ const state: ToolBarState = {
 export default createModel<RootModel>()({
   name: 'toolbar',
   state,
-  effects: (dispatch) => ({
+  effects: () => ({
     async save (status: SaveViewSchemaRequest['status'], state) {
       const pageInfo = state.common?.pageInfo
       const { data: id } = await saveViewSchemaService({
