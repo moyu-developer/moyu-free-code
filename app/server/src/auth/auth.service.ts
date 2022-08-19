@@ -22,31 +22,22 @@ export class AuthService {
   async login(loginDto: LoginUserDto): Promise<AuthResponse> {
     const { name, password } = loginDto;
 
-    const user = await this.prismaService.user.findUnique({ where: { name } })
+    const user = await this.prismaService.user.findUnique({ where: { name } });
 
     if (!user.id) {
-      throw new NotFoundException("user not found");
+      throw new NotFoundException("用户不存在");
     }
 
     const validatePassword = await bcrypt.compare(password, user.password);
-    console.log(password, user)
 
     if (!validatePassword) {
-      throw new UnauthorizedException("invalid password");
+      throw new UnauthorizedException("密码不正确");
     }
 
     return {
       token: this.jwtService.sign({
         name,
       }),
-      user,
-    };
-  }
-
-  async register(createUserDto: CreateUserDto): Promise<AuthResponse> {
-    const user = await this.usersService.create(createUserDto);
-    return {
-      token: this.jwtService.sign({ name: user.name }),
       user,
     };
   }

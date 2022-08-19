@@ -15,11 +15,11 @@ export class AuthGuard implements CanActivate {
     const token = req.headers["authorization"];
 
     if (!token) {
-      throw new UnauthorizedException("token not found");
+      throw new UnauthorizedException("用户未登录，请登录后重试");
     }
 
     if (token !== "MY_AUTH_TOKEN") {
-      throw new UnauthorizedException("invalid token");
+      throw new UnauthorizedException("无效的用户信息");
     }
     return true;
   }
