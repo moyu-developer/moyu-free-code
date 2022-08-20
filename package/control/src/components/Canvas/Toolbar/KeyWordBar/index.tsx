@@ -9,26 +9,38 @@ import { Dispatch } from "src/common/model";
 
 const keys = [
   {
-    label: '保存'
+    label: '保存',
+    value: 'command + s'
   },
 
   {
-    label: '预览'
+    label: '预览',
+    value: 'command + p'
   },
 
   {
-    label: '撤销'
+    label: '撤销',
+    value: 'command + z'
   },
 
   {
-    label: '复制'
+    label: '重做',
+    value: 'command + shift + z'
   },
 
   {
-    label: '删除组件'
+    label: '复制',
+    value: 'command + c'
+    
+  },
+
+  {
+    label: '删除组件',
+    value: 'command + delete'
   },
   {
-    label: '搜索'
+    label: '搜索',
+    value: 'command + f'
   }
   
 ]
@@ -62,9 +74,7 @@ const KeyWordBar = () => {
       <Descriptions column={2}>
       {
         keys.map(data => <Descriptions.Item label={data.label}>
-          <Tag icon={<Command />}>
-          </Tag>
-          <Tag>C</Tag>
+          <Tag color="geekblue">{data.value}</Tag>
         </Descriptions.Item>)
       }
   </Descriptions>

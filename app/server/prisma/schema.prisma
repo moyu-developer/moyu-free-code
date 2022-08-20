@@ -10,6 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+// 用户模型
 model user {
   id Int @id @default(autoincrement())
   code String @default(uuid())
@@ -18,4 +20,17 @@ model user {
   name String @unique
   password String
   avatar String?
+  pages page[]
+}
+
+// 页面模型
+model page {
+  id Int @id @default(autoincrement())
+  code String @default(uuid()) @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  status Int @default(0)
+  content String @default("")
+  userId Int 
+  user user @relation(fields: [userId], references: [id])
 }
