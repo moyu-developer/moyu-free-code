@@ -11,7 +11,10 @@ import { Tag } from 'antd';
 
 const LayerManage = () => {
 
-  const schema = useSelector((state: RootState) => state.schema?.present)
+  const schema = useSelector((state: RootState) => {
+    console.log(state,'state')
+    return state.schema?.present
+  })
   const materials = useSelector((state: RootState) => state.common.materials)
   const dispatch: Dispatch = useDispatch()
 

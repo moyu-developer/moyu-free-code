@@ -27,11 +27,8 @@ export default createModel<RootModel>()({
         status
       })
       message.success(status === 1 ? '保存成功' : '发布成功')
-      if (state.common.pageInfo?.id !== id) {
-        // dispatch.common.updated({
-
-        // })
-      }
+      // if (state.common.pageInfo?.id !== id) {
+      // }
     }
   }),
 

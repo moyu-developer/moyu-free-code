@@ -53,8 +53,8 @@ const PublishModal: React.FC = (props) => {
             <Descriptions.Item>
               <Input.Search
                 enterButton="打开"
-                value="www.baidu.com"
-                onSearch={() => window.open("https://www.baidu.com")}
+                value="https://moyu-developer.cn/full-preview/629f6512fedca4001e32acf7/page/629f6512fedca4001e32acff"
+                onSearch={() => window.open("https://moyu-developer.cn/full-preview/629f6512fedca4001e32acf7/page/629f6512fedca4001e32acff")}
               />
             </Descriptions.Item>
           </Descriptions>

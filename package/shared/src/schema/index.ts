@@ -6,3 +6,10 @@ export interface ReactNodeBaseAttrProps {
   style?: React.CSSProperties
   className?: string
 }
+
+
+export class MaterialComponents {
+
+  constructor () {}
+
+}
