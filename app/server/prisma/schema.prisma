@@ -26,6 +26,7 @@ model user {
 // 页面模型
 model page {
   id Int @id @default(autoincrement())
+  title String
   code String @default(uuid()) @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
